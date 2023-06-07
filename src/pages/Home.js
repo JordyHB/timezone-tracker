@@ -4,26 +4,39 @@ import axios from "axios";
 
 function Home(props) {
 
-    const [timeZones, setTimeZones] = useState([])
+    const [timeData, setTimeData] = useState({})
+    const [locationData, setLocationData] = useState({})
+    const [localTime, setLocalTime] = useState('')
 
-    async function fetchTimeZones(){
+    async function fetchTimeData(){
         try {
-            const { data } = await axios.get('http://worldtimeapi.org/api/timezone')
-            setTimeZones(data)
+            const { data } = await axios.get('http://worldtimeapi.org/api/ip')
+            setTimeData(data)
         } catch (e) {
             console.error(e)
         }
     }
 
+    async function fetchLocationData() {
+        try {
+            const { data } = await axios.get('https://geolocation-db.com/json/')
+            setLocationData(data)
+        } catch (e) {
+            console.error(e)
+            }
+    }
+
     useEffect(() => {
-        void fetchTimeZones()
-        console.log(timeZones)
+        void fetchTimeData()
+        void fetchLocationData()
     }, [])
 
     useEffect(() => {
-        console.log(timeZones)
-    }, [timeZones])
-
+        console.log(timeData)
+        console.log(locationData)
+        setLocalTime(Date(timeData.datetime))
+    }
+    , [timeData, locationData])
 
     return (
         <>
@@ -32,6 +45,10 @@ function Home(props) {
             </header>
             <main>
                 <p>Home page content</p>
+                <section className="main-clock-container">
+                    <h3>{`The current time for ${locationData.city}, ${locationData.country_name}`}</h3>
+                    <p>{localTime}</p>
+                </section>
             </main>
         </>
     );
