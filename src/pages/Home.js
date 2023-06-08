@@ -4,9 +4,15 @@ import axios from "axios";
 
 function Home(props) {
 
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(false)
     const [timeData, setTimeData] = useState({})
     const [locationData, setLocationData] = useState({})
-    const [localTime, setLocalTime] = useState('')
+    const [localTimeString, setLocalTimeString] = useState('')
+    const [seconds, setSeconds] = useState(0)
+    const [minutes, setMinutes] = useState(0)
+    const [hours, setHours] = useState(0)
+    const [day, setDay] = useState(0)
 
     async function fetchTimeData(){
         try {
@@ -27,16 +33,39 @@ function Home(props) {
     }
 
     useEffect(() => {
+
         void fetchTimeData()
         void fetchLocationData()
+
+
+
     }, [])
 
     useEffect(() => {
-        console.log(timeData)
-        console.log(locationData)
-        setLocalTime(Date(timeData.datetime))
+        function convertToLocalTime() {
+
+            const localTime = new Date()
+            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone:timeData.timezone, hour12: false }))
+            setDay(localTime.getDay())
+            setHours(localTime.getHours())
+            setMinutes(localTime.getMinutes())
+            setSeconds(localTime.getSeconds())
+            console.log(localTimeString)
+        }
+
+        setLoading(true)
+
+        timeData.timezone && setInterval(() => {
+            convertToLocalTime()
+            setLoading(false)
+        }, 1000)
+
+    }, [timeData, locationData])
+
+    function printTime() {
+        const requestedTime = new Date(localTimeString)
+        console.log(requestedTime)
     }
-    , [timeData, locationData])
 
     return (
         <>
@@ -47,7 +76,9 @@ function Home(props) {
                 <p>Home page content</p>
                 <section className="main-clock-container">
                     <h3>{`The current time for ${locationData.city}, ${locationData.country_name}`}</h3>
-                    <p>{localTime}</p>
+                    <p>{`${hours} ${minutes} ${seconds}`}</p>
+                    <p>{loading ? <p>fetching local time</p> : localTimeString}</p>
+                    <button type="button" onClick={() => console.log(timeData.timezone)}>time</button>
                 </section>
             </main>
         </>
