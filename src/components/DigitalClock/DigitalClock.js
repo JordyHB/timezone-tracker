@@ -55,7 +55,7 @@ function DigitalClock({showSeconds, timezone}) {
         <>
             {loading && <p>fetching local time</p>}
             {hoursDisplay[1] && <article className="digital-clock">
-                <h1 className="display">
+                <h3 className="display">
                     <span className="hour-display">
                         <span>{hoursDisplay[0]}</span>
                         <span>{hoursDisplay[1]}</span>
@@ -71,7 +71,7 @@ function DigitalClock({showSeconds, timezone}) {
                             <span className="seconds-left">{secondsDisplay[0]}</span>
                             <span className="seconds-right">{secondsDisplay[1]}</span>
                         </span>}
-                </h1>
+                </h3>
             </article>}
         </>
 

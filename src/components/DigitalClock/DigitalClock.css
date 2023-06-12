@@ -1,25 +1,21 @@
 .digital-clock {
-    font-size: clamp(1rem, 20vw, 8rem);
     width: 100%;
     height: 100%;
+    font-size: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 10px solid black;
+    margin-top: 1.5rem;
+
 }
 
 .display {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
 }
 
 .hour-display {
     display: inline-block;
-    background-color: #f1c40f;
-
 }
 
 .minutes-display {
@@ -28,12 +24,5 @@
 
 .seconds-display {
     display: inline-block;
-    transition : all 1s ease-in-out;
-    overflow: hidden;
-}
-
-.seconds-left {
-}
-
-.seconds-right {
+    color: darkgray;
 }

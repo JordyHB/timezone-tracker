@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import DigitalClock from "../components/DigitalClock/DigitalClock";
+import DigitalClock from "../../components/DigitalClock/DigitalClock";
+import TimeInfoTile from "../../components/TimeInfoTile/TimeInfoTile";
+import './Home.css'
 
 
 function Home(props) {
@@ -40,33 +42,26 @@ function Home(props) {
 
     return (
         <>
-            <header>
-                <h1>Home</h1>
-            </header>
             <main>
-                <p>Home page content</p>
                 <section className="main-clock-container">
-                    <h3>{`The current time for ${locationData.city}, ${locationData.country_name}`}</h3>
+                    <h3>The current time for: <span className="location-info">{`${locationData.city}, ${locationData.country_name}`}</span></h3>
                     <DigitalClock
                         timezone={timeData.timezone}
                         showSeconds={true}
                     />
 
                     {/*<p>{loading ? <p>fetching local time</p> : localTimeString}</p>*/}
-                    <button type="button" onClick={() => console.log(timeData.timezone)}>time</button>
                 </section>
-                <DigitalClock
-                    timezone={'Europe/London'}
-                    showSeconds={true}
-                />
-                <DigitalClock
-                    timezone={'America/Halifax'}
-                    showSeconds={true}
-                />
-                <DigitalClock
-                    timezone={'Europe/Helsinki'}
-                    showSeconds={true}
-                />
+                <section className="other-cities-container">
+                    <TimeInfoTile
+                    />
+                    <TimeInfoTile
+                    />
+                    <TimeInfoTile
+                    />
+                    <TimeInfoTile
+                    />
+                </section>
             </main>
         </>
     );

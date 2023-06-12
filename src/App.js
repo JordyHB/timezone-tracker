@@ -3,9 +3,9 @@ import {  Route, Routes } from 'react-router-dom';
 // styling
 import './App.css';
 // pages
-import Home from "./pages/Home";
+import Home from "./pages/home/Home";
 // components
-import NavBar from "./components/NavBar";
+import NavBar from "./NavBar/NavBar";
 
 function App() {
   return (

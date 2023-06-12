@@ -1,0 +1,37 @@
+.time-info-tile {
+    display: flex;
+    flex-direction: column;
+    width: clamp(200px, 18%, 400px);
+    align-items: center;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 1rem;
+    margin: 1rem;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+.time-info-tile:nth-child(even) {
+    background: #b3c6bf;
+}
+
+.city-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin: 0.5rem;
+}
+
+.info-bar {
+    margin: 0.5rem;
+
+}
+
+.utc-offset {
+    font-style: italic;
+    font-weight: 500;
+    color: #552b31;
+}
+
+.clock-wrapper {
+    width : 100%;
+    margin: 0.5rem;
+}
