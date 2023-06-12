@@ -1,0 +1,12 @@
+.error-message {
+    color: red;
+    font-size: clamp(0.8rem, 15%, 1.25rem);
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.loading-message {
+    font-size: clamp(0.8rem, 15%, 1.25rem);
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+}

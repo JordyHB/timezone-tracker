@@ -1,0 +1,9 @@
+.other-cities-container{
+    width: 100%;
+    padding: clamp(1rem, 8%, 2rem);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

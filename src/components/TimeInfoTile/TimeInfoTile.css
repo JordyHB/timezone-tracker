@@ -22,14 +22,18 @@
 }
 
 .info-bar {
-    margin: 0.5rem;
-
+    margin: 0.5rem 0.5rem 2rem 0.5rem;
 }
 
 .utc-offset {
     font-style: italic;
     font-weight: 500;
     color: black;
+}
+
+.date-info {
+
+
 }
 
 .clock-wrapper {

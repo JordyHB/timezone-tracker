@@ -3,11 +3,13 @@ import axios from "axios";
 import DigitalClock from "../DigitalClock/DigitalClock";
 import './TimeInfoTile.css'
 
-function TimeInfoTile({ timezone }) {
+function TimeInfoTile({timezone}) {
 
     const [timeData, setTimeData] = useState({})
     const [city, setCity] = useState('')
     const [date, setDate] = useState('')
+    const [loading, toggleLoading] = useState(false)
+    const [error, toggleError] = useState(false)
 
     // takes the timezone data from the API and splits it into an array before extracting the city name
     function extractCityName() {
@@ -29,12 +31,16 @@ function TimeInfoTile({ timezone }) {
 
         async function fetchTimeData() {
             try {
+                toggleError(false)
                 const {data} = await axios.get(`http://worldtimeapi.org/api/timezone/${timezone}`)
                 setTimeData(data)
             } catch (e) {
+                toggleError(true)
                 console.error(e)
             }
         }
+
+        toggleLoading(true)
 
         // checks every minute to see if the date has changed
         const EveryMinUpdate = setInterval(() => {
@@ -52,41 +58,49 @@ function TimeInfoTile({ timezone }) {
 
     useEffect(() => {
         // makes sure the data is fetched before extracting the city name and date
-        if(datetime !== undefined) {
+        if (datetime !== undefined) {
             extractDate()
             extractCityName()
         }
-    } , [timeData])
+        // once the data is fetched, loading is set to false
+        timeData.datetime && toggleLoading(false)
+    }, [timeData])
 
 
-        // destructuring the timeData object
-        const {
-            datetime,
-            day_of_week,
-            timezone: timezoneLocation,
-            utc_offset
-        } = timeData
+    // destructuring the timeData object
+    const {
+        datetime,
+        day_of_week,
+        timezone: timezoneLocation,
+        utc_offset
+    } = timeData
 
 
-        return (
-            <>
-                {timezoneLocation &&
-                <article className="time-info-tile">
-                    <h3 className="city-name">{city}</h3>
-                    <div className="info-bar">
-                        <p className="utc-bar">UTC: <span className="utc-offset">{utc_offset}</span></p>
-                        <p className="date-info">{date}</p>
-                    </div>
-                    <div className="clock-wrapper">
-                        <DigitalClock
-                            timezone={timezoneLocation}
-                            showSeconds={false}
-                        />
-                    </div>
-                </article>
+    return (
+        <>
+
+            <article className="time-info-tile">
+                {/*handles giving the user feedback if there is an error or if the data is loading*/}
+                {error && <p className="error-message">There was an error fetching the data</p>}
+                {loading && <p className="loading-message">fetching local data</p>}
+                {!loading && !error && datetime !== undefined &&
+                    <>
+                        <h3 className="city-name">{city}</h3>
+                        <div className="info-bar">
+                            <p className="utc-bar">UTC: <span className="utc-offset">{utc_offset}</span></p>
+                            <p className="date-info">{date}</p>
+                        </div>
+                        <div className="clock-wrapper">
+                            <DigitalClock
+                                timezone={timezoneLocation}
+                                showSeconds={false}
+                            />
+                        </div>
+                    </>
                 }
-            </>
-        );
-    }
+            </article>
+        </>
+    );
+}
 
-    export default TimeInfoTile;
+export default TimeInfoTile;
