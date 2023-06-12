@@ -3,13 +3,14 @@ import axios from "axios";
 import DigitalClock from "../../components/DigitalClock/DigitalClock";
 import TimeInfoTile from "../../components/TimeInfoTile/TimeInfoTile";
 import './Home.css'
-
+import NavBar from "../../components/NavBar/NavBar";
 
 function Home(props) {
 
 
     const [timeData, setTimeData] = useState({})
     const [locationData, setLocationData] = useState({})
+    const [shownTimeTiles, setShownTimeTiles] = useState(['Europe/London', 'Asia/Shanghai', 'America/New_York', 'Australia/Sydney'])
 
 
 
@@ -35,13 +36,12 @@ function Home(props) {
 
         void fetchTimeData()
         void fetchLocationData()
-
-
     }, [])
 
 
     return (
-        <>
+        <div className="outer-container">
+            <NavBar/>
             <main>
                 <section className="main-clock-container">
                     <h3>The current time for: <span className="location-info">{`${locationData.city}, ${locationData.country_name}`}</span></h3>
@@ -49,22 +49,23 @@ function Home(props) {
                         timezone={timeData.timezone}
                         showSeconds={true}
                     />
-
                     {/*<p>{loading ? <p>fetching local time</p> : localTimeString}</p>*/}
                 </section>
                 <section className="other-cities-container">
-                    <TimeInfoTile
-                    />
-                    <TimeInfoTile
-                    />
-                    <TimeInfoTile
-                    />
-                    <TimeInfoTile
-                    />
+                    {shownTimeTiles.map((timezone, index) => {
+                        return (
+                            <TimeInfoTile
+                                key={index}
+                                timezone={timezone}
+                            />
+                        )
+                    }
+                    )}
                 </section>
             </main>
-        </>
+        </div>
     );
 }
 
 export default Home;
+

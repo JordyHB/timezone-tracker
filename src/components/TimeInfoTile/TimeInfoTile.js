@@ -11,7 +11,8 @@ function TimeInfoTile({ timezone }) {
 
     // takes the timezone data from the API and splits it into an array before extracting the city name
     function extractCityName() {
-        setCity(timezoneLocation.split('/')[1])
+        // splits the timezone string into an array and extracts only the name of the city
+        setCity(timezoneLocation.split('/')[1].replace('_', ' '))
     }
 
     function extractDate() {
@@ -28,7 +29,7 @@ function TimeInfoTile({ timezone }) {
 
         async function fetchTimeData() {
             try {
-                const {data} = await axios.get('http://worldtimeapi.org/api/timezone/Australia/Brisbane')
+                const {data} = await axios.get(`http://worldtimeapi.org/api/timezone/${timezone}`)
                 setTimeData(data)
             } catch (e) {
                 console.error(e)
@@ -37,12 +38,13 @@ function TimeInfoTile({ timezone }) {
 
         // checks every minute to see if the date has changed
         const EveryMinUpdate = setInterval(() => {
-            console.log('checking for date change')
+            // if the date exists, the date is extracted again
             datetime && extractDate()
         }, 6000)
 
         void fetchTimeData()
 
+        // cleans up the interval to prevent memory leaks
         return () => {
             clearInterval(EveryMinUpdate)
         }
@@ -57,13 +59,11 @@ function TimeInfoTile({ timezone }) {
     } , [timeData])
 
 
+        // destructuring the timeData object
         const {
-            abbreviation,
             datetime,
             day_of_week,
-            raw_offset,
             timezone: timezoneLocation,
-            utc_datetime,
             utc_offset
         } = timeData
 

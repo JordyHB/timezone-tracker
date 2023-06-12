@@ -1,13 +1,14 @@
 import React from 'react';
 import './NavBar.css'
+import { NavLink } from "react-router-dom";
 
 function NavBar(props) {
     return (
         <nav className="nav">
-            <a href="/" className="site-name">Timezone Tracker</a>
+            <NavLink to='/' className="site-name">Timezone Tracker</NavLink>
             <ul>
                 <li>
-                    <a href="/">Home</a>
+                    <NavLink to='/'>Home</NavLink>
                 </li>
             </ul>
         </nav>

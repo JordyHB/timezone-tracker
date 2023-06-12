@@ -1,19 +1,42 @@
-header {
-    background: #e3f0f5;
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
 }
 
 main {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-    width: 100vw;
     background: #6b7b81;
+    padding: clamp(1rem, 5%, 2rem);
+    flex: 1;
 }
+
+.main-clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: clamp(200px, 75%, 500px);
+    background: #ffffff;
+    border: 1px solid #56354b;
+    border-radius: 4px;
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem;
+}
+
+.main-clock-container > .digital-clock {
+    font-size: clamp(2rem, 10vw, 6rem);
+    width: clamp(2rem, 10vw, 6rem);
+}
+
 
 .other-cities-container{
     width: 100%;
-    padding: 4rem;
+    padding: clamp(1rem, 10%, 4rem);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -22,5 +45,7 @@ main {
 }
 
 .location-info {
-    color: #56354b;
+    color: black;
+    font-style: italic;
+    font-weight: 500;
 }

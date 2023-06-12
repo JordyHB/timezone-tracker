@@ -20,7 +20,6 @@ function DigitalClock({showSeconds, timezone}) {
 
         setLoading(true)
 
-
         const secondInterval = setInterval(() => {
             convertToLocalTime()
 

@@ -5,9 +5,10 @@
     align-items: center;
     background: #ffffff;
     border-radius: 4px;
-    padding: 1rem;
+    padding: 2rem 1rem;
     margin: 1rem;
     box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+    user-select: none;
 }
 
 .time-info-tile:nth-child(even) {
@@ -28,7 +29,7 @@
 .utc-offset {
     font-style: italic;
     font-weight: 500;
-    color: #552b31;
+    color: black;
 }
 
 .clock-wrapper {
