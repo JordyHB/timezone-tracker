@@ -9,6 +9,7 @@ function NavBar(props) {
             <ul>
                 <li>
                     <NavLink to='/'>Home</NavLink>
+                    <NavLink to='/login'>Login</NavLink>
                 </li>
             </ul>
         </nav>
