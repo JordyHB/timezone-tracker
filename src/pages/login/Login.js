@@ -1,6 +1,9 @@
 import React from 'react';
 import NavBar from "../../components/NavBar/NavBar";
 import './Login.css'
+import SignIn from "../../components/Auth/SignIn";
+import SignUp from "../../components/Auth/SignUp";
+import AuthDetails from "../../components/Auth/AuthDetails";
 
 function Login(props) {
 
@@ -14,6 +17,9 @@ function Login(props) {
         <div className="outer-container">
             <NavBar/>
             <main>
+                <SignIn/>
+                <SignUp/>
+                <AuthDetails/>
                 <section className="login-container">
                     <h1 className="login-title">Login</h1>
                     <form onSubmit={(e) => handleSubmit(e)} className="login-form">
