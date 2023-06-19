@@ -31,7 +31,8 @@ function MainLocalClock(props) {
         try {
             toggleError(false)
             // gets only the location data from the returned object
-            const { location } = (await axios.get(`https://api.ipregistry.co/?${IP_REGISTRY_API_KEY}`)).data
+            const { location } =
+                (await axios.get(`https://api.ipregistry.co/?key=${process.env.REACT_APP_GEOLOCATE_API_KEY}`)).data
 
             setLocationData(location)
 
