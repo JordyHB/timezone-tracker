@@ -8,7 +8,8 @@ function MainLocalClock(props) {
     // stores the time data from the API
     const [timeData, setTimeData] = useState({})
     const [locationData, setLocationData] = useState({})
-    const [loading, toggleLoading] = useState(false)
+    // loading starts off true to ensure that the data is fetched before the clock is rendered
+    const [loading, toggleLoading] = useState(true)
     const [error, toggleError] = useState(false)
 
     async function fetchTimeData() {
@@ -16,7 +17,7 @@ function MainLocalClock(props) {
         // attempts to fetch the time data from the API based on IP address
         try {
             toggleError(false)
-            const {data} = await axios.get('http://worldtimeapi.org/api/ip')
+            const { data } = await axios.get('http://worldtimeapi.org/api/ip')
             setTimeData(data)
         } catch (e) {
             toggleError(true)
@@ -29,8 +30,11 @@ function MainLocalClock(props) {
     async function fetchLocationData() {
         try {
             toggleError(false)
-            const {data} = await axios.get('https://geolocation-db.com/json/')
-            setLocationData(data)
+            // gets only the location data from the returned object
+            const { location } = (await axios.get(`https://api.ipregistry.co/?${IP_REGISTRY_API_KEY}`)).data
+
+            setLocationData(location)
+
         } catch (e) {
             toggleError(true)
             toggleLoading(false)
@@ -39,17 +43,18 @@ function MainLocalClock(props) {
     }
 
     useEffect(() => {
-        toggleLoading(true)
         void fetchTimeData()
         void fetchLocationData()
     }, [])
 
     useEffect(() => {
+        console.log(loading)
         // once the data is fetched, loading is set to false
-        if(timeData.datetime !== undefined) {
+        if (timeData.datetime !== undefined && locationData.city !== undefined) {
             toggleLoading(false)
-        }
-    }, [timeData])
+            }
+
+    }, [timeData, locationData])
 
     return (
         <>
@@ -60,7 +65,8 @@ function MainLocalClock(props) {
                 {!loading && !error &&
                     <>
                         {/*only renders the clock if the data is fetched*/}
-                        <h3 className='location-info'>The current time for: <span className="location">{`${locationData.city}, ${locationData.country_name}`}</span></h3>
+                        <h3 className='location-info'>The current time for: <span
+                            className="location">{`${locationData.city}, ${ locationData.country.name }`}</span></h3>
                         <DigitalClock
                             className="main-clock"
                             timezone={timeData.timezone}
