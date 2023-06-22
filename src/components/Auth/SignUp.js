@@ -32,7 +32,7 @@ function SignUp(props) {
     return (
         <section className="auth-container">
             <h1 className="auth-container-title">Register</h1>
-            <form className="auth-form" onSubmit={signUp}>
+            <form className="auth-form" onSubmit={signUp} noValidate>
                 <label htmlFor="email" className="auth-labels">Email</label>
                 <input
                     className="auth-inputs"
