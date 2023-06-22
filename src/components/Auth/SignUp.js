@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { auth } from '../../firebase'
+import { auth } from '../../firebaseConfig'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import {Link} from "react-router-dom";
-import mapErrorCodeToMessage from "../../helpers/mapErrorCodeToMessage";
+import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
+import createUserEntry from "../../helpers/firebase/createUserEntry";
 
-function SignUp(props) {
+function SignUp() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -19,7 +20,7 @@ function SignUp(props) {
                 // Signed in
                 const user = userCredential.user;
                 console.log(user)
-                // ...
+                void createUserEntry(user)
             })
             .catch((e) => {
                     console.log(e.code)

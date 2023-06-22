@@ -16,7 +16,7 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Register/>}/>
-            <Route path='/user' element={<UserProfile/>}/>
+            <Route path='/profile' element={<UserProfile/>}/>
             <Route path='*' element={<h1>404 Not Found</h1>}/>
         </Routes>
     </div>
