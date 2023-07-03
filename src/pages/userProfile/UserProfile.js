@@ -4,7 +4,7 @@ import { UserInfoContext } from "../../context/UserInfoContextProvider";
 
 function UserProfile() {
 
-    const user = useContext(UserInfoContext)
+    const {user, updateUserInfo} = useContext(UserInfoContext)
 
     return (
         <div className="outer-container">
@@ -12,7 +12,8 @@ function UserProfile() {
             <main>
                 <h1>User Profile</h1>
                 <span>{user?.email}</span>
-                <button onClick={() => console.log(user)}>Log User</button>
+                <span>{user?.displayName}</span>
+                <button onClick={updateUserInfo}>Log User</button>
             </main>
         </div>
     );
