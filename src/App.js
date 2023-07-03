@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {  Route, Routes } from 'react-router-dom';
 // styling
 import './App.css';
@@ -7,9 +7,15 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import UserProfile from "./pages/userProfile/UserProfile";
+import {onAuthStateChanged} from "firebase/auth";
+import {auth} from "./firebaseConfig";
+import {UserInfoContext} from "./context/UserInfoContextProvider";
 
 function App() {
+
   return (
+
+
 
     <div className="App">
         <Routes>
