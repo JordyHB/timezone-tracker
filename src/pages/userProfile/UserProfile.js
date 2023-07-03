@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Navbar from "../../components/NavBar/NavBar";
 import { UserInfoContext } from "../../context/UserInfoContextProvider";
+import TimeZoneSelector from "../../components/TimeZoneSelector";
 
 function UserProfile() {
 
@@ -13,7 +14,10 @@ function UserProfile() {
                 <h1>User Profile</h1>
                 <span>{user?.email}</span>
                 <span>{user?.displayName}</span>
+                <span>{user?.country}</span>
+                <span>{user?.timezone}</span>
                 <button onClick={updateUserInfo}>Log User</button>
+                <TimeZoneSelector/>
             </main>
         </div>
     );

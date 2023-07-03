@@ -3,22 +3,20 @@ import Navbar from "../../components/NavBar/NavBar";
 import { UserInfoContext } from "../../context/UserInfoContextProvider";
 import './AccountDetails.css';
 import storeExtraUserInfo from "../../helpers/firebase/storeExtraUserInfo";
+import TimeZoneSelector from "../../components/TimeZoneSelector";
 
 function AccountDetails() {
 
-    const {user, updateUserInfo} = useContext(UserInfoContext)
+    const {user} = useContext(UserInfoContext)
 
     const [displayName, setDisplayName] = useState('')
     const [country, setCountry] = useState('')
-    const [timezone, setTimezone] = useState('')
 
     function handleChange(e) {
         if (e.target.name === 'nickname')
             setDisplayName(e.target.value)
         else if (e.target.name === 'country')
             setCountry(e.target.value)
-        else if (e.target.name === 'timezone')
-            setTimezone(e.target.value)
     }
 
     function handleSubmit(e) {
@@ -27,12 +25,11 @@ function AccountDetails() {
         const userInfo = {
             displayName: displayName,
             country: country,
-            timezone: timezone
+            timezone: document.getElementById('timezone').value
         }
 
         // gets all the user info from the form and stores it in the database
         void storeExtraUserInfo(user, userInfo)
-        updateUserInfo()
     }
 
     return (
@@ -63,15 +60,9 @@ function AccountDetails() {
                             onChange={handleChange}
                             value={country}
                         />
-                        <label htmlFor="timezone" className="extra-info-labels">Timezone:</label>
-                        <input
-                            className="extra-info-inputs"
-                            type="text"
-                            id="timezone"
-                            name="timezone"
-                            placeholder="Timezone"
-                            onChange={handleChange}
-                            value={timezone}
+                        <TimeZoneSelector
+                            inputClassName="extra-info-inputs"
+                            labelClassName="extra-info-labels"
                         />
                         <button type="submit" className="extra-info-button">Submit</button>
                     </form>
