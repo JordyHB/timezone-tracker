@@ -1,5 +1,5 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {  Route, Routes } from 'react-router-dom';
+import React, {useContext} from 'react';
+import {Navigate, Route, Routes} from 'react-router-dom';
 // styling
 import './App.css';
 // pages
@@ -8,20 +8,42 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import UserProfile from "./pages/userProfile/UserProfile";
 import AccountDetails from "./pages/accountdetails/AccountDetails";
+// context
+import {UserInfoContext} from "./context/UserInfoContextProvider";
 
 function App() {
 
+    // get the user info and check if the user has completed the account setup
+    const { user, isAuth } = useContext(UserInfoContext)
+    const accountSetupComplete = user?.accountSetupComplete
+
   return (
-
-
 
     <div className="App">
         <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/login' element={<Login/>}/>
-            <Route path='/signup' element={<Register/>}/>
-            <Route path='/profile' element={<UserProfile/>}/>
-            <Route path='/accountdetails' element={<AccountDetails/>}/>
+            <Route path='/login' element={
+                // if the user is authenticated, redirects the user to the profile page
+                isAuth ? <Navigate to="/profile"/> : <Login/>
+            }/>
+            <Route path='/signup' element={
+                // if the user is authenticated, redirects the user to the profile page
+                isAuth ? <Navigate to="/profile"/> : <Register/>
+            }/>
+            <Route path='/profile' element={
+                // if the user is authenticated, checks if the user has completed the account setup
+                isAuth ?
+                    accountSetupComplete ? <UserProfile/> : <Navigate to="/account-details"/>
+                    :
+                    <Login/>
+            }/>
+            <Route path='/account-details' element={
+                // if the user is authenticated, blocks the user from accessing this page if the account setup is complete
+                isAuth ?
+                    accountSetupComplete ? <Navigate to="/profile"/> : <AccountDetails/>
+                    :
+                    <Login/>
+            }/>
             <Route path='*' element={<h1>404 Not Found</h1>}/>
         </Routes>
     </div>

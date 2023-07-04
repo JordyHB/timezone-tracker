@@ -12,7 +12,8 @@ const storeExtraUserInfo = async (user, userInfo) => {
     await updateDoc(userDocRef, {
         displayName: userInfo.displayName,
         country: userInfo.country,
-        timezone: userInfo.timezone
+        timezone: userInfo.timezone,
+        accountSetupComplete: true
     })
 }
 

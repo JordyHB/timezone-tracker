@@ -7,8 +7,7 @@ import fetchUserEntry from "../helpers/firebase/fetchUserEntry";
 
 export const UserInfoContext = createContext({
     user: null,
-    updateUserInfo: () => {
-    },
+    isAuth: false,
 })
 
 function UserInfoContextProvider({children}) {
@@ -17,28 +16,22 @@ function UserInfoContextProvider({children}) {
     const [authState, setAuthState] = useState(
         {
             user: null,
+            isAuth: false,
             loading: true,
         }
     )
 
-    // function that updates the context with the latest user info
-    async function updateUserInfo() {
-        if (await auth.currentUser) {
-            setUserInfo(await fetchUserEntry(auth.currentUser))
-        } else {
-            setUserInfo(null)
-        }
-    }
 
     useEffect(() => {
         // listen for auth state changes and checks if user is logged in before first render
         const unListen = onAuthStateChanged(auth, async (user) => {
             if (user) {
-                setAuthState({user: user, loading: false})
                 setUserInfo(await fetchUserEntry(user))
+                setAuthState({user: user, isAuth: true, loading: false})
             } else {
-                setAuthState({user: null, loading: false})
+                setAuthState({user: null, isAuth: false, loading: false})
                 setUserInfo(null)
+                console.log('user is not logged in')
             }
         });
 
@@ -61,8 +54,7 @@ function UserInfoContextProvider({children}) {
                 });
             } else {
                 //returns an empty function if the user is not logged in
-                return () => {
-                }
+                return () => {}
             }
         }
 
@@ -73,11 +65,14 @@ function UserInfoContextProvider({children}) {
         return () => {
             unsubscribe()
         }
-    }, [auth.currentUser])
+    }, [authState.user])
 
 
     return (
-        <UserInfoContext.Provider value={{user: userInfo, updateUserInfo}}>
+        <UserInfoContext.Provider value={{
+            user: userInfo,
+            isAuth: authState.isAuth,
+        }}>
             {authState.loading ? <h1>Loading...</h1> : children}
         </UserInfoContext.Provider>
     );
