@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
+import {fetchDSTChangeDate, fetchCurrentDate} from "../helpers/worldtimeApi/WorldTimeApiReturns";
+
 
 function ApiUserInfo({timezone}) {
 
@@ -14,6 +16,7 @@ function ApiUserInfo({timezone}) {
             toggleError(false)
             const {data} = await axios.get(`http://worldtimeapi.org/api/timezone/${timezone}`)
             setTimeData(data)
+            toggleLoading(false)
         } catch (e) {
             toggleError(true)
             toggleLoading(false)
@@ -21,39 +24,26 @@ function ApiUserInfo({timezone}) {
         }
     }
 
-    function fetchDSTChangeDate() {
-        // fetches the date of the next daylight savings time change
-        // returns a string with the date in the format of "Month Day"
-        if (timeData.dst) {
-            //slice is used to remove the milliseconds
-            const date = new Date(timeData.dst_until)
-            return date.toLocaleString('default', {month: 'long', day: 'numeric'})
-
-
-        } else {
-            const date = new Date(timeData.dst_from)
-            return date.toLocaleString('default', {month: 'long', day: 'numeric'})
-        }
-
-    }
 
     useEffect(() => {
         void fetchTimeData(timezone)
     }, [])
 
-    useEffect(() => {
-        const test = fetchDSTChangeDate()
-        console.log(test)
-    }, [timeData])
-
 
     return (
         <>
             <div className="api-user-info">
-                <p>Daylight savings time: <span>{timeData.dst ? 'Yes' : 'No'}</span></p>
-                <p>Daylight savings change date: <span>{fetchDSTChangeDate()}</span></p>
-                <p>Timezone abbreviation: <span>{timeData.abbreviation}</span></p>
-                <p>Timezone UTC Offset: <span>{timeData.utc_offset}</span></p>
+                {loading && <p>Loading...</p>}
+                {error && <p className="error-message">There was an error fetching API data</p>}
+                {!loading && !error &&
+                    <>
+                        <p>Date: <span>{fetchCurrentDate(timeData)}</span></p>
+                        <p>Daylight Savings Time: <span>{timeData.dst ? 'Yes' : 'No'}</span></p>
+                        <p>DST change date: <span>{fetchDSTChangeDate(timeData)}</span></p>
+                        <p>Timezone abbreviation: <span>{timeData.abbreviation}</span></p>
+                        <p>UTC Offset: <span>{timeData.utc_offset}</span></p>
+                    </>
+                }
 
             </div>
 

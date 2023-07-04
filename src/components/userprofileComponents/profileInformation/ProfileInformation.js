@@ -19,7 +19,6 @@ function ProfileInformation() {
             <p>Nickname: <span>{user?.displayName}</span></p>
             <p>Country: <span>{user?.country}</span></p>
             <p>Timezone: <span>{user?.timezone}</span></p>
-            {/*<p>Timezone Offset: <span>{user?.timezoneOffset}</span></p>*/}
             <ApiUserInfo
                 timezone={user?.timezone}
             />

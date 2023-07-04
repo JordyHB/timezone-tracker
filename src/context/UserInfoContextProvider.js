@@ -7,6 +7,8 @@ import fetchUserEntry from "../helpers/firebase/fetchUserEntry";
 
 export const UserInfoContext = createContext({
     user: null,
+    friendList: null,
+    groups: null,
     isAuth: false,
 })
 
