@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {auth} from '../../firebase'
+import {auth} from '../../firebaseConfig'
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {Link} from "react-router-dom";
-import mapErrorCodeToMessage from "../../helpers/mapErrorCodeToMessage";
+import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
 
 function SignIn(props) {
 
