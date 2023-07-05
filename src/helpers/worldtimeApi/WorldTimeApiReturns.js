@@ -21,6 +21,5 @@ export function fetchCurrentDate(timeData) {
     // fetches the current date
     // returns a string with the date in the format of "Month Day"
     const date = new Date(timeData.datetime)
-    console.log(timeData)
     return date.toLocaleString('En-Gb', {month: 'long', day: 'numeric'})
 }

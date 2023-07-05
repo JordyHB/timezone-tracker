@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import Navbar from "../../components/NavBar/NavBar";
 import { UserInfoContext } from "../../context/UserInfoContextProvider";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
+import FriendList from "../../components/userprofileComponents/friendlist/FriendList";
 
 function UserProfile() {
 
@@ -12,6 +13,7 @@ function UserProfile() {
             <Navbar/>
             <main>
                 <ProfileInformation/>
+                <FriendList/>
 
             </main>
         </div>

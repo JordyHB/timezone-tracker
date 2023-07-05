@@ -1,32 +1,45 @@
-import React, {useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {auth} from '../../firebaseConfig'
 import {signInWithEmailAndPassword} from "firebase/auth";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
+import {UserInfoContext} from "../../context/UserInfoContextProvider";
 
 function SignIn(props) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
+    const [waitingForRedirect, setWaitingForRedirect] = useState(false)
 
-    const signIn = (e) => {
+    // flag to check if the user is authenticated and the context has been filled
+    const navigate = useNavigate()
+    const {isAuth} = useContext(UserInfoContext)
+
+    const signIn = async (e) => {
         // set error to null on submit
         setError(null)
-        e.preventDefault()
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user
-                console.log(user)
-            })
-            .catch((e) => {
-                    console.log(e.code)
-                    console.log(e.message)
-                    setError(mapErrorCodeToMessage(e.code))
-                }
-            );
+        setWaitingForRedirect(false)
+
+        try {
+            e.preventDefault()
+            // sign in with email and password
+            await signInWithEmailAndPassword(auth, email, password)
+            // sets waitingForRedirect to true so that we can redirect once the user creation load is done
+            await setWaitingForRedirect(true)
+        } catch (e) {
+            console.log(e.code)
+            console.log(e.message)
+            setError(mapErrorCodeToMessage(e.code))
+        }
     }
+
+    // if waitingForRedirect is true and the context has been filled, redirect to account details page
+    useEffect(() => {
+        if (waitingForRedirect && isAuth) {
+            navigate('/profile')
+        }
+    }, [waitingForRedirect, isAuth, navigate])
 
     return (
         <section className="auth-container">

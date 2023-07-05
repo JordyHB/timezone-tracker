@@ -2,13 +2,9 @@ import {auth, db} from "../../firebaseConfig";
 import {doc, updateDoc} from "firebase/firestore";
 import {updateProfile} from "firebase/auth";
 
-const storeExtraUserInfo = async (user, userInfo) => {
-    const userRef = await auth.currentUser;
-    await updateProfile(userRef, {
-        displayName: userInfo.displayName
-    })
+const storeExtraUserInfo = async (userInfo) => {
 
-    const userDocRef = doc(db, 'users', user.uid)
+    const userDocRef = doc(db, 'users', auth.currentUser.displayName)
     await updateDoc(userDocRef, {
         displayName: userInfo.displayName,
         country: userInfo.country,

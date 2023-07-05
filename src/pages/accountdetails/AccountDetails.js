@@ -7,8 +7,6 @@ import TimeZoneSelector from "../../components/TimeZoneSelector";
 
 function AccountDetails() {
 
-    const {user} = useContext(UserInfoContext)
-
     const [displayName, setDisplayName] = useState('')
     const [country, setCountry] = useState('')
 
@@ -29,7 +27,7 @@ function AccountDetails() {
         }
 
         // gets all the user info from the form and stores it in the database
-        void storeExtraUserInfo(user, userInfo)
+        void storeExtraUserInfo(userInfo)
     }
 
     return (

@@ -3,7 +3,7 @@ import { db } from "../../firebaseConfig";
 
 async function fetchUserEntry(user) {
 
-        const docRef = doc(db, "users", user.uid);
+        const docRef = doc(db, "users", user.displayName);
 
         try {
             const docSnap = await getDoc(docRef);
