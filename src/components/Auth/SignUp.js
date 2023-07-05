@@ -25,12 +25,14 @@ function SignUp() {
 
         try {
             e.preventDefault()
-            // create user with email and password
-            await createUserWithEmailAndPassword(auth, email, password)
             // check if username is available
             if (await checkUsernameAvailability(userName) === false) {
                 setError('Username is already taken')
             } else {
+
+                // create user with email and password
+                await createUserWithEmailAndPassword(auth, email, password)
+
                 // if username is available, set the username to the userCredential
                 await updateProfile(auth.currentUser, {
                     displayName: userName

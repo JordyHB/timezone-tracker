@@ -3,7 +3,7 @@ import { collection, getDocs } from 'firebase/firestore'
 
 async function fetchFriendList() {
 
-    const collectionRef = collection(db, 'users', auth.currentUser.uid, 'friends')
+    const collectionRef = collection(db, 'users', auth.currentUser.displayName, 'friends')
 
     try {
         const querySnapshot = await getDocs(collectionRef)

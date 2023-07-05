@@ -7,6 +7,9 @@ function FriendList() {
 
     return (
         <div>
+            <h2>Friend List</h2>
+            {friendList && console.log(friendList)}
+            {friendList && friendList.length === 0 && <p>Friend list is empty</p>}
             {friendList && friendList.map((friend) => {
                     return (
                         <div key={friend.uid}>

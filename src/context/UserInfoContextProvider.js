@@ -76,8 +76,7 @@ function UserInfoContextProvider({children}) {
                 });
             } else {
                 //returns an empty function if the user is not logged in
-                return () => {
-                }
+                return () => {}
             }
         }
 
