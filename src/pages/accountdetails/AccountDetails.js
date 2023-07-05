@@ -20,6 +20,16 @@ function AccountDetails() {
     function handleSubmit(e) {
         e.preventDefault()
 
+        if (displayName === '' || country === '') {
+            alert('Please fill out all the fields')
+            return
+        }
+
+        if (!Intl.supportedValuesOf('timeZone').includes(document.getElementById('timezone').value)) {
+            alert('Please select a valid timezone')
+            return
+        }
+
         const userInfo = {
             displayName: displayName,
             country: country,

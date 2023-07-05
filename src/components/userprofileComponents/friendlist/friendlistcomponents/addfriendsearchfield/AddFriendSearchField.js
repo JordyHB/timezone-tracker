@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import addFriend from "../helpers/firebase/addFriend";
+import addFriend from "../../../../../helpers/firebase/addFriend";
 
-function AddFriendComponent() {
+function AddFriendSearchField() {
 
     const [error, setError] = useState(null)
     const [result, setResult] = useState(null)
@@ -45,4 +45,4 @@ function AddFriendComponent() {
     );
 }
 
-export default AddFriendComponent;
+export default AddFriendSearchField;

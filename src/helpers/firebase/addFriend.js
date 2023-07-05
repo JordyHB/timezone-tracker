@@ -9,13 +9,14 @@ import {
 import {db, auth} from "../../firebaseConfig";
 
 
-const collectionRef = collection(db, "users");
-// reference to the current user's friend list to check if the user is already in the list
-const currentFriendListRef =
-    collection(db, "users", auth.currentUser.displayName, "friends");
-
 // function that returns info for the user queried entry based on the username
 async function queryByUsernames(requestedUsername) {
+
+    // reference to the users collection
+    const collectionRef = collection(db, "users");
+    // reference to the current user's friend list to check if the user is already in the list
+    const currentFriendListRef =
+        collection(db, "users", auth.currentUser.displayName, "friends");
 
     try {
         //checks if the user is already in the friend list

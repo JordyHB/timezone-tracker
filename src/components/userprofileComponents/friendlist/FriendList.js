@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
-import AddFriendComponent from "../../AddFriendComponent";
+import AddFriendModal from "./friendlistcomponents/addfriendmodal/AddFriendModal";
 
 function FriendList() {
 
@@ -9,7 +9,7 @@ function FriendList() {
     return (
         <div>
             <h2>Friend List</h2>
-            <AddFriendComponent/>
+            <AddFriendModal/>
             {friendList && console.log(friendList)}
             {friendList && friendList.length === 0 && <p>Friend list is empty</p>}
             {friendList && friendList.map((friend) => {
