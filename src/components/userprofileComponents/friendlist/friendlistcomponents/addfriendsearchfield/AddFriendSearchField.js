@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import addFriend from "../../../../../helpers/firebase/addFriend";
+import {UserInfoContext} from "../../../../../context/UserInfoContextProvider";
 
 function AddFriendSearchField() {
 
     const [error, setError] = useState(null)
     const [result, setResult] = useState(null)
+
+    const { user } = useContext(UserInfoContext)
     const handleSubmit = async(e) => {
         e.preventDefault();
         // addFriend returns a string based on the result of the operation
-        const result = await addFriend(e.target['friend-username'].value)
+        const result = await addFriend(user, e.target['friend-username'].value)
         if (result === 'user not found') {
             setError('User not found')
             setResult(null)

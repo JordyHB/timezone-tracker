@@ -16,7 +16,7 @@ function ProfileInformation() {
                 timezone={user?.timezone}
             />
             </div>
-            <p>Nickname: <span>{user?.displayName}</span></p>
+            <p>Nickname: <span>{user?.nickname}</span></p>
             <p>Country: <span>{user?.country}</span></p>
             <p>Timezone: <span>{user?.timezone}</span></p>
             <ApiUserInfo

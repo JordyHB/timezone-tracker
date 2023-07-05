@@ -6,7 +6,7 @@ const storeExtraUserInfo = async (userInfo) => {
 
     const userDocRef = doc(db, 'users', auth.currentUser.displayName)
     await updateDoc(userDocRef, {
-        displayName: userInfo.displayName,
+        nickname: userInfo.nickname,
         country: userInfo.country,
         timezone: userInfo.timezone,
         accountSetupComplete: true

@@ -10,7 +10,7 @@ import {db, auth} from "../../firebaseConfig";
 
 
 // function that returns info for the user queried entry based on the username
-async function queryByUsernames(requestedUsername) {
+async function queryByUsernames(user, requestedUsername) {
 
     // reference to the users collection
     const collectionRef = collection(db, "users");
@@ -40,7 +40,7 @@ async function queryByUsernames(requestedUsername) {
         //adds the relevant data to the result object that gets stored in a collection of friends
         const [queryResult] = result.docs.map((doc) => {
                 return {
-                    displayName: doc.data().displayName,
+                    displayName: doc.data().nickname,
                     timezone: doc.data().timezone,
                     country: doc.data().country,
                     uid: doc.data().uid,
@@ -60,10 +60,26 @@ async function queryByUsernames(requestedUsername) {
                     requestedUsername
                 ),
                 {
-                    displayName: queryResult.displayName,
+                    nickname: queryResult.nickname,
                     timezone: queryResult.timezone,
                     country: queryResult.country,
                     uid: queryResult.uid,
+                }
+            );
+
+            await setDoc(
+                // adds the current user to the queried user's friend list
+                doc(db,
+                    "users",
+                    requestedUsername,
+                    "friends",
+                    auth.currentUser.displayName
+                ),
+                {
+                    nickname: user.nickname,
+                    timezone: user.timezone,
+                    country: user.country,
+                    uid: user.uid,
                 }
             );
             return 'user added'
