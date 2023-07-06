@@ -33,8 +33,8 @@ function UserInfoContextProvider({children}) {
         const unListen = onAuthStateChanged(auth, async (user) => {
             //checks if displayName has been set and stored
             if (user && user.displayName !== null || authState.displayNameSet) {
-                setUserInfo(await fetchUserEntry(user))
-                setFriendList(await fetchFriendList())
+                setUserInfo(await fetchUserEntry(user.displayName))
+                setFriendList(await fetchFriendList(user.displayName))
                 setAuthState({user: user, isAuth: true, loading: false})
 
             } else {

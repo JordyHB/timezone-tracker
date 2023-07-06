@@ -1,4 +1,4 @@
-main {
+.user-profile-main {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;

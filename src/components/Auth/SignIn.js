@@ -37,7 +37,7 @@ function SignIn(props) {
     // if waitingForRedirect is true and the context has been filled, redirect to account details page
     useEffect(() => {
         if (waitingForRedirect && isAuth) {
-            navigate('/profile')
+            navigate('/profile/myprofile')
         }
     }, [waitingForRedirect, isAuth, navigate])
 

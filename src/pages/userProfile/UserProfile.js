@@ -12,7 +12,7 @@ function UserProfile() {
     return (
         <div className="outer-container">
             <Navbar/>
-            <main>
+            <main className="user-profile-main">
                 <ProfileInformation/>
                 <FriendList/>
             </main>

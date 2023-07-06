@@ -13,7 +13,7 @@ function NavBar() {
             <NavLink to='/' className="site-name">Timezone Tracker</NavLink>
             <ul>
                 <li><NavLink to='/'>Home</NavLink></li>
-                <li><NavLink to='/profile'>Profile</NavLink></li>
+                <li><NavLink to='/profile/myprofile'>Profile</NavLink></li>
                 <li><NavLink to='/login'>Login</NavLink></li>
                 <li><NavLink to='/signup'>Sign Up</NavLink></li>
                 {isAuth && <li><button onClick={userSignOut}>Sign out</button></li>}

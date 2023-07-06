@@ -60,6 +60,7 @@ async function queryByUsernames(user, requestedUsername) {
                     requestedUsername
                 ),
                 {
+                    username: requestedUsername,
                     nickname: queryResult.nickname,
                     timezone: queryResult.timezone,
                     country: queryResult.country,
@@ -76,6 +77,7 @@ async function queryByUsernames(user, requestedUsername) {
                     auth.currentUser.displayName
                 ),
                 {
+                    username: auth.currentUser.displayName,
                     nickname: user.nickname,
                     timezone: user.timezone,
                     country: user.country,
