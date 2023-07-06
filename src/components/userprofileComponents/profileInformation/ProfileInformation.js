@@ -6,6 +6,8 @@ import ApiUserInfo from "../../ApiUserInfo";
 
 function ProfileInformation() {
 
+
+
     const {user} = useContext(UserInfoContext)
     return (
         <article className="profile-info-tile">

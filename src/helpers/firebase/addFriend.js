@@ -40,7 +40,7 @@ async function queryByUsernames(user, requestedUsername) {
         //adds the relevant data to the result object that gets stored in a collection of friends
         const [queryResult] = result.docs.map((doc) => {
                 return {
-                    displayName: doc.data().nickname,
+                    nickname: doc.data().nickname,
                     timezone: doc.data().timezone,
                     country: doc.data().country,
                     uid: doc.data().uid,

@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react';
 import addFriend from "../../../../../helpers/firebase/addFriend";
 import {UserInfoContext} from "../../../../../context/UserInfoContextProvider";
-
+import './AddFriendSearchField.css'
 function AddFriendSearchField() {
 
     const [error, setError] = useState(null)
@@ -31,16 +31,16 @@ function AddFriendSearchField() {
 }
     return (
         <>
-            <h2>Add Friend</h2>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="friend-username">Friend Username: </label>
+            <form onSubmit={handleSubmit} className='add-friend-form'>
+                <label htmlFor="friend-username" className="add-friend-label">Friend Username: </label>
                 <input
                     type="text"
+                    className="add-friend-input"
                     id="friend-username"
                     name="friend-username"
                     placeholder="Enter friend username"
                 />
-                <button type="submit">Add Friend</button>
+                <button type="submit" className="add-friend-button">Add Friend</button>
                 {error && <p className="error-message">{error}</p>}
                 {result && <p className="success-message">{result}</p>}
             </form>
