@@ -18,7 +18,7 @@ function UserProfile() {
                 <ProfileInformation/>
                 <FriendList/>
                 <GroupList/>
-                <button className="add-group-btn" onClick={() => {void createGroup(user, 'porki')}}>Add Group</button>
+                <button className="add-group-btn" onClick={() => {void createGroup(user, 'dota enjoyers')}}>Add Group</button>
             </main>
         </div>
     );
