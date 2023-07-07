@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Navbar from "../../components/NavBar/NavBar";
-import { UserInfoContext } from "../../context/UserInfoContextProvider";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
 import FriendList from "../../components/userprofileComponents/friendlist/FriendList";
 import "./UserProfile.css"
+import GroupList from "../../components/userprofileComponents/grouplist/GroupList";
 
 function UserProfile() {
-
-    const {user, updateUserInfo} = useContext(UserInfoContext)
 
     return (
         <div className="outer-container">
@@ -15,6 +13,7 @@ function UserProfile() {
             <main className="user-profile-main">
                 <ProfileInformation/>
                 <FriendList/>
+                <GroupList/>
             </main>
         </div>
     );

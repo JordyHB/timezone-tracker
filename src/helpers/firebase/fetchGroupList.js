@@ -1,9 +1,9 @@
 import { db } from '../../firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 
-async function fetchFriendList(requestedUser) {
+async function fetchGroupList(requestedUser) {
 
-    const collectionRef = collection(db, 'users', requestedUser, 'friends')
+    const collectionRef = collection(db, 'users', requestedUser, 'groups')
 
     try {
         const querySnapshot = await getDocs(collectionRef)
@@ -13,4 +13,4 @@ async function fetchFriendList(requestedUser) {
     }
 }
 
-export default fetchFriendList;
+export default fetchGroupList;
