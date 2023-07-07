@@ -7,14 +7,12 @@ import TimeZoneSelector from "../../components/TimeZoneSelector";
 
 function AccountDetails() {
 
-    const {user} = useContext(UserInfoContext)
-
-    const [displayName, setDisplayName] = useState('')
+    const [nickname, setNickname] = useState('')
     const [country, setCountry] = useState('')
 
     function handleChange(e) {
         if (e.target.name === 'nickname')
-            setDisplayName(e.target.value)
+            setNickname(e.target.value)
         else if (e.target.name === 'country')
             setCountry(e.target.value)
     }
@@ -22,14 +20,24 @@ function AccountDetails() {
     function handleSubmit(e) {
         e.preventDefault()
 
+        if (nickname === '' || country === '') {
+            alert('Please fill out all the fields')
+            return
+        }
+
+        if (!Intl.supportedValuesOf('timeZone').includes(document.getElementById('timezone').value)) {
+            alert('Please select a valid timezone')
+            return
+        }
+
         const userInfo = {
-            displayName: displayName,
+            nickname: nickname,
             country: country,
             timezone: document.getElementById('timezone').value
         }
 
         // gets all the user info from the form and stores it in the database
-        void storeExtraUserInfo(user, userInfo)
+        void storeExtraUserInfo(userInfo)
     }
 
     return (
@@ -48,7 +56,7 @@ function AccountDetails() {
                             name="nickname"
                             placeholder="Nickname"
                             onChange={handleChange}
-                            value={displayName}
+                            value={nickname}
                         />
                         <label htmlFor="country" className="extra-info-labels">Country:</label>
                         <input

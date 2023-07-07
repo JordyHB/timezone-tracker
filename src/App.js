@@ -8,8 +8,11 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import UserProfile from "./pages/userProfile/UserProfile";
 import AccountDetails from "./pages/accountdetails/AccountDetails";
+import PublicUserProfile from "./pages/publicuserprofile/PublicUserProfile";
+
 // context
 import {UserInfoContext} from "./context/UserInfoContextProvider";
+
 
 function App() {
 
@@ -22,25 +25,35 @@ function App() {
     <div className="App">
         <Routes>
             <Route path='/' element={<Home/>}/>
+
             <Route path='/login' element={
                 // if the user is authenticated, redirects the user to the profile page
-                isAuth ? <Navigate to="/profile"/> : <Login/>
+                isAuth ? <Navigate to="/profile/myprofile"/> : <Login/>
             }/>
             <Route path='/signup' element={
                 // if the user is authenticated, redirects the user to the profile page
-                isAuth ? <Navigate to="/profile"/> : <Register/>
+                isAuth ? <Navigate to="/profile/myprofile"/> : <Register/>
             }/>
-            <Route path='/profile' element={
+
+            <Route path='/profile/myprofile' element={
                 // if the user is authenticated, checks if the user has completed the account setup
                 isAuth ?
                     accountSetupComplete ? <UserProfile/> : <Navigate to="/account-details"/>
                     :
                     <Login/>
             }/>
+            <Route path='/profile' element={
+                //if the user is authenticated, redirects the user to the profile page
+                isAuth ? <Navigate to="/profile/myprofile"/> : <Navigate to="/login"/>
+            }/>
+            <Route path='/profile/:id' element={
+                // links to other user profiles
+                <PublicUserProfile/>
+            }/>
             <Route path='/account-details' element={
                 // if the user is authenticated, blocks the user from accessing this page if the account setup is complete
                 isAuth ?
-                    accountSetupComplete ? <Navigate to="/profile"/> : <AccountDetails/>
+                    accountSetupComplete ? <Navigate to="/profile/myprofile"/> : <AccountDetails/>
                     :
                     <Login/>
             }/>

@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import Navbar from "../../components/NavBar/NavBar";
 import { UserInfoContext } from "../../context/UserInfoContextProvider";
-import TimeZoneSelector from "../../components/TimeZoneSelector";
+import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
+import FriendList from "../../components/userprofileComponents/friendlist/FriendList";
+import "./UserProfile.css"
 
 function UserProfile() {
 
@@ -10,14 +12,9 @@ function UserProfile() {
     return (
         <div className="outer-container">
             <Navbar/>
-            <main>
-                <h1>User Profile</h1>
-                <span>{user?.email}</span>
-                <span>{user?.displayName}</span>
-                <span>{user?.country}</span>
-                <span>{user?.timezone}</span>
-                <button onClick={updateUserInfo}>Log User</button>
-                <TimeZoneSelector/>
+            <main className="user-profile-main">
+                <ProfileInformation/>
+                <FriendList/>
             </main>
         </div>
     );

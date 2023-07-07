@@ -1,9 +1,9 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig";
 
-async function fetchUserEntry(user) {
+async function fetchUserEntry(username) {
 
-        const docRef = doc(db, "users", user.uid);
+        const docRef = doc(db, "users", username);
 
         try {
             const docSnap = await getDoc(docRef);

@@ -1,0 +1,41 @@
+.friend-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #b3c6bf;
+    padding: 6rem 1.5rem 2rem 1.5rem;
+    border-radius: 4px;
+    position: relative;
+
+}
+
+.friend-list-title {
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.friend-preview {
+    display: flex;
+
+    flex-direction: column;
+    width: 100%;
+    margin: 0 0.5rem 1rem 0.5rem;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.friend-preview:hover {
+    background: #e0e0e0;
+}
+
+.friend-preview > p {
+    margin: 0.25rem 0;
+    border-bottom: 1px black solid;
+    border-radius: 4px;
+}
+
