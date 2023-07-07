@@ -10,7 +10,7 @@ function FriendList() {
     const navigate = useNavigate()
 
     return (
-        <div className="friend-list-container">
+        <article className="friend-list-container">
             <h3 className="friend-list-title">Friends List</h3>
             <AddFriendModal/>
             {friendList && console.log(friendList)}
@@ -29,7 +29,7 @@ function FriendList() {
                     )
                 }
             )}
-        </div>
+        </article>
     );
 }
 

@@ -4,7 +4,7 @@ import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 function GroupList() {
 
     const {groupList} = useContext(UserInfoContext)
-    console.log(groupList)
+
 
     return (
         <article className="group-list-container">
