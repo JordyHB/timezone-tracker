@@ -12,6 +12,7 @@ import PublicUserProfile from "./pages/publicuserprofile/PublicUserProfile";
 
 // context
 import {UserInfoContext} from "./context/UserInfoContextProvider";
+import GroupOverview from "./pages/groupoverview/GroupOverview";
 
 
 function App() {
@@ -49,6 +50,10 @@ function App() {
             <Route path='/profile/:id' element={
                 // links to other user profiles
                 <PublicUserProfile/>
+            }/>
+            <Route path='/groups/:id' element={
+                // links to group pages
+                <GroupOverview/>
             }/>
             <Route path='/account-details' element={
                 // if the user is authenticated, blocks the user from accessing this page if the account setup is complete

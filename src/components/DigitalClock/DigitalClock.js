@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './DigitalClock.css';
 
 
-function DigitalClock({showSeconds, timezone}) {
+function DigitalClock({showSeconds, timezone, setToUtc}) {
 
     const [loading, setLoading] = useState(false)
     const [localTimeString, setLocalTimeString] = useState('')
@@ -12,8 +12,15 @@ function DigitalClock({showSeconds, timezone}) {
 
     useEffect(() => {
         function convertToLocalTime() {
+
+            // if the timezone is not given, and setToUtc is true, sets the timezone to UTC for group clocks
+            if (!timezone && setToUtc) {
+                timezone = 'UTC'
+            }
+
             // exits if there is no timezone
             if (!timezone) return
+
             const localTime = new Date()
             // adds the local time string to state using the given timezone
             setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone: timezone, hour12: false}))
@@ -30,7 +37,6 @@ function DigitalClock({showSeconds, timezone}) {
 
         // clears the interval when the component unmounts
         return () => {
-            console.log('unmounting')
             clearInterval(secondInterval)
         }
 

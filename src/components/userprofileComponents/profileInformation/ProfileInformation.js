@@ -4,11 +4,8 @@ import DigitalClock from "../../DigitalClock/DigitalClock";
 import './ProfileInformation.css'
 import ApiUserInfo from "../../ApiUserInfo";
 
-function ProfileInformation() {
+function ProfileInformation({user}) {
 
-
-
-    const {user} = useContext(UserInfoContext)
     return (
         <article className="profile-info-tile">
             <h1>Profile Information</h1>
