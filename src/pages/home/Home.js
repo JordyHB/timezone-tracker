@@ -4,6 +4,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import MainLocalClock from "../../components/MainLocalClock/MainLocalClock";
 import CitiesTimesContainer from "../../components/CitiesTimesContainer/CitiesTimesContainer";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
+import HomeInfoTile from "../../components/homeinfotile/HomeInfoTile";
 
 function Home() {
 
@@ -13,14 +14,11 @@ function Home() {
         <div className="outer-container">
             <NavBar page="home"/>
             <main>
-                <section className="MainLocalClock">
-                    <MainLocalClock/>
-                </section>
-                <section className="other-cities-container">
-                    <CitiesTimesContainer/>
+                {/*contains the main clock and the other cities clocks*/}
+                <section className="grid-container">
+                    <HomeInfoTile/>
                 </section>
             </main>
-            <button onClick={ () => console.log(user)}>Log User</button>
         </div>
 
     );

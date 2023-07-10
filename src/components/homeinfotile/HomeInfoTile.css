@@ -1,0 +1,67 @@
+.home-info-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 54px 24px;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: #848484;
+    box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.clock-face {
+    position: relative;
+    width: 470px;
+    height: 240px;
+    border-radius: 20px;
+    background: #F3F3F3;
+
+}
+
+.settings-icon {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    color: #302F2F;
+}
+.main-clock-home, .main-clock-home .loading-message {
+    color: #302F2F;
+    text-align: center;
+    font-size: 86px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.main-clock-home .seconds-display {
+    color: #F2C300;
+}
+
+.info-field-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 45%;
+}
+
+.info-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 20px;
+    width: 400px;
+    height: 50px;
+    color: #302F2F;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1px;
+    padding: 0 20px;
+}

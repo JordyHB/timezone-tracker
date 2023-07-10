@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './DigitalClock.css';
 
 
-function DigitalClock({showSeconds, timezone, setToUtc}) {
+function DigitalClock({className,showSeconds, timezone, setToUtc}) {
 
     const [loading, setLoading] = useState(false)
     const [localTimeString, setLocalTimeString] = useState('')
@@ -65,10 +65,10 @@ function DigitalClock({showSeconds, timezone, setToUtc}) {
         <>
             {/*only displays the clock if the hours exist*/}
 
-                <article className="digital-clock">
+                <article className={`digital-clock ${className}`}>
                     {loading && <p className="loading-message">fetching local time</p>}
                     {!loading && hoursDisplay.length > 0 &&
-                    <h3 className="display">
+                    <p className="display">
                         <span className="hour-display">
                             <span>{hoursDisplay[0]}</span>
                             <span>{hoursDisplay[1]}</span>
@@ -84,7 +84,7 @@ function DigitalClock({showSeconds, timezone, setToUtc}) {
                                 <span className="seconds-left">{secondsDisplay[0]}</span>
                                 <span className="seconds-right">{secondsDisplay[1]}</span>
                             </span>}
-                    </h3>
+                    </p>
                     }
                 </article>
         </>
