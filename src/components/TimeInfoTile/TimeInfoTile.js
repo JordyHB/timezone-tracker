@@ -92,6 +92,7 @@ function TimeInfoTile({timezone}) {
                         </div>
                         <div className="clock-wrapper">
                             <DigitalClock
+                                className="city-tile-clock"
                                 timezone={timezoneLocation}
                                 showSeconds={false}
                             />

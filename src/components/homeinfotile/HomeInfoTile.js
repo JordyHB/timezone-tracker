@@ -64,32 +64,39 @@ function HomeInfoTile() {
         <article className="home-info-tile">
             <div className="clock-face">
                 <SettingsIcon className="settings-icon"/>
-                <DigitalClock
+                {/*handles giving the user feedback if there is an error or if the data is loading*/}
+                {error && <p className="error-message">There was an error fetching the data</p>}
+                {!error && <DigitalClock
                     className="main-clock-home"
                     timezone={timeData.timezone}
                     showSeconds={true}
-                />
+                />}
             </div>
             <div className="info-field-container">
-                <p>
-                    <span className="location info-field">
+                <p className="info-field">
+                    {/*nbsp adds a space to the text*/}
+                    Location:&nbsp;
+                    <span className="location returned-info">
                         {/*// if there is an error, display the error message, otherwise display the location data or loading*/}
                         {error ?
-                            {error} : locationData.city ? `${locationData.city}, ${locationData.country.name}` : 'loading'}
+                            <p className="error-message">There was an error fetching the data</p>:
+                            locationData.city ? `${locationData.city}, ${locationData.country.name}` : 'loading'}
                     </span>
                 </p>
-                <p>
+                <p className="info-field">Timezone:&nbsp;
                     {/*if there is an error, display the error message, otherwise display the timezone data or loading*/}
-                    <span className="timezone info-field">
+                    <span className="timezone returned-info">
                         {error ?
-                            {error} : timeData.datetime ? timeData.timezone : 'loading'}
+                            <p className="error-message">There was an error fetching the data</p> :
+                            timeData.datetime ? timeData.timezone : 'loading'}
                     </span>
                 </p>
-                <p>
-                    <span className="date info-field">
+                <p className="info-field">Date:&nbsp;
+                    <span className="date returned-info">
                         {/*if there is an error, display the error message, otherwise display the date data or loading*/}
                         {error ?
-                            {error} : timeData.datetime ? fetchCurrentDate(timeData) : 'loading'}
+                            <p className="error-message">There was an error fetching the data</p> :
+                            timeData.datetime ? fetchCurrentDate(timeData) : 'loading'}
                     </span>
                 </p>
             </div>

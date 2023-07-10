@@ -1,28 +1,47 @@
 .time-info-tile {
     display: flex;
     flex-direction: column;
-    width: clamp(200px, 18%, 400px);
+    width: 244px;
+    height: 310px;
+    justify-content: space-between;
     align-items: center;
-    background: #ffffff;
-    border-radius: 4px;
     padding: 2rem 1rem;
     margin: 1rem;
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
     user-select: none;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.25);
 }
 
 .time-info-tile:nth-child(even) {
-    background: #b3c6bf;
+    background: #C5C3BF;
 }
 
 .city-name {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 0.5rem;
+    color: #302F2F;
+    text-align: center;
+    /* City names */
+    font-family: Poppins, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.4px;
 }
 
 .info-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
     margin: 0.5rem 0.5rem 2rem 0.5rem;
+    color: #302F2F;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1.6px;
 }
 
 .utc-offset {
@@ -31,12 +50,14 @@
     color: black;
 }
 
-.date-info {
-
-
-}
-
-.clock-wrapper {
-    width : 100%;
-    margin: 0.5rem;
+.city-tile-clock {
+    color: #302F2F;
+    text-align: center;
+    /* City names */
+    font-family: Poppins, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2.4px;
 }

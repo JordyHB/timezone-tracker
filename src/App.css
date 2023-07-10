@@ -6,13 +6,14 @@
 
 .error-message {
     color: red;
-    font-size: clamp(0.8rem, 15%, 1.25rem);
-    margin-top: 0.2rem;
-    margin-bottom: 0.2rem;
+    font-size: clamp(16px, 40%, 22px);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    align-self: center;
 }
 
 .loading-message {
-    font-size: clamp(0.8rem, 15%, 1.25rem);
+    font-size: clamp(16px, 25%, 40px);
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
 }

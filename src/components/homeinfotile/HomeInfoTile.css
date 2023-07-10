@@ -4,8 +4,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 54px 24px;
-    width: 100%;
-    height: 100%;
+    width: 520px;
+    height: 680px;
     border-radius: 20px;
     background: #848484;
     box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.25);
@@ -50,8 +50,7 @@
 
 .info-field {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
     flex-shrink: 0;
     background: white;
     border-radius: 20px;
@@ -64,4 +63,9 @@
     line-height: normal;
     letter-spacing: 1px;
     padding: 0 20px;
+}
+
+.returned-info {
+    font-style: italic;
+    font-weight: 500;
 }
