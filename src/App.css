@@ -1,3 +1,9 @@
+/*Typography*/
+
+
+
+
+
 .error-message {
     color: red;
     font-size: clamp(0.8rem, 15%, 1.25rem);
@@ -9,4 +15,30 @@
     font-size: clamp(0.8rem, 15%, 1.25rem);
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
+}
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(180deg, #535353 0%, #7B7B7B 100%, rgba(83, 83, 83, 0.00) 100%);
+
+
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: url(assets/backgrounds/backgroundbubbles.png), transparent 50% / cover no-repeat;
+    flex: 1;
+}
+
+section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

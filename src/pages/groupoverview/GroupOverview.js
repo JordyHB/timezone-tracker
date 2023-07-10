@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom";
 import MainGroupClock from "../../components/groupcomponents/maingroupclock/MainGroupClock";
 import fetchGroupInfo from "../../helpers/firebase/fetchGroupInfo";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
+import "./GroupOverview.css"
 
 function GroupOverview() {
 

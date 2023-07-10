@@ -9,7 +9,7 @@ function Register() {
 
     return (
         <div className="outer-container">
-            <NavBar/>
+            <NavBar page="signup"/>
             <main>
                 <SignUp/>
             </main>

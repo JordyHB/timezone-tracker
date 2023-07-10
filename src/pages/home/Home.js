@@ -3,17 +3,15 @@ import './Home.css'
 import NavBar from "../../components/NavBar/NavBar";
 import MainLocalClock from "../../components/MainLocalClock/MainLocalClock";
 import CitiesTimesContainer from "../../components/CitiesTimesContainer/CitiesTimesContainer";
-import {auth} from "../../firebaseConfig";
-import fetchUserEntry from "../../helpers/firebase/fetchUserEntry";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
 
-function Home(props) {
+function Home() {
 
     const {user} = useContext(UserInfoContext)
 
     return (
         <div className="outer-container">
-            <NavBar/>
+            <NavBar page="home"/>
             <main>
                 <section className="MainLocalClock">
                     <MainLocalClock/>

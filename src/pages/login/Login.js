@@ -10,7 +10,7 @@ function Login() {
 
     return (
         <div className="outer-container">
-            <NavBar/>
+            <NavBar page="login"/>
             <main>
                 <SignIn/>
             </main>

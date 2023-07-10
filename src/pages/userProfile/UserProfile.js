@@ -13,7 +13,7 @@ function UserProfile() {
 
     return (
         <div className="outer-container">
-            <Navbar/>
+            <Navbar page="profile"/>
             <main className="user-profile-main">
                 <ProfileInformation
                     user={user}
