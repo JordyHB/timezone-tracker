@@ -1,12 +1,31 @@
+/*typography*/
+
+.tile-titles-typography{
+    font-family: Poppins, sans-serif;
+    font-size: clamp(12px, 1.5vw, 26px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #302F2F;
+    text-align: center;
+}
+
+.tile-text-typography{
+    color: #302F2F;
+    text-align: center;
+    font-size: clamp(10px, 1vw, 24px);
+    letter-spacing: 2px;
+
+}
+
 .time-info-tile {
     display: flex;
     flex-direction: column;
-    width: 244px;
-    height: 310px;
+    width: 85%;
+    height: 100%;
+    aspect-ratio: 1/1.15;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 1rem;
-    margin: 1rem;
+    padding: 15% 7.5%;
     user-select: none;
     border-radius: 20px;
     background: white;
@@ -17,47 +36,44 @@
     background: #C5C3BF;
 }
 
-.city-name {
-    color: #302F2F;
-    text-align: center;
-    /* City names */
-    font-family: Poppins, sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 2.4px;
-}
 
 .info-bar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
-    margin: 0.5rem 0.5rem 2rem 0.5rem;
-    color: #302F2F;
-    text-align: center;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 1.6px;
 }
 
 .utc-offset {
     font-style: italic;
     font-weight: 500;
-    color: #302F2F;
 }
 
-.city-tile-clock {
-    color: #302F2F;
-    text-align: center;
-    /* City names */
-    font-family: Poppins, sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 2.4px;
+/*media query for mobile devices*/
+
+@media screen and (max-width: 1026px) {
+
+    .tile-titles-typography{
+        font-size: clamp(12px, 2.5vw, 26px);
+    }
+
+    .tile-text-typography{
+        font-size: clamp(10px, 1.5vw, 24px);
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .tile-titles-typography{
+        font-size: clamp(12px, 4vw, 26px);
+    }
+
+    .tile-text-typography{
+        font-size: clamp(10px, 3vw, 24px);
+    }
+
+    .time-info-tile {
+        height: 100%;
+        width: 75%;
+    }
 }

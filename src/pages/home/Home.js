@@ -12,8 +12,10 @@ function Home() {
     const [shownTimeTiles, setShownTimeTiles] = useState(['Europe/London', 'Asia/Shanghai', 'America/New_York', 'Australia/Sydney', 'America/Vancouver', 'Europe/Moscow'])
 
     return (
-        <div className="outer-container">
-            <NavBar page="home"/>
+        <>
+            <header>
+                {/*<NavBar page="home"/>*/}
+            </header>
             <main>
                 {/*contains the main clock and the other cities clocks*/}
                 <section className="grid-container">
@@ -26,7 +28,7 @@ function Home() {
                     <TimeInfoTile timezone={shownTimeTiles[5]}/>
                 </section>
             </main>
-        </div>
+        </>
 
     );
 }

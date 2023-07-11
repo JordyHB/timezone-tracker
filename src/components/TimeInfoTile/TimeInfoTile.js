@@ -85,14 +85,14 @@ function TimeInfoTile({timezone}) {
                 {loading && <p className="loading-message">fetching local data</p>}
                 {!loading && !error && datetime !== undefined &&
                     <>
-                        <h3 className="city-name">{city}</h3>
-                        <div className="info-bar">
+                        <h3 className="city-name tile-titles-typography">{city}</h3>
+                        <div className="info-bar tile-text-typography">
                             <p className="utc-bar">UTC: <span className="utc-offset">{utc_offset}</span></p>
                             <p className="date-info">{date}</p>
                         </div>
                         <div className="clock-wrapper">
                             <DigitalClock
-                                className="city-tile-clock"
+                                className="city-tile-clock tile-titles-typography"
                                 timezone={timezoneLocation}
                                 showSeconds={false}
                             />

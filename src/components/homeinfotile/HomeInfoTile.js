@@ -63,7 +63,9 @@ function HomeInfoTile() {
 
         <article className="home-info-tile">
             <div className="clock-face">
-                <SettingsIcon className="settings-icon"/>
+                <div className="settings-icon-wrapper">
+                    <SettingsIcon className="settings-icon"/>
+                </div>
                 {/*handles giving the user feedback if there is an error or if the data is loading*/}
                 {error && <p className="error-message">There was an error fetching the data</p>}
                 {!error && <DigitalClock
@@ -79,7 +81,7 @@ function HomeInfoTile() {
                     <span className="location returned-info">
                         {/*// if there is an error, display the error message, otherwise display the location data or loading*/}
                         {error ?
-                            <p className="error-message">There was an error fetching the data</p>:
+                            <p className="error-message">There was an error fetching the data</p> :
                             locationData.city ? `${locationData.city}, ${locationData.country.name}` : 'loading'}
                     </span>
                 </p>

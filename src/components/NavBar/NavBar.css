@@ -3,7 +3,7 @@
     position: relative;
     justify-content: space-between;
     background: #302F2F;
-    min-width: 1440px;
+    min-width: 100%;
     height: 150px;
     list-style: none;
     align-items: center;
