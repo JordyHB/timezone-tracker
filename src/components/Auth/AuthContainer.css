@@ -1,7 +1,15 @@
 .auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 48px 0;
+}
+
+.auth-tile {
     display: inline-flex;
-    width: 660px;
-    height: 630px;
+    width: 45%;
+    height: 100%;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
@@ -20,20 +28,20 @@
     justify-content: space-between;
     padding: 1rem;
     text-align: center;
+    gap: 2rem;
 }
 
-.auth-container-title {
+.auth-tile-title {
     color: #FFF;
     text-align: center;
-    font-size: 48px;
-    font-style: normal;
+    font-size: clamp(16px, 5vw, 48px);
     font-weight: 400;
-    line-height: normal;
     letter-spacing: 5px;
 }
 
 .input-container {
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
@@ -42,12 +50,7 @@
 .auth-labels {
     color: #FFF;
     text-align: center;
-
-    /* Input Field labels */
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+    font-size: clamp(10px, 3vw, 24px);
     letter-spacing: 2px;
 
 }
@@ -57,11 +60,11 @@
     padding: 0.5rem;
     border-radius: 20px;
     background: white;
+    width: 65%;
     border: 1px solid transparent;
-    width: 466px;
     height: 60px;
     flex-shrink: 0;
-    font-size: 24px;
+    font-size: clamp(10px, 3vw, 24px);
 }
 
 .auth-buttons-container {
@@ -70,6 +73,7 @@
     gap: 1rem;
     width: 100%;
 }
+
 .auth-form-button {
     display: flex;
     padding: 15px 40px;
@@ -78,11 +82,8 @@
     gap: 10px;
     color: #302F2F;
     text-align: center;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 2.4px;
+    font-size: clamp(10px, 3vw, 24px);
+    letter-spacing: 2px;
     border-radius: 20px;
     background: #F2C300;
     border: transparent;
@@ -97,10 +98,61 @@
     color: #FFF;
     text-align: center;
     /* Nav bar text */
-    font-size: 20px;
-    font-style: normal;
+    font-size: clamp(10px, 2vw, 20px);
     font-weight: 400;
-    line-height: normal;
     letter-spacing: 2px;
     text-decoration: none;
+}
+
+.switch-to-opposite-link:hover {
+    color: #e0e0e0;
+}
+
+.auth-container .error-message {
+    font-size: clamp(10px, 2vw, 20px);
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+/*media query for mobile devices*/
+@media screen and (max-width: 1026px) {
+
+    .auth-tile {
+        width: 75%;
+    }
+
+    .auth-form {
+        gap: 0.5rem;
+    }
+
+    .auth-inputs {
+        width: 80%;
+        border-radius: 10px;
+        height: 55px;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .auth-container {
+        padding: 20px 0;
+    }
+
+    .auth-tile {
+        width: 90%;
+        padding: 1rem 0.5rem;
+    }
+
+    .auth-form {
+        gap: 0.25rem;
+        padding: 1rem 0.25rem;
+    }
+
+    .auth-inputs {
+        width: 80%;
+        border-radius: 10px;
+        height: 45px;
+    }
+
 }

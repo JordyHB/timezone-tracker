@@ -9,12 +9,16 @@ import SignIn from "../../components/Auth/SignIn";
 function Login() {
 
     return (
-        <div className="outer-container">
-            <NavBar page="login"/>
+        <>
+            <header>
+                <NavBar page="login"/>
+            </header>
             <main>
-                <SignIn/>
+                <section className="auth-container">
+                    <SignIn/>
+                </section>
             </main>
-        </div>
+        </>
     );
 }
 

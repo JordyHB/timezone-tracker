@@ -20,8 +20,8 @@ function SignUp() {
 
     const signUp = async (e) => {
         // set error to null on submit
-            setError(null)
-            setWaitingForRedirect(false)
+        setError(null)
+        setWaitingForRedirect(false)
 
         try {
             e.preventDefault()
@@ -53,7 +53,6 @@ function SignUp() {
     }
 
 
-
     // if waitingForRedirect is true and the context has been filled, redirect to account details page
     useEffect(() => {
         if (waitingForRedirect && isAuth) {
@@ -62,40 +61,46 @@ function SignUp() {
     }, [waitingForRedirect, isAuth, navigate])
 
     return (
-        <section className="auth-container">
-            <h1 className="auth-container-title">Register</h1>
+        <article className="auth-tile">
+            <h1 className="auth-tile-title">Register</h1>
             <form className="auth-form" onSubmit={signUp} noValidate>
-                <label htmlFor="username" className="auth-labels">Username</label>
-                <input
-                    className="auth-inputs"
-                    type="text"
-                    name="username"
-                    id="username"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
-                />
-                <label htmlFor="email" className="auth-labels">Email</label>
-                <input
-                    className="auth-inputs"
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={email} onChange={(e) => setEmail(e.target.value)}
-                />
-                <label htmlFor="password" className="auth-labels">Password</label>
-                <input
-                    className="auth-inputs"
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="input-container">
+                    <label htmlFor="username" className="auth-labels">Username</label>
+                    <input
+                        className="auth-inputs"
+                        type="text"
+                        name="username"
+                        id="username"
+                        value={userName}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="email" className="auth-labels">Email</label>
+                    <input
+                        className="auth-inputs"
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email} onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="password" className="auth-labels">Password</label>
+                    <input
+                        className="auth-inputs"
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
                 {error && <p className="error-message">{error}</p>}
                 <button type="submit" className="register-button auth-form-button">Register</button>
                 <Link to={'/login'} className="switch-to-opposite-link">Already have an account? Login here.</Link>
             </form>
-        </section>
+        </article>
     );
 }
 
