@@ -14,7 +14,7 @@ function Home() {
     return (
         <>
             <header>
-                {/*<NavBar page="home"/>*/}
+                <NavBar page="home"/>
             </header>
             <main>
                 {/*contains the main clock and the other cities clocks*/}

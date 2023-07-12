@@ -4,28 +4,20 @@
     justify-content: space-between;
     background: #302F2F;
     min-width: 100%;
-    height: 150px;
     list-style: none;
     align-items: center;
-    padding: 0 48px;
+    padding: 2.5rem 48px;
     flex-shrink: 0;
 }
 
 .site-name-wrapper {
-    display: flex;
-    width: 322px;
-    height: 86px;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
+    width: 15%;
 }
 
 .site-name {
-    color: #F2C300;
-    width: 300px;
-    height: 115px;
+    color: #F2C300;;
     /* Site name text styling */;
-    font-size: 40px;
+    font-size: clamp(24px, 3vw, 40px);
     font-style: italic;
     font-weight: 500;
     line-height: normal;
@@ -50,4 +42,69 @@
     line-height: normal;
     letter-spacing: 2px;
     text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #F2C300
+}
+
+.nav-menu-toggle {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    cursor: pointer;
+
+}
+
+.nav-menu-toggle:hover {
+    color: #F2C300;
+}
+
+/*media queries for mobile devices*/
+
+@media screen and (max-width: 1440px) {
+
+    .site-name-wrapper {
+        position: absolute;
+        top: 2.5rem;
+        left: 2rem;
+    }
+
+    .nav-menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 150px;
+    }
+
+    .nav-links.active {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+
+    .nav-links > li {
+        text-align: center;
+        width: 75%;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+    /*adds a gap between the nav links and the site name*/
+    .nav {
+        padding: 8.5rem 48px 2.5rem 48px;
+    }
+
 }

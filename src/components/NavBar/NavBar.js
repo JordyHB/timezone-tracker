@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
 import NavBarButton from "./navbarbutton/NavBarButton";
 import SearchBar from "./searchbar/SearchBar";
+import {ReactComponent as NavMenuIcon} from '../../assets/icons/navmenuicon.svg'
 
 function NavBar({page}) {
 
@@ -14,8 +15,17 @@ function NavBar({page}) {
             <div className="site-name-wrapper">
                 <NavLink to='/' className="site-name">Timezone Tracker</NavLink>
             </div>
-            <SearchBar/>
+            {/*icon to open the hamburger menu*/}
+            <NavMenuIcon
+                fill="#F2C300"
+                className="nav-menu-toggle"
+                onClick={() => {
+                    const navLinks = document.querySelector('.nav-links');
+                    navLinks.classList.toggle('active')
+                }}
+            />
             <ul className="nav-links">
+                <li><SearchBar/></li>
                 {/*displays the home button if the page is not home*/}
                 {page !== 'home' && <li><NavLink to="/" className="nav-link">Home</NavLink></li>}
                 {/*displays the profile button if the user not on the profile page*/}
