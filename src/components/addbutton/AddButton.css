@@ -1,0 +1,28 @@
+.add-button {
+    position: absolute;
+    top: 2.5rem;
+    right: 2rem;
+    padding: 4px 30px;
+    border-radius: 50px;
+    background: white;
+    border: transparent;
+}
+
+.add-button:hover {
+    background: #f0f0f0;
+}
+
+@media screen and (max-width: 768px) {
+    .add-button {
+        top: 1.5rem;
+        right: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .add-button {
+        position: static;
+        width: 80%;
+        background: #F2C300;
+    }
+}

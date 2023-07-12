@@ -7,12 +7,12 @@ import ApiUserInfo from "../../ApiUserInfo";
 function ProfileInformation({user}) {
 
     return (
-        <article className="profile-info-tile">
-            <h1>Profile Information</h1>
+        <article className="profile-info-tile user-profile-tile">
             <div className="profile-clock-wrapper">
             <DigitalClock
                 showSeconds={true}
                 timezone={user?.timezone}
+                className="profile-clock"
             />
             </div>
             <p>Nickname: <span>{user?.nickname}</span></p>

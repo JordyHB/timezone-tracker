@@ -7,7 +7,7 @@
 }
 
 html{
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
   max-width: 100%
 }
@@ -15,13 +15,15 @@ html{
 body {
   font-family: 'Roboto', sans-serif;
   color: #2a3032;
-  min-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #root,
 .App {
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100vh;
+  width: 100vw;
   display: block;
   max-width: 100%;
   overflow: auto;

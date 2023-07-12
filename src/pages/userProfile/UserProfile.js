@@ -4,7 +4,6 @@ import ProfileInformation from "../../components/userprofileComponents/profileIn
 import FriendList from "../../components/userprofileComponents/friendlist/FriendList";
 import "./UserProfile.css"
 import GroupList from "../../components/userprofileComponents/grouplist/GroupList";
-import createGroup from "../../helpers/firebase/createGroup";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
 
 function UserProfile() {
@@ -12,17 +11,27 @@ function UserProfile() {
     const {user} = useContext(UserInfoContext)
 
     return (
-        <div className="outer-container">
-            <Navbar page="profile"/>
-            <main className="user-profile-main">
-                <ProfileInformation
-                    user={user}
-                />
-                <FriendList/>
-                <GroupList/>
-                <button className="add-group-btn" onClick={() => {void createGroup(user, 'porki')}}>Add Group</button>
+        <>
+            <header>
+                <Navbar page="profile"/>
+            </header>
+            <main>
+                <h1 className="user-profile-title">{user?.username}'s Profile</h1>
+                <section className="user-profile-container outer-flex-container">
+                    <div className="inner-container">
+                        <ProfileInformation
+                            user={user}
+                        />
+                    </div>
+                    <div className="inner-container">
+                        <FriendList/>
+                    </div>
+                    <div className="inner-container">
+                        <GroupList/>
+                    </div>
+                </section>
             </main>
-        </div>
+        </>
     );
 }
 

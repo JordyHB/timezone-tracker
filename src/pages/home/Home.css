@@ -42,10 +42,10 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
   .grid-container {
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: 500px repeat(6, 250px);
+    grid-template-rows: 600px repeat(6, 400px);
     grid-template-areas:
     "a"
     "b"
@@ -54,5 +54,12 @@
     "e"
     "f"
     "g";
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .grid-container {
+    grid-template-rows: 500px repeat(6, 250px);
+
   }
 }

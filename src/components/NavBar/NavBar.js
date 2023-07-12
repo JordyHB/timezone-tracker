@@ -19,6 +19,7 @@ function NavBar({page}) {
             <NavMenuIcon
                 fill="#F2C300"
                 className="nav-menu-toggle"
+                // function to open and close the hamburger menu
                 onClick={() => {
                     const navLinks = document.querySelector('.nav-links');
                     navLinks.classList.toggle('active')

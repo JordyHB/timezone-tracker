@@ -62,7 +62,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 
     .tile-titles-typography{
         font-size: clamp(12px, 4vw, 26px);
@@ -74,6 +74,7 @@
 
     .time-info-tile {
         height: 100%;
-        width: 75%;
+        width: 65%;
+        padding: 20px 10px;
     }
 }
