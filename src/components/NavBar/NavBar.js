@@ -30,8 +30,7 @@ function NavBar({page}) {
                 {/*displays the home button if the page is not home*/}
                 {page !== 'home' && <li><NavLink to="/" className="nav-link">Home</NavLink></li>}
                 {/*displays the profile button if the user not on the profile page*/}
-                {page !== 'profile' &&
-                    <li><NavLink to="/profile/myprofile" className="nav-link">My Profile</NavLink></li>}
+                    <li><NavLink to="/profile/myprofile" className="nav-link">My Profile</NavLink></li>
                 {/*display the login button if the user is not authenticated*/}
                 {isAuth ?
                     <></> : page !== 'signup' &&

@@ -8,7 +8,6 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import UserProfile from "./pages/userProfile/UserProfile";
 import AccountDetails from "./pages/accountdetails/AccountDetails";
-import PublicUserProfile from "./pages/publicuserprofile/PublicUserProfile";
 // images
 import background from './assets/backgrounds/backgroundbubbles.png'
 
