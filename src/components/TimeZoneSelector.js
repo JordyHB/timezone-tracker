@@ -7,7 +7,6 @@ function TimeZoneSelector({labelClassName, inputClassName}) {
 
     useEffect(() => {
         const availableTimeZones = Intl.supportedValuesOf('timeZone');
-        console.log(availableTimeZones);
 
         function searchTimeZones(query) {
             return availableTimeZones.filter((timeZone) => {

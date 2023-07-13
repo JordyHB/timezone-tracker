@@ -5,10 +5,13 @@ import FriendList from "../../components/userprofileComponents/friendlist/Friend
 import "./UserProfile.css"
 import GroupList from "../../components/userprofileComponents/grouplist/GroupList";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
+import {useParams} from "react-router-dom";
 
 function UserProfile() {
 
     const {user} = useContext(UserInfoContext)
+    //handles profiles that are not that of the users
+    const {id} = useParams()
 
     return (
         <>
@@ -16,18 +19,22 @@ function UserProfile() {
                 <Navbar page="profile"/>
             </header>
             <main>
-                <h1 className="user-profile-title">{user?.username}'s Profile</h1>
+                <h1 className="user-profile-title">{id ? id : user?.username}'s Profile</h1>
                 <section className="user-profile-container outer-flex-container">
                     <div className="inner-container">
                         <ProfileInformation
-                            user={user}
+                            id={id ? id : null}
                         />
                     </div>
                     <div className="inner-container">
-                        <FriendList/>
+                        <FriendList
+                            id={id ? id : null}
+                        />
                     </div>
                     <div className="inner-container">
-                        <GroupList/>
+                        <GroupList
+                            id={id ? id : null}
+                        />
                     </div>
                 </section>
             </main>

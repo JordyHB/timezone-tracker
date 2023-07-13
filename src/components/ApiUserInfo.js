@@ -27,7 +27,7 @@ function ApiUserInfo({timezone}) {
 
     useEffect(() => {
         void fetchTimeData(timezone)
-    }, [])
+    }, [timezone])
 
 
     return (

@@ -55,7 +55,7 @@ function App() {
             }/>
             <Route path='/profile/:id' element={
                 // links to other user profiles
-                <PublicUserProfile/>
+                <UserProfile/>
             }/>
             <Route path='/groups/:id' element={
                 // links to group pages
