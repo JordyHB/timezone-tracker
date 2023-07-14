@@ -5,7 +5,7 @@ import './ProfileInformation.css'
 import ApiUserInfo from "../../ApiUserInfo";
 import fetchUserEntry from "../../../helpers/firebase/fetchUserEntry";
 
-function ProfileInformation({id}) {
+function ProfileInformation({id, showSeconds}) {
 
     const {user} = useContext(UserInfoContext)
 
@@ -41,7 +41,7 @@ function ProfileInformation({id}) {
             setError('there was an error fetching the requested user')
         }
 
-        // cleans up the old data incase of profile hopping
+        // cleans up the old data in case of profile hopping
         return () => {
             setRequestedUser(null)
         }
@@ -56,17 +56,19 @@ function ProfileInformation({id}) {
                 <article className="profile-info-tile user-profile-tile">
                     <div className="profile-clock-wrapper">
                         <DigitalClock
-                            showSeconds={true}
+                            showSeconds={showSeconds}
                             timezone={requestedUser?.timezone}
                             className="profile-clock"
                         />
                     </div>
-                    <p>Nickname: <span>{requestedUser?.nickname}</span></p>
-                    <p>Country: <span>{requestedUser?.country}</span></p>
-                    <p>Timezone: <span>{requestedUser?.timezone}</span></p>
-                    <ApiUserInfo
-                        timezone={requestedUser?.timezone}
-                    />
+                    <p className="info-p">Nickname: <span>{requestedUser?.nickname}</span></p>
+                    <p className="info-p">Country: <span>{requestedUser?.country}</span></p>
+                    <p className="info-p">Timezone: <span>{requestedUser?.timezone}</span></p>
+                    {requestedUser &&
+                        <ApiUserInfo
+                            timezone={requestedUser?.timezone}
+                        />
+                    }
                 </article>
             }
         </>

@@ -1,10 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from "../../components/NavBar/NavBar";
 import {useParams} from "react-router-dom";
 import MainGroupClock from "../../components/groupcomponents/maingroupclock/MainGroupClock";
 import fetchGroupInfo from "../../helpers/firebase/fetchGroupInfo";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
 import "./GroupOverview.css"
+import AddButton from "../../components/addbutton/AddButton";
 
 function GroupOverview() {
 
@@ -17,27 +18,33 @@ function GroupOverview() {
     }
 
     useEffect(() => {
-            void fetchRequestedGroupInfo()
-        }
-        , [id])
+        void fetchRequestedGroupInfo()
+    }, [id])
 
-    return (
-        <div className="outer-container">
+    return (<>
+        <header>
             <Navbar/>
-            <MainGroupClock/>
-            {/*loads the group members and their info onto the page*/}
-            <div className="group-overview-container">
+        </header>
+        <main>
+            <section className="group-overview-container">
+                <article className="group-name-container">
+                    <h1 className="group-name-title">{id}:</h1>
+                    <AddButton variant="add-group-member" groupID={id}/>
+                </article>
+                <MainGroupClock/>
+                {/*loads the group members and their info onto the page*/}
                 {groupMemberInfo && groupMemberInfo.map((member) => {
-                    return (
+                    return (<div className="group-member-container">
                         <ProfileInformation
                             key={member.uid}
                             user={member}
+                            showseconds={false}
                         />
-                    )
+                    </div>)
                 })}
-            </div>
-        </div>
-    );
+            </section>
+        </main>
+    </>);
 }
 
 export default GroupOverview;

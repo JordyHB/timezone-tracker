@@ -5,7 +5,7 @@ import AddFriendSearchField
     from "../userprofileComponents/friendlist/friendlistcomponents/addfriendsearchfield/AddFriendSearchField";
 
 
-function AddButton({variant}) {
+function AddButton({variant, groupID}) {
 
     const addFriendModalRef = useRef(null)
 
@@ -19,7 +19,8 @@ function AddButton({variant}) {
             console.log('add group')
         }
         if (variant === 'add-group-member') {
-            console.log("add group")
+            console.log("add group member")
+            console.log(groupID)
         }
 
     }

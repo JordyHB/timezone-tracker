@@ -24,6 +24,7 @@ function UserProfile() {
                     <div className="inner-container">
                         <ProfileInformation
                             id={id ? id : null}
+                            showSeconds={true}
                         />
                     </div>
                     <div className="inner-container">

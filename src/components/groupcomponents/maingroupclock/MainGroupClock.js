@@ -5,11 +5,11 @@ import './MainGroupClock.css';
 
 function MainGroupClock() {
     return (
-        <article>
-            <div className="main-group-clock-container">
-                <h1>Group time:</h1>
+        <article className="main-group-clock-tile">
+            <h2 className="main-group-clock-title">Group Time:</h2>
+            <div className="main-group-clock-face">
                 <DigitalClock
-                    className="main-clock"
+                    className="main-group-clock"
                     setToUtc={true}
                     showSeconds={true}
                 />

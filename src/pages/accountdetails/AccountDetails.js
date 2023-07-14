@@ -52,7 +52,7 @@ function AccountDetails() {
                         <h2 className="extra-info-subtitle">Please fill out the following information.</h2>
                         <form className="extra-info-form" onSubmit={handleSubmit}>
                             <div className="input-container">
-                                <label htmlFor="nickname" className="extra-info-labels">Nickname:</label>
+                                <label htmlFor="nickname" className="extra-info-labels">Nickname</label>
                                 <input
                                     className="extra-info-inputs"
                                     type="text"
@@ -64,7 +64,7 @@ function AccountDetails() {
                                 />
                             </div>
                             <div className="input-container">
-                                <label htmlFor="country" className="extra-info-labels">Country:</label>
+                                <label htmlFor="country" className="extra-info-labels">Country</label>
                                 <input
                                     className="extra-info-inputs"
                                     type="text"

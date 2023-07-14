@@ -1,6 +1,5 @@
 .profile-info-tile {
     color: #302F2F;
-    font-size: clamp(10px, 2.5vw, 24px);
     font-weight: 400;
     letter-spacing: 2px;
     text-align: left;
@@ -21,8 +20,9 @@
     font-size: clamp(12px, 8vw, 48px);
 }
 
-.profile-clock .seconds-display {
-    color: #F2C300;
+.info-p {
+    font-size: clamp(10px, 2.5vw, 24px);
+
 }
 
 .api-user-info {

@@ -37,11 +37,11 @@ function ApiUserInfo({timezone}) {
                 {error && <p className="error-message">There was an error fetching API data</p>}
                 {!loading && !error &&
                     <>
-                        <p>Date: <span>{fetchCurrentDate(timeData)}</span></p>
-                        <p>Daylight Savings Time: <span>{timeData.dst ? 'Yes' : 'No'}</span></p>
-                        <p>DST change date: <span>{fetchDSTChangeDate(timeData)}</span></p>
-                        <p>Timezone abbreviation: <span>{timeData.abbreviation}</span></p>
-                        <p>UTC Offset: <span>{timeData.utc_offset}</span></p>
+                        <p className="info-p">Date: <span>{fetchCurrentDate(timeData)}</span></p>
+                        <p className="info-p">Daylight Savings Time: <span>{timeData.dst ? 'Yes' : 'No'}</span></p>
+                        <p className="info-p">DST change date: <span>{fetchDSTChangeDate(timeData)}</span></p>
+                        <p className="info-p">Timezone abbreviation: <span>{timeData.abbreviation}</span></p>
+                        <p className="info-p">UTC Offset: <span>{timeData.utc_offset}</span></p>
                     </>
                 }
 
