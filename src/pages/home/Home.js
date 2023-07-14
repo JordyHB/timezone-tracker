@@ -1,29 +1,34 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useState} from 'react';
 import './Home.css'
 import NavBar from "../../components/NavBar/NavBar";
-import MainLocalClock from "../../components/MainLocalClock/MainLocalClock";
-import CitiesTimesContainer from "../../components/CitiesTimesContainer/CitiesTimesContainer";
-import {auth} from "../../firebaseConfig";
-import fetchUserEntry from "../../helpers/firebase/fetchUserEntry";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
+import HomeInfoTile from "../../components/homeinfotile/HomeInfoTile";
+import TimeInfoTile from "../../components/TimeInfoTile/TimeInfoTile";
 
-function Home(props) {
+function Home() {
 
     const {user} = useContext(UserInfoContext)
+    // state that stores the timezones to be displayed
+    const [shownTimeTiles, setShownTimeTiles] = useState(['Europe/London', 'Asia/Shanghai', 'America/New_York', 'Australia/Sydney', 'America/Vancouver', 'Europe/Moscow'])
 
     return (
-        <div className="outer-container">
-            <NavBar/>
+        <>
+            <header>
+                <NavBar page="home"/>
+            </header>
             <main>
-                <section className="MainLocalClock">
-                    <MainLocalClock/>
-                </section>
-                <section className="other-cities-container">
-                    <CitiesTimesContainer/>
+                {/*contains the main clock and the other cities clocks*/}
+                <section className="grid-container">
+                    <HomeInfoTile/>
+                    <TimeInfoTile timezone={shownTimeTiles[0]}/>
+                    <TimeInfoTile timezone={shownTimeTiles[1]}/>
+                    <TimeInfoTile timezone={shownTimeTiles[2]}/>
+                    <TimeInfoTile timezone={shownTimeTiles[3]}/>
+                    <TimeInfoTile timezone={shownTimeTiles[4]}/>
+                    <TimeInfoTile timezone={shownTimeTiles[5]}/>
                 </section>
             </main>
-            <button onClick={ () => console.log(user)}>Log User</button>
-        </div>
+        </>
 
     );
 }

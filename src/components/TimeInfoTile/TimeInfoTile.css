@@ -1,42 +1,80 @@
+/*typography*/
+
+.tile-titles-typography{
+    font-family: Poppins, sans-serif;
+    font-size: clamp(12px, 1.5vw, 26px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #302F2F;
+    text-align: center;
+}
+
+.tile-text-typography{
+    color: #302F2F;
+    text-align: center;
+    font-size: clamp(10px, 1vw, 24px);
+    letter-spacing: 2px;
+
+}
+
 .time-info-tile {
     display: flex;
     flex-direction: column;
-    width: clamp(200px, 18%, 400px);
+    width: 85%;
+    height: 100%;
+    aspect-ratio: 1/1.15;
+    justify-content: space-between;
     align-items: center;
-    background: #ffffff;
-    border-radius: 4px;
-    padding: 2rem 1rem;
-    margin: 1rem;
-    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.2);
+    padding: 15% 7.5%;
     user-select: none;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.25);
 }
 
 .time-info-tile:nth-child(even) {
-    background: #b3c6bf;
+    background: #C5C3BF;
 }
 
-.city-name {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin: 0.5rem;
-}
 
 .info-bar {
-    margin: 0.5rem 0.5rem 2rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
 .utc-offset {
     font-style: italic;
     font-weight: 500;
-    color: black;
 }
 
-.date-info {
+/*media query for mobile devices*/
 
+@media screen and (max-width: 1026px) {
 
+    .tile-titles-typography{
+        font-size: clamp(12px, 2.5vw, 26px);
+    }
+
+    .tile-text-typography{
+        font-size: clamp(10px, 1.5vw, 24px);
+    }
 }
 
-.clock-wrapper {
-    width : 100%;
-    margin: 0.5rem;
+@media screen and (max-width: 700px) {
+
+    .tile-titles-typography{
+        font-size: clamp(12px, 4vw, 26px);
+    }
+
+    .tile-text-typography{
+        font-size: clamp(10px, 3vw, 24px);
+    }
+
+    .time-info-tile {
+        height: 100%;
+        width: 65%;
+        padding: 20px 10px;
+    }
 }

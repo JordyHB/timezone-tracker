@@ -1,22 +1,45 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import Navbar from "../../components/NavBar/NavBar";
-import { UserInfoContext } from "../../context/UserInfoContextProvider";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
 import FriendList from "../../components/userprofileComponents/friendlist/FriendList";
 import "./UserProfile.css"
+import GroupList from "../../components/userprofileComponents/grouplist/GroupList";
+import {UserInfoContext} from "../../context/UserInfoContextProvider";
+import {useParams} from "react-router-dom";
 
 function UserProfile() {
 
-    const {user, updateUserInfo} = useContext(UserInfoContext)
+    const {user} = useContext(UserInfoContext)
+    //handles profiles that are not that of the users
+    const {id} = useParams()
 
     return (
-        <div className="outer-container">
-            <Navbar/>
-            <main className="user-profile-main">
-                <ProfileInformation/>
-                <FriendList/>
+        <>
+            <header>
+                <Navbar page="profile"/>
+            </header>
+            <main>
+                <h1 className="user-profile-title">{id ? id : user?.username}'s Profile</h1>
+                <section className="user-profile-container outer-flex-container">
+                    <div className="inner-container">
+                        <ProfileInformation
+                            id={id ? id : null}
+                            showSeconds={true}
+                        />
+                    </div>
+                    <div className="inner-container">
+                        <FriendList
+                            id={id ? id : null}
+                        />
+                    </div>
+                    <div className="inner-container">
+                        <GroupList
+                            id={id ? id : null}
+                        />
+                    </div>
+                </section>
             </main>
-        </div>
+        </>
     );
 }
 

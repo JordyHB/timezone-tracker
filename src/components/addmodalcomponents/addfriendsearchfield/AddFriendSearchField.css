@@ -6,26 +6,35 @@
     border-radius: 4px;
 }
 
+.button-input-container {
+    display: flex;
+    flex-direction: row;
+}
+
 .add-friend-label {
-    margin-bottom: 0.25rem;
     font-style: italic;
+    color: white;
+    margin-bottom: 0.5rem;
 }
 
 .add-friend-input {
+    display: inline-block;
     margin-bottom: 1rem;
     padding: 0.5rem;
-    border-radius: 4px;
+    height: 45px;
+    border-radius: 50px 0 0 50px;
     border: 1px solid transparent;
-    width: clamp(200px, 50%, 250px);
+    width: clamp(100px, 75%, 250px);
 }
 
 .add-friend-button {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 50px;
+    display: inline-block;
+    padding: 0.25rem;
+    height: 45px;
+    border-radius: 0 50px 50px 0;
     border: 1px solid transparent;
-    width: clamp(100px, 30%, 150px);
-    background: cornflowerblue;
+    width: clamp(30px, 25%, 150px);
+    background: #f2c300;
     font-weight: 600;
     cursor: pointer;
 }

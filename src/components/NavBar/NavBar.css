@@ -1,16 +1,111 @@
 .nav {
     display: flex;
+    position: relative;
     justify-content: space-between;
-    background: #e3f0f5;
-    height: 100px;
+    background: #302F2F;
+    min-width: 100%;
     list-style: none;
     align-items: center;
-    padding: clamp(0.5rem, 5%, 1.5rem);
+    padding: 2.5rem 48px;
+    flex-shrink: 0;
+}
+
+.site-name-wrapper {
+    width: 15%;
 }
 
 .site-name {
-    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: #F2C300;;
+    /* Site name text styling */;
+    font-size: clamp(24px, 3vw, 40px);
+    font-style: italic;
     font-weight: 500;
+    line-height: normal;
     text-decoration: none;
-    color: #2a3032;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+    gap: 2.5rem;
+    align-items: baseline;
+
+}
+
+.nav-link {
+    color: #FFF;
+    /* Nav bar text */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-link:hover {
+    color: #F2C300
+}
+
+.nav-menu-toggle {
+    display: none;
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    cursor: pointer;
+
+}
+
+.nav-menu-toggle:hover {
+    color: #F2C300;
+}
+
+/*media queries for mobile devices*/
+
+@media screen and (max-width: 1440px) {
+
+    .site-name-wrapper {
+        position: absolute;
+        top: 2.5rem;
+        left: 2rem;
+    }
+
+    .nav-menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 150px;
+    }
+
+    .nav-links.active {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 2rem;
+    }
+
+    .nav-links > li {
+        text-align: center;
+        width: 75%;
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 540px) {
+
+    /*adds a gap between the nav links and the site name*/
+    .nav {
+        padding: 8.5rem 48px 2.5rem 48px;
+    }
+
 }

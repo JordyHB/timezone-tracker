@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import Navbar from "../../components/NavBar/NavBar";
-import { UserInfoContext } from "../../context/UserInfoContextProvider";
+import {UserInfoContext} from "../../context/UserInfoContextProvider";
 import './AccountDetails.css';
 import storeExtraUserInfo from "../../helpers/firebase/storeExtraUserInfo";
 import TimeZoneSelector from "../../components/TimeZoneSelector";
@@ -41,42 +41,52 @@ function AccountDetails() {
     }
 
     return (
-        <div className="outer-container">
-            <Navbar/>
+        <>
+            <header>
+                <Navbar/>
+            </header>
             <main>
-                <article className="form-container">
-                    <h1 className="extra-info-title">Thank you for registering</h1>
-                    <h2 className="extra-info-subtitle">Please fill out the following information.</h2>
-                    <form className="extra-info-form" onSubmit={handleSubmit}>
-                        <label htmlFor="nickname" className="extra-info-labels">Nickname:</label>
-                        <input
-                            className="extra-info-inputs"
-                            type="text"
-                            id="nickname"
-                            name="nickname"
-                            placeholder="Nickname"
-                            onChange={handleChange}
-                            value={nickname}
-                        />
-                        <label htmlFor="country" className="extra-info-labels">Country:</label>
-                        <input
-                            className="extra-info-inputs"
-                            type="text"
-                            id="country"
-                            name="country"
-                            placeholder="Country"
-                            onChange={handleChange}
-                            value={country}
-                        />
-                        <TimeZoneSelector
-                            inputClassName="extra-info-inputs"
-                            labelClassName="extra-info-labels"
-                        />
-                        <button type="submit" className="extra-info-button">Submit</button>
-                    </form>
-                </article>
+                <section className="extra-info-container">
+                    <article className="extra-info-tile">
+                        <h1 className="extra-info-title">Thank you for registering</h1>
+                        <h2 className="extra-info-subtitle">Please fill out the following information.</h2>
+                        <form className="extra-info-form" onSubmit={handleSubmit}>
+                            <div className="input-container">
+                                <label htmlFor="nickname" className="extra-info-labels">Nickname</label>
+                                <input
+                                    className="extra-info-inputs"
+                                    type="text"
+                                    id="nickname"
+                                    name="nickname"
+                                    placeholder="Nickname"
+                                    onChange={handleChange}
+                                    value={nickname}
+                                />
+                            </div>
+                            <div className="input-container">
+                                <label htmlFor="country" className="extra-info-labels">Country</label>
+                                <input
+                                    className="extra-info-inputs"
+                                    type="text"
+                                    id="country"
+                                    name="country"
+                                    placeholder="Country"
+                                    onChange={handleChange}
+                                    value={country}
+                                />
+                            </div>
+                            <div className="input-container">
+                            <TimeZoneSelector
+                                inputClassName="extra-info-inputs"
+                                labelClassName="extra-info-labels"
+                            />
+                            </div>
+                            <button type="submit" className="extra-info-button">Submit</button>
+                        </form>
+                    </article>
+                </section>
             </main>
-        </div>
+        </>
     );
 }
 

@@ -7,7 +7,6 @@ function TimeZoneSelector({labelClassName, inputClassName}) {
 
     useEffect(() => {
         const availableTimeZones = Intl.supportedValuesOf('timeZone');
-        console.log(availableTimeZones);
 
         function searchTimeZones(query) {
             return availableTimeZones.filter((timeZone) => {
@@ -21,15 +20,16 @@ function TimeZoneSelector({labelClassName, inputClassName}) {
 
     return (
         <>
-            <label className={labelClassName} htmlFor="timezone">Time Zone:</label>
+            <label className={labelClassName} htmlFor="timezone">Time Zone</label>
             <input
                 className={inputClassName}
-                list='timezones'
-                name='timezone'
-                id='timezone'
+                list="timezones"
+                name="timezone"
+                id="timezone"
+                placeholder="Europe/Amsterdam"
                 onChange={(e) => setQuery(e.target.value)}
             />
-            <datalist id={'timezones'}>
+            <datalist id="timezones">
                 {filteredTimeZones.map((timeZone) => {
                     return <option value={timeZone} key={timeZone}/>
                 })}

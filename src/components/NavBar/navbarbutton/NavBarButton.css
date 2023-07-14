@@ -1,0 +1,17 @@
+.nav-bar-button {
+    padding: 10px 20px;
+    gap: 10px;
+    border-radius: 30px;
+    border: transparent;
+    background: #F2C300;
+    /*text styling*/
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 2px;
+}
+
+.nav-bar-button:hover {
+    background: #DBA800;
+}

@@ -42,31 +42,35 @@ function SignIn(props) {
     }, [waitingForRedirect, isAuth, navigate])
 
     return (
-        <section className="auth-container">
-            <h1 className="auth-container-title">Login</h1>
+        <article className="auth-tile">
+            <h1 className="auth-tile-title">Login</h1>
             <form className="auth-form" onSubmit={signIn} noValidate>
-                <label htmlFor="email" className="auth-labels">Email</label>
-                <input
-                    className="auth-inputs"
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={email} onChange={(e) => setEmail(e.target.value)}
-                />
-                <label htmlFor="password" className="auth-labels">Password</label>
-                <input
-                    className="auth-inputs"
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
+                <div className="input-container">
+                    <label htmlFor="email" className="auth-labels">Email</label>
+                    <input
+                        className="auth-inputs"
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={email} onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="input-container">
+                    <label htmlFor="password" className="auth-labels">Password</label>
+                    <input
+                        className="auth-inputs"
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
                 {error && <p className="error-message">{error}</p>}
                 <button type="submit" className="login-button auth-form-button">Log In</button>
                 <Link to={'/signup'} className="switch-to-opposite-link">Don't have an account? Register here.</Link>
             </form>
-        </section>
+        </article>
     );
 }
 

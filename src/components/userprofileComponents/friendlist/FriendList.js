@@ -1,35 +1,57 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
-import AddFriendModal from "./friendlistcomponents/addfriendmodal/AddFriendModal";
 import "./FriendList.css"
 import {useNavigate} from "react-router-dom";
+import AddButton from "../../addmodalcomponents/addbutton/AddButton";
+import fetchFriendList from "../../../helpers/firebase/fetchFriendList";
 
-function FriendList() {
+function FriendList({id}) {
 
-    const {friendList} = useContext(UserInfoContext)
+    const userContext  = useContext(UserInfoContext)
+    const [friendList, setFriendList] = useState(null)
     const navigate = useNavigate()
 
+    useEffect(() => {
+
+
+        async function fetchRequestedUserFriendList() {
+            setFriendList(await fetchFriendList(id))
+        }
+        //fetches the friendlist from a requested user if not the auth user
+        if (id && id !== userContext?.user?.username && id !== 'myprofile') {
+            void fetchRequestedUserFriendList(id)
+        } else {
+            // takes the friendlist from the context if the user is the auth user
+            setFriendList(userContext.friendList)
+        }
+
+        // cleans up the old data incase of profile hopping
+        return () => {
+            setFriendList(null)
+        }
+    }, [id, userContext])
+
     return (
-        <div className="friend-list-container">
-            <h3 className="friend-list-title">Friends List</h3>
-            <AddFriendModal/>
-            {friendList && console.log(friendList)}
+        <article className="friend-list-container user-profile-tile">
+            <h3 className="friend-group-title">Friends List:</h3>
+            {/*only renders the button if on your own profile*/}
+            {!id && <AddButton variant="add-friend"/>}
             {friendList && friendList.length === 0 && <p>Friend list is empty</p>}
             {friendList && friendList.map((friend) => {
                     return (
-                        // clicking on the friend preview will navigate to the friend's profile
                         <div
-                            className="friend-preview" key={friend.uid}
+                            // clicking on the friend preview will navigate to the friend's profile
+                            className="friend-preview friend-group-body-text"
+                            key={friend.username}
                             onClick={() => {
                                 navigate(`/profile/${friend.username}`)
                             }}>
-                            <p>Nick: <span>{friend.nickname}</span></p>
-                            <p>Time zone: <span>{friend.timezone}</span></p>
+                            <p><span>{friend.nickname}</span></p>
                         </div>
                     )
                 }
             )}
-        </div>
+        </article>
     );
 }
 

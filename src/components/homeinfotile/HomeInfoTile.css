@@ -1,0 +1,170 @@
+.home-info-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 54px 24px;
+    min-height: 508px;
+    min-width: 430px;
+    width: 80%;
+    height: 100%;
+    border-radius: 20px;
+    background: #848484;
+    box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.clock-face {
+    position: relative;
+    width: 80%;
+    height: 40%;
+    padding: 5%;
+    border-radius: 20px;
+    background: #F3F3F3;
+
+}
+
+.settings-icon-wrapper {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    width: 9%;
+}
+.settings-icon {
+    color: #302F2F;
+    width: 100%;
+}
+
+.main-clock-home, .main-clock-home .loading-message {
+    color: #302F2F;
+    text-align: center;
+    font-size: clamp(22px, 3vw, 100px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.main-clock-home .error-message {
+    font-size: clamp(10px, 1vw, 16px);
+}
+
+.main-clock-home .seconds-display {
+    color: #F2C300;
+}
+
+.info-field-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60%;
+    padding: 10%;
+    gap: 25%;
+}
+
+.info-field {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 0;
+    background: white;
+    border-radius: 50px;
+    width: 100%;
+    height: 50px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /*typography*/
+    color: #302F2F;
+    white-space: nowrap;
+    font-size: clamp(12px, 1.5vw, 20px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    scrollbar-width: thin;  /* Firefox */
+    scrollbar-color: #302F2F #F3F3F3;  /* Firefox */
+}
+
+.info-field::-webkit-scrollbar {
+    /* Safari and Chrome */
+    width: 5px;
+    height: 4px;
+}
+
+.info-field::-webkit-scrollbar-track {
+    background: transparent;
+    box-shadow: inset 0 0 50px #F2C300;
+    border-radius: 4px;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+
+.info-field::-webkit-scrollbar-thumb {
+    background: transparent;
+    box-shadow: inset 0 0 50px #302F2F;
+    border-radius: 4px;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+
+.returned-info {
+    font-style: italic;
+    font-weight: 500;
+}
+
+/*media query for mobile devices*/
+@media screen and (max-width: 1440px) {
+    .clock-face {
+        width: 90%;
+        height: 35%;
+    }
+
+    .info-field-container {
+        flex-grow: 0;
+        margin:auto;
+    }
+
+    .main-clock-home, .main-clock-home .loading-message {
+        font-size: clamp(22px, 6vw, 100px);
+    }
+
+}
+
+@media screen and (min-width: 1026px) {
+    .clock-face {
+        height: 30%;
+    }
+
+    .info-field-container {
+        font-size: clamp(12px, 2.5vw, 22px);
+    }
+}
+@media screen and (max-width: 768px) {
+
+    .home-info-tile {
+        height: 100%;
+        min-width: 250px;
+        padding: 54px 24px;
+    }
+
+    .main-clock-home, .main-clock-home .loading-message {
+        font-size: clamp(22px, 8vw, 100px);
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .home-info-tile {
+        width: 100%;
+        height: 100%;
+        padding: 54px 24px;
+    }
+
+    .main-clock-home, .main-clock-home .loading-message {
+        font-size: clamp(22px, 8vw, 100px);
+    }
+
+    .info-field{
+        font-size: clamp(10px, 2vw, 20px);
+    }
+}

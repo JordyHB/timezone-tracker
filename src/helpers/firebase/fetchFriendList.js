@@ -1,4 +1,4 @@
-import { db, auth } from '../../firebaseConfig'
+import { db } from '../../firebaseConfig'
 import { collection, getDocs } from 'firebase/firestore'
 
 async function fetchFriendList(requestedUser) {

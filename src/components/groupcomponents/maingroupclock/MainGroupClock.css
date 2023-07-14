@@ -1,0 +1,38 @@
+.main-group-clock-tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 1.5rem;;
+    width: 100%;
+    height: 100%;
+    background: #848484;
+    border-radius: 20px;
+    grid-area: b;
+    gap: 0.5rem;
+}
+
+.main-group-clock-title {
+    color: #302F2F;
+    font-size: clamp(12px, 4.5vw, 38px);
+    font-weight: 400;
+    letter-spacing: 2px;
+    align-self: flex-start;
+}
+
+.main-group-clock-face {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    height: 50%;
+    width: 100%;
+    padding: 1rem 1rem;
+
+}
+
+.main-group-clock-face .main-group-clock {
+    font-size: clamp(12px, 8vw, 54px);
+}

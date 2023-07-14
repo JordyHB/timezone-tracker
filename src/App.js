@@ -8,10 +8,12 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import UserProfile from "./pages/userProfile/UserProfile";
 import AccountDetails from "./pages/accountdetails/AccountDetails";
-import PublicUserProfile from "./pages/publicuserprofile/PublicUserProfile";
+// images
+import background from './assets/backgrounds/backgroundbubbles.png'
 
 // context
 import {UserInfoContext} from "./context/UserInfoContextProvider";
+import GroupOverview from "./pages/groupoverview/GroupOverview";
 
 
 function App() {
@@ -22,10 +24,14 @@ function App() {
 
   return (
 
-    <div className="App">
+    <div className="App outer-container" style={{
+        backgroundImage: `url(${background}), linear-gradient(180deg, #535353 0%, #7B7B7B 100%, rgba(83, 83, 83, 0.00) 100%)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',}
+    }>
         <Routes>
             <Route path='/' element={<Home/>}/>
-
             <Route path='/login' element={
                 // if the user is authenticated, redirects the user to the profile page
                 isAuth ? <Navigate to="/profile/myprofile"/> : <Login/>
@@ -48,7 +54,11 @@ function App() {
             }/>
             <Route path='/profile/:id' element={
                 // links to other user profiles
-                <PublicUserProfile/>
+                <UserProfile/>
+            }/>
+            <Route path='/groups/:id' element={
+                // links to group pages
+                <GroupOverview/>
             }/>
             <Route path='/account-details' element={
                 // if the user is authenticated, blocks the user from accessing this page if the account setup is complete

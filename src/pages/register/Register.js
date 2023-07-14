@@ -8,12 +8,16 @@ import SignUp from "../../components/Auth/SignUp";
 function Register() {
 
     return (
-        <div className="outer-container">
-            <NavBar/>
+        <>
+            <header>
+                <NavBar page="signup"/>
+            </header>
             <main>
-                <SignUp/>
+                <section className="auth-container">
+                    <SignUp/>
+                </section>
             </main>
-        </div>
+        </>
     );
 }
 
