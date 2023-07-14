@@ -24,9 +24,9 @@
 
 .add-modal-title {
     color: #f2c300;
-    font-size: clamp(12px, 1vw, 18px);
+    font-size: clamp(16px, 1vw, 20px);
     font-weight: 400;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .close-modal-button {

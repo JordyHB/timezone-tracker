@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 import "./GroupList.css"
-import AddButton from "../../addmodalcomponents/addbutton/AddButton";
+import AddModalOpenBut from "../../addmodalcomponents/addmodalopenbut/AddModalOpenBut";
 import {useNavigate} from "react-router-dom";
 import fetchGroupList from "../../../helpers/firebase/fetchGroupList";
 
@@ -36,7 +36,7 @@ function GroupList({id}) {
         <article className="group-list-tile user-profile-tile">
             <h3 className="friend-group-title">Group List:</h3>
             {/*only renders the button if on your own profile*/}
-            {!id && <AddButton variant="add-group"/>}
+            {!id && <AddModalOpenBut variant="create-group"/>}
             {groupList && groupList.length === 0 && <p>Group list is empty</p>}
             {groupList && groupList.map((group) => {
                     return (
@@ -48,7 +48,7 @@ function GroupList({id}) {
                             }}
                         >
                             <p className="group-name"><span>{group.groupname}</span></p>
-                            <p>Member count: <span>{group.members[0]}</span></p>
+                            <p>Member count: <span>{group.members.length}</span></p>
                         </div>
                     )
                 }

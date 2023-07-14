@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 import "./FriendList.css"
 import {useNavigate} from "react-router-dom";
-import AddButton from "../../addmodalcomponents/addbutton/AddButton";
+import AddModalOpenBut from "../../addmodalcomponents/addmodalopenbut/AddModalOpenBut";
 import fetchFriendList from "../../../helpers/firebase/fetchFriendList";
 
 function FriendList({id}) {
@@ -35,7 +35,7 @@ function FriendList({id}) {
         <article className="friend-list-container user-profile-tile">
             <h3 className="friend-group-title">Friends List:</h3>
             {/*only renders the button if on your own profile*/}
-            {!id && <AddButton variant="add-friend"/>}
+            {!id && <AddModalOpenBut variant="add-friend"/>}
             {friendList && friendList.length === 0 && <p>Friend list is empty</p>}
             {friendList && friendList.map((friend) => {
                     return (

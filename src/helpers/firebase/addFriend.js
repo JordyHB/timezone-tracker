@@ -10,6 +10,7 @@ import {db, auth} from "../../firebaseConfig";
 
 
 // function that returns info for the user queried entry based on the username
+// also takes in the user context to add to the friend list of the queried user
 async function queryByUsernames(user, requestedUsername) {
 
     // reference to the users collection

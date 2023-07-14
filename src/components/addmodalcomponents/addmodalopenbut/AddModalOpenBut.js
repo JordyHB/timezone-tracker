@@ -1,14 +1,18 @@
 import React, {useRef} from 'react';
-import './AddButton.css'
+import './AddModalOpenBut.css'
 import {ReactComponent as PlusIcon} from "../../../assets/icons/plusicon.svg";
-import AddFriendSearchField
-    from "../addfriendsearchfield/AddFriendSearchField";
+import AddModalSearchField
+    from "../addmodalsearchfield/AddModalSearchField";
 import AddModal from "../addmodal/AddModal";
+import createGroup from "../../../helpers/firebase/createGroup";
 
 
-function AddButton({variant, groupID}) {
+function AddModalOpenBut({variant, groupID}) {
 
+    // initialising the modal refs
     const addFriendModalRef = useRef(null)
+    const createGroupModalRef = useRef(null)
+    const addGroupMemberModalRef = useRef(null)
 
     // handles opening the different modals
     const openModal = (variant) => {
@@ -16,12 +20,11 @@ function AddButton({variant, groupID}) {
         if (variant === 'add-friend') {
             addFriendModalRef.current.showModal()
         }
-        if (variant === 'add-group') {
-            console.log('add group')
+        if (variant === 'create-group') {
+            createGroupModalRef.current.showModal()
         }
         if (variant === 'add-group-member') {
-            console.log("add group member")
-            console.log(groupID)
+            addGroupMemberModalRef.current.showModal()
         }
 
     }
@@ -31,11 +34,11 @@ function AddButton({variant, groupID}) {
         if (variant === 'add-friend') {
             addFriendModalRef.current.close()
         }
-        if (variant === 'add-group') {
-            console.log('add group')
+        if (variant === 'create-group') {
+            createGroupModalRef.current.close()
         }
         if (variant === 'add-group-member') {
-            console.log("add group")
+            addGroupMemberModalRef.current.close()
         }
     }
 
@@ -55,7 +58,18 @@ function AddButton({variant, groupID}) {
                 variant="add-friend"
                 closeModal={() => closeModal(variant)}
             >
-                <AddFriendSearchField/>
+                {/*adds an input bar that handles adding friends*/}
+                <AddModalSearchField variant="add-friend" placeholderText="your friends Username"/>
+            </AddModal>
+            {/*create group modal opens here*/}
+            <AddModal
+                modalRef={createGroupModalRef}
+                title="Create Group:"
+                variant="create-group"
+                closeModal={() => closeModal(variant)}
+            >
+                {/*adds an input bar that handles setting group names*/}
+                <AddModalSearchField variant="create-group" placeholderText="Set a group name"/>
             </AddModal>
 
         </>
@@ -64,4 +78,4 @@ function AddButton({variant, groupID}) {
     );
 }
 
-export default AddButton;
+export default AddModalOpenBut;

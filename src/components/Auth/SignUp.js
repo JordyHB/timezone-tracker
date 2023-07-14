@@ -1,15 +1,15 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {auth} from '../../firebaseConfig'
 import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
 import {Link, useNavigate} from "react-router-dom";
 import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
 import createUserEntry from "../../helpers/firebase/createUserEntry";
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
-import checkUsernameAvailability from "../../helpers/firebase/checkUsernameAvailability";
+import checkNameAvailability from "../../helpers/firebase/checkNameAvailability";
 
 function SignUp() {
 
-    const [userName, setUserName] = useState('')
+    const [requestedUserName, setRequestedUserName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState(null)
@@ -25,8 +25,8 @@ function SignUp() {
 
         try {
             e.preventDefault()
-            // check if username is available
-            if (await checkUsernameAvailability(userName) === false) {
+            // check if username is available it takes the username and indicates it is a username check
+            if (await checkNameAvailability(requestedUserName, 'username') === false) {
                 setError('Username is already taken')
             } else {
 
@@ -35,7 +35,7 @@ function SignUp() {
 
                 // if username is available, set the username to the userCredential
                 await updateProfile(auth.currentUser, {
-                    displayName: userName
+                    displayName: requestedUserName
                 })
                 // set the displayNameSet flag to true in the context
                 setAuthState(prevState => ({prevState, displayNameSet: true}))
@@ -71,8 +71,8 @@ function SignUp() {
                         type="text"
                         name="username"
                         id="username"
-                        value={userName}
-                        onChange={(e) => setUserName(e.target.value)}
+                        value={requestedUserName}
+                        onChange={(e) => setRequestedUserName(e.target.value)}
                     />
                 </div>
                 <div className="input-container">
