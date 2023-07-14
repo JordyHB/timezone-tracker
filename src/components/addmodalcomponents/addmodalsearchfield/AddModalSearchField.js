@@ -44,6 +44,14 @@ function AddModalSearchField({ variant, placeholderText }) {
         //handles the code if a new group is being requested
         if (variant === 'create-group') {
             const groupResult = await createGroup(user, userInput)
+            if (groupResult === 'group created') {
+                setResult('Group created')
+                setError(null)
+
+            } else if (groupResult === 'group already exists') {
+                setError('Group already exists')
+                setResult(null)
+            }
 
         }
     }

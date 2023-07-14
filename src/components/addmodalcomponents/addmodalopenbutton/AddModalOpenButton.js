@@ -5,6 +5,7 @@ import AddModalSearchField from "../addmodalsearchfield/AddModalSearchField";
 import AddModal from "../addmodal/AddModal";
 import addMemberToGroup from "../../../helpers/firebase/addMemberToGroup";
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
+import AddModalFriendSelect from "../addmodalfriendselect/AddModalFriendSelect";
 
 
 function AddModalOpenButton({variant, groupID}) {
@@ -82,7 +83,7 @@ function AddModalOpenButton({variant, groupID}) {
                 closeModal={() => closeModal(variant)}
             >
                 {/*adds an input bar that handles adding group members*/}
-                <button onClick={() => addMemberToGroup('Dutch Speakers', friendList[5])}>Create Group</button>
+                <AddModalFriendSelect/>
             </AddModal>
 
         </>

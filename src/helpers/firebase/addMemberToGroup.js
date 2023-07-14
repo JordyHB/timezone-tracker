@@ -2,6 +2,8 @@ import {collection, doc, getDocs, writeBatch} from "firebase/firestore";
 import {db} from "../../firebaseConfig";
 
 async function addMemberToGroup(groupName, user) {
+
+    console.log(groupName, user)
     // reference to the groups collection
     const groupCollectionRef = collection(db, "groups")
     // reference to the current group list to check if the user is already in the list
@@ -50,6 +52,7 @@ async function addMemberToGroup(groupName, user) {
         // sends the batch request to the database to change all documents at once
         await Promise.all(membersToUpdate)
         await batch.commit()
+        return 'user added'
 
 
     } catch (e) {

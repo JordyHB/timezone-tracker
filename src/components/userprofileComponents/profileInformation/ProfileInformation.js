@@ -5,7 +5,7 @@ import './ProfileInformation.css'
 import ApiUserInfo from "../../ApiUserInfo";
 import fetchUserEntry from "../../../helpers/firebase/fetchUserEntry";
 
-function ProfileInformation({id, showSeconds}) {
+function ProfileInformation({groupMember, id, showSeconds}) {
 
     const {user} = useContext(UserInfoContext)
 
@@ -25,9 +25,13 @@ function ProfileInformation({id, showSeconds}) {
         try {
             setLoading(true)
             setError(null)
-            // fetches the requested user if not the auth user
-            console.log(id)
-            if (id && id !== user?.username && id !== 'myprofile') {
+
+            // if the user is a group member, set the requested user to the group member
+            if (groupMember) {
+                setRequestedUser(groupMember)
+                setLoading(false)
+                // fetches the requested user if not the auth user
+            } else if (id && id !== user?.username && id !== 'myprofile') {
                 void fetchRequestedUser()
                 setLoading(false)
             } else {
