@@ -5,7 +5,7 @@ import MainGroupClock from "../../components/groupcomponents/maingroupclock/Main
 import fetchGroupInfo from "../../helpers/firebase/fetchGroupInfo";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
 import "./GroupOverview.css"
-import AddModalOpenBut from "../../components/addmodalcomponents/addmodalopenbut/AddModalOpenBut";
+import AddModalOpenButton from "../../components/addmodalcomponents/addmodalopenbutton/AddModalOpenButton";
 
 function GroupOverview() {
 
@@ -29,7 +29,7 @@ function GroupOverview() {
             <section className="group-overview-container">
                 <article className="group-name-container">
                     <h1 className="group-name-title">{id}:</h1>
-                    <AddModalOpenBut variant="add-group-member" groupID={id}/>
+                    <AddModalOpenButton variant="add-group-member" groupID={id}/>
                 </article>
                 <MainGroupClock/>
                 {/*loads the group members and their info onto the page*/}

@@ -1,13 +1,15 @@
-import React, {useRef} from 'react';
-import './AddModalOpenBut.css'
+import React, {useContext, useRef} from "react";
+import "./AddModalOpenButton.css"
 import {ReactComponent as PlusIcon} from "../../../assets/icons/plusicon.svg";
-import AddModalSearchField
-    from "../addmodalsearchfield/AddModalSearchField";
+import AddModalSearchField from "../addmodalsearchfield/AddModalSearchField";
 import AddModal from "../addmodal/AddModal";
-import createGroup from "../../../helpers/firebase/createGroup";
+import addMemberToGroup from "../../../helpers/firebase/addMemberToGroup";
+import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 
 
-function AddModalOpenBut({variant, groupID}) {
+function AddModalOpenButton({variant, groupID}) {
+
+    const { friendList } = useContext(UserInfoContext)
 
     // initialising the modal refs
     const addFriendModalRef = useRef(null)
@@ -24,7 +26,8 @@ function AddModalOpenBut({variant, groupID}) {
             createGroupModalRef.current.showModal()
         }
         if (variant === 'add-group-member') {
-            addGroupMemberModalRef.current.showModal()
+            console.log('ran')
+            addGroupMemberModalRef.current.showModal();
         }
 
     }
@@ -71,6 +74,16 @@ function AddModalOpenBut({variant, groupID}) {
                 {/*adds an input bar that handles setting group names*/}
                 <AddModalSearchField variant="create-group" placeholderText="Set a group name"/>
             </AddModal>
+            {/*add group member modal opens here*/}
+            <AddModal
+                modalRef={addGroupMemberModalRef}
+                title="Add Group Member:"
+                variant="add-group-member"
+                closeModal={() => closeModal(variant)}
+            >
+                {/*adds an input bar that handles adding group members*/}
+                <button onClick={() => addMemberToGroup('Dutch Speakers', friendList[5])}>Create Group</button>
+            </AddModal>
 
         </>
 
@@ -78,4 +91,4 @@ function AddModalOpenBut({variant, groupID}) {
     );
 }
 
-export default AddModalOpenBut;
+export default AddModalOpenButton;

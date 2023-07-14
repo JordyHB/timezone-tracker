@@ -6,7 +6,7 @@ async function checkNameAvailability(name, nameType) {
 
     // checks if the name is a group name or a username
     if (nameType === 'group') {
-        const collectionRef = collection(db, 'groups')
+        const collectionRef = collection(db, "groups")
         try {
             // gets all group names from the database and checks if the name is already taken
             const querySnapshot = await getDocs(collectionRef)
