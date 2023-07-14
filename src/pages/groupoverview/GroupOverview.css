@@ -75,20 +75,22 @@
 .group-member-container .profile-info-tile {
     transition: transform 0.3s, box-shadow 0.3s;
     transform-origin: top;
+    padding: 1rem 1.5rem;
 }
 
 /*changes the font size for the group page tiles*/
 .group-member-container .info-p {
-    font-size: clamp(12px, 0.9vw, 20px);
+    font-size: clamp(8px, 0.8vw, 16px);
     letter-spacing: 2px;
+    color: red;
 }
 
 .group-member-container .profile-clock-wrapper {
-    height: 20%;
+    height: 10%;
 }
 
 .group-member-container .profile-clock-wrapper .profile-clock {
-    font-size: clamp(12px, 2.5vw, 28px);
+    font-size: clamp(12px, 2.5vw, 24px);
 }
 
 .group-member-container:hover .profile-info-tile {

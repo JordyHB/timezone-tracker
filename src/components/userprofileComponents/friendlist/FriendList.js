@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 import "./FriendList.css"
 import {useNavigate} from "react-router-dom";
-import AddButton from "../../addbutton/AddButton";
+import AddButton from "../../addmodalcomponents/addbutton/AddButton";
 import fetchFriendList from "../../../helpers/firebase/fetchFriendList";
 
 function FriendList({id}) {

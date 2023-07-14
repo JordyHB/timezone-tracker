@@ -5,7 +5,7 @@ import MainGroupClock from "../../components/groupcomponents/maingroupclock/Main
 import fetchGroupInfo from "../../helpers/firebase/fetchGroupInfo";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
 import "./GroupOverview.css"
-import AddButton from "../../components/addbutton/AddButton";
+import AddButton from "../../components/addmodalcomponents/addbutton/AddButton";
 
 function GroupOverview() {
 

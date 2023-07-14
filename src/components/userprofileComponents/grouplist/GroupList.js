@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 import "./GroupList.css"
-import AddButton from "../../addbutton/AddButton";
+import AddButton from "../../addmodalcomponents/addbutton/AddButton";
 import {useNavigate} from "react-router-dom";
 import fetchGroupList from "../../../helpers/firebase/fetchGroupList";
 

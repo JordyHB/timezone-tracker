@@ -1,8 +1,9 @@
 import React, {useRef} from 'react';
 import './AddButton.css'
-import {ReactComponent as PlusIcon} from "../../assets/icons/plusicon.svg";
+import {ReactComponent as PlusIcon} from "../../../assets/icons/plusicon.svg";
 import AddFriendSearchField
-    from "../userprofileComponents/friendlist/friendlistcomponents/addfriendsearchfield/AddFriendSearchField";
+    from "../addfriendsearchfield/AddFriendSearchField";
+import AddModal from "../addmodal/AddModal";
 
 
 function AddButton({variant, groupID}) {
@@ -48,17 +49,15 @@ function AddButton({variant, groupID}) {
                 <PlusIcon className="add-button-icon" fill="#302F2F"/>
             </button>
             {/*add friend modal opens here*/}
-            <dialog ref={addFriendModalRef} className="add-friend-modal">
-                <h3 className="add-friend-modal-title">Add Friend:</h3>
+            <AddModal
+                modalRef={addFriendModalRef}
+                title="Add Friend:"
+                variant="add-friend"
+                closeModal={() => closeModal(variant)}
+            >
                 <AddFriendSearchField/>
-                <button
-                    type="button"
-                    className="close-modal-button"
-                    onClick={() => closeModal(variant)}
-                >
-                    Close
-                </button>
-            </dialog>
+            </AddModal>
+
         </>
 
 
