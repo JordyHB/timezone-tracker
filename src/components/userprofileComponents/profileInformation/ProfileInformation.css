@@ -21,8 +21,10 @@
 }
 
 .info-p {
-    font-size: clamp(10px, 2.5vw, 24px);
-
+    font-size: clamp(10px, 2.5vw, 22px);
+    max-width: 100%;
+    white-space: normal;
+    padding: 0.5rem 0;
 }
 
 .api-user-info {

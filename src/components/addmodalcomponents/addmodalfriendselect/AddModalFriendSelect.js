@@ -61,14 +61,15 @@ function AddModalFriendSelect() {
                     />
                     <datalist id="friends">
                         {filteredFriends.map((friend) => {
-                                return <option value={friend.username} key={friend}/>
+                                return <option value={friend.username} key={friend.uid}/>
                             }
                         )}
                     </datalist>
                     <button type="submit" className="add-modal-submit-button">Add</button>
                 </div>
             </form>
-
+            {error && <p className="error-message">{error}</p>}
+            {result && <p className="success-message">{result}</p>}
         </>
     );
 }

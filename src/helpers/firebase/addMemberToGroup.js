@@ -18,6 +18,9 @@ async function addMemberToGroup(groupName, user) {
         if (currentMemberListUsernames.includes(user.username)) {
             return 'user already in group'
         }
+        if (currentMemberListUsernames.length >= 12) {
+            return 'group is full'
+        }
 
         const batch = writeBatch(db)
 

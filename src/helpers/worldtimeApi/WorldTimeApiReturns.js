@@ -17,10 +17,12 @@ export function fetchDSTChangeDate(timeData) {
 
 }
 
+// fetches the current date in a day/month format
 export function fetchCurrentDate(timeData) {
-    // fetches the current date
-    // returns a string with the date in the format of "Month Day"
-    const date = new Date(timeData.datetime)
+
+    // removes the milliseconds from the datetime string and converts it to a date object
+    const fixedDateTime = timeData.datetime.split('.')[0]
+    const date = new Date(fixedDateTime)
     return date.toLocaleString('En-Gb', {weekday: 'long', month: 'long', day: 'numeric'})
 }
 
