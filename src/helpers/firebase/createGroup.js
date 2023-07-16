@@ -1,9 +1,19 @@
-import {writeBatch, doc} from "firebase/firestore";
+import {writeBatch, doc, getDoc} from "firebase/firestore";
 import {db} from "../../firebaseConfig";
 
 async function createGroup(user, groupName) {
 
     try {
+
+        // checks if the group already exists
+        const groupNameCheckRef = doc(db, 'groups', groupName)
+        const docSnap = await getDoc(groupNameCheckRef)
+
+        // if the group already exists, return an error
+        if (docSnap.exists()) {
+            console.log('group already exists')
+            return 'group already exists'
+        }
 
         // creates a batch request to change multiple documents at once
         const batch = writeBatch(db)
