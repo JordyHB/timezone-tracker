@@ -14,6 +14,7 @@ import background from './assets/backgrounds/backgroundbubbles.png'
 // context
 import {UserInfoContext} from "./context/UserInfoContextProvider";
 import GroupOverview from "./pages/groupoverview/GroupOverview";
+import TimezoneLookup from "./pages/timezonelookup/TimezoneLookup";
 
 
 function App() {
@@ -40,7 +41,10 @@ function App() {
                 // if the user is authenticated, redirects the user to the profile page
                 isAuth ? <Navigate to="/profile/myprofile"/> : <Register/>
             }/>
-
+            <Route path='timezone/:id' element={
+                // lets user look up all the supported timezones without logging in
+                <TimezoneLookup/>
+            }/>
             <Route path='/profile/myprofile' element={
                 // if the user is authenticated, checks if the user has completed the account setup
                 isAuth ?

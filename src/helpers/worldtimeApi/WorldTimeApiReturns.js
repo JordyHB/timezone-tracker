@@ -42,8 +42,8 @@ export function fetchTimezoneOffset(requestedUserTimezone, authUserTimezone) {
     const currentDate = new Date();
 
     // fetches the timezone offset for both the auth user and the requested user
-    const authUserOffset = currentDate.toUTCString('en-gb', { timeZoneName: 'short', timeZone: authUserTimezone}).split('GMT')[1]
-    const requestedUserOffset = currentDate.toUTCString('en-gb', { timeZoneName: 'short', timeZone: requestedUserTimezone}).split('GMT')[1];
+    const authUserOffset = currentDate.toLocaleTimeString('en', { timeZoneName: 'short', timeZone: authUserTimezone}).split('GMT')[1]
+    const requestedUserOffset = currentDate.toLocaleTimeString('en', { timeZoneName: 'short', timeZone: requestedUserTimezone}).split('GMT')[1];
 
     // creates an array of the offsets for easy mapping
     const offsetsToCompare = [authUserOffset, requestedUserOffset]
