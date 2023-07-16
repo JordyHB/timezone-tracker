@@ -23,7 +23,7 @@ function AddModalFriendSelect() {
 
     useEffect(() => {
         filterFriends(query);
-    }, [query])
+    }, [query, friendList])
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -57,15 +57,21 @@ function AddModalFriendSelect() {
                         name="friend"
                         id="friend"
                         placeholder="friends Username"
+                        autoComplete="off"
+                        // sets the value to no friends found if there are no friends in the list
+                        value={friendList.length > 0 ? query : 'No friends found'}
                         onChange={(e) => setQuery(e.target.value)}
                     />
-                    <datalist id="friends">
-                        {filteredFriends.map((friend) => {
-                                return <option value={friend.username} key={friend.uid}/>
-                            }
-                        )}
-                    </datalist>
-                    <button type="submit" className="add-modal-submit-button">Add</button>
+                    {/*otherwise, it sets the datalist to the filtered friends*/}
+                    {friendList.length !== 0 &&
+                        <datalist id="friends" >
+                            {filteredFriends.map((friend) => {
+                                    return <option value={friend.username} key={friend.uid}/>
+                                }
+                            )}
+                        </datalist>
+                    }
+                    <button type="submit" className="add-modal-submit-button" disabled={filteredFriends.length === 0}>Add</button>
                 </div>
             </form>
             {error && <p className="error-message">{error}</p>}

@@ -18,10 +18,18 @@ function SignUp() {
     const navigate = useNavigate()
     const {isAuth, setAuthState} = useContext(UserInfoContext)
 
+    // function to handle the sign up on submit
     const signUp = async (e) => {
         // set error to null on submit
         setError(null)
         setWaitingForRedirect(false)
+
+        // check if username is at least 3 characters long sets error if not
+        if (requestedUserName.length < 3) {
+            e.preventDefault()
+            setError('Username must be at least 3 characters long')
+            return
+        }
 
         try {
             e.preventDefault()
@@ -60,6 +68,7 @@ function SignUp() {
         }
     }, [waitingForRedirect, isAuth, navigate])
 
+
     return (
         <article className="auth-tile">
             <h1 className="auth-tile-title">Register</h1>
@@ -72,7 +81,12 @@ function SignUp() {
                         name="username"
                         id="username"
                         value={requestedUserName}
-                        onChange={(e) => setRequestedUserName(e.target.value)}
+                        onChange={(e) => {
+                            if (e.target.value.length < 20) {
+                                setRequestedUserName(e.target.value)
+                                setError(null)
+                            } else {setError('Username must be less than 20 characters long')}
+                        }}
                     />
                 </div>
                 <div className="input-container">

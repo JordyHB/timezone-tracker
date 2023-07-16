@@ -8,13 +8,23 @@ import {useNavigate} from "react-router-dom";
 
 function ProfileInformation({groupMember, id, showSeconds}) {
 
-    const {user} = useContext(UserInfoContext)
+    const {user, isAuth} = useContext(UserInfoContext)
     const navigate = useNavigate()
 
     const [requestedUser, setRequestedUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
+
+    // handles the profile tile being clicked
+    function handleProfileClick() {
+        // if the profile town is clicked while on the group page, navigate to the member's profile if not the auth user
+        if (groupMember && groupMember.username !== user.username) {
+            navigate(`/profile/${groupMember.username}`)
+        }
+    }
+
+    // fetches the requested user on mount and when the id changes
     useEffect(() => {
 
         // fetches the user entry from the firestore database based on the username from the url
@@ -57,12 +67,6 @@ function ProfileInformation({groupMember, id, showSeconds}) {
 
     }, [id])
 
-    function handleProfileClick() {
-        // if the profile town is clicked while on the group page, navigate to the member's profile
-        if (groupMember) {
-            navigate(`/profile/${groupMember.username}`)
-        }
-    }
 
     return (
         <>
@@ -83,6 +87,8 @@ function ProfileInformation({groupMember, id, showSeconds}) {
                     {requestedUser &&
                         <ApiUserInfo
                             timezone={requestedUser?.timezone}
+                            // checks whether the user is the auth user or not and whether you're trying to view your own profile
+                            notOwnInfo={isAuth && requestedUser?.username !== user?.username}
                         />
                     }
                 </article>

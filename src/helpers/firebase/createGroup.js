@@ -3,6 +3,12 @@ import {db} from "../../firebaseConfig";
 
 async function createGroup(user, groupName) {
 
+    // sets max group name length
+    if (groupName.length > 25) {
+        console.log('group name is too long')
+        return 'group name is too long'
+    }
+
     try {
 
         // checks if the group already exists

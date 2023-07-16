@@ -43,6 +43,12 @@
     background: #DBA800;
 }
 
+.add-modal-submit-button:disabled {
+    background: grey;
+    color: #302F2F;
+    cursor: not-allowed;
+}
+
 .modal-success-message {
     color: #f2c300;
 }

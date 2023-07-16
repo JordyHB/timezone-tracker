@@ -41,7 +41,7 @@ function AddModalSearchField({ variant, placeholderText, labelText}) {
             setUserInput('')
         }
 
-        //handles the code if a new group is being requested
+        //handles the code and errors if a new group is being requested
         if (variant === 'create-group') {
             const groupResult = await createGroup(user, userInput)
             if (groupResult === 'group created') {
@@ -49,9 +49,11 @@ function AddModalSearchField({ variant, placeholderText, labelText}) {
                 setError(null)
                 //resets to an empty field
                 setUserInput('')
-
             } else if (groupResult === 'group already exists') {
                 setError('Group already exists')
+                setResult(null)
+            } else if (groupResult === 'group name is too long') {
+                setError('Group name is too long(max 25 characters)')
                 setResult(null)
             }
 
