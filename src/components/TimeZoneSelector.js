@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
-function TimeZoneSelector({labelClassName, inputClassName}) {
+function TimeZoneSelector({labelClassName, inputClassName , query, setQuery}) {
 
-    const [query, setQuery] = useState('');
     const [filteredTimeZones, setFilteredTimeZones] = useState([]);
 
     useEffect(() => {
@@ -15,7 +14,6 @@ function TimeZoneSelector({labelClassName, inputClassName}) {
         }
 
         setFilteredTimeZones(searchTimeZones(query));
-        console.log(filteredTimeZones);
     }, [query])
 
     return (
@@ -26,6 +24,7 @@ function TimeZoneSelector({labelClassName, inputClassName}) {
                 list="timezones"
                 name="timezone"
                 id="timezone"
+                value={query}
                 placeholder="Europe/Amsterdam"
                 onChange={(e) => setQuery(e.target.value)}
             />

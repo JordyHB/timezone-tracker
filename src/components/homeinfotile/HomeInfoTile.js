@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import DigitalClock from "../DigitalClock/DigitalClock";
 import axios from "axios";
 import './HomeInfoTile.css'
-import {ReactComponent as SettingsIcon} from "../../assets/icons/settingsicon.svg";
 import {fetchCurrentDate} from "../../helpers/worldtimeApi/WorldTimeApiReturns";
+import ClockModalOpenButton
+    from "../clocksettingmodalcomponents/clockmodalopenbutton/ClockModalOpenButton";
 
 function HomeInfoTile() {
 
@@ -13,6 +14,7 @@ function HomeInfoTile() {
     // loading starts off true to ensure that the data is fetched before the clock is rendered
     const [loading, toggleLoading] = useState(true)
     const [error, toggleError] = useState(false)
+
 
     async function fetchTimeData() {
 
@@ -63,9 +65,6 @@ function HomeInfoTile() {
 
         <article className="home-info-tile">
             <div className="clock-face">
-                <div className="settings-icon-wrapper">
-                    <SettingsIcon className="settings-icon"/>
-                </div>
                 {/*handles giving the user feedback if there is an error or if the data is loading*/}
                 {error && <p className="error-message">There was an error fetching the data</p>}
                 {!error && <DigitalClock
@@ -73,6 +72,7 @@ function HomeInfoTile() {
                     timezone={timeData.timezone}
                     showSeconds={true}
                 />}
+                <ClockModalOpenButton/>
             </div>
             <div className="info-field-container">
                 <p className="info-field">

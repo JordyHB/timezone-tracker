@@ -25,3 +25,8 @@
     display: inline-block;
     color: #F2C300;
 }
+
+.am-pm-display {
+    display: inline-block;
+    padding-left: 4px;
+}
