@@ -4,10 +4,12 @@ import DigitalClock from "../../DigitalClock/DigitalClock";
 import './ProfileInformation.css'
 import ApiUserInfo from "../../ApiUserInfo";
 import fetchUserEntry from "../../../helpers/firebase/fetchUserEntry";
+import {useNavigate} from "react-router-dom";
 
 function ProfileInformation({groupMember, id, showSeconds}) {
 
     const {user} = useContext(UserInfoContext)
+    const navigate = useNavigate()
 
     const [requestedUser, setRequestedUser] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -26,7 +28,7 @@ function ProfileInformation({groupMember, id, showSeconds}) {
             setLoading(true)
             setError(null)
 
-            // if the user is a group member, set the requested user to the group member
+            // if the requested user is a group member, set the requested user to the group member
             if (groupMember) {
                 setRequestedUser(groupMember)
                 setLoading(false)
@@ -34,8 +36,11 @@ function ProfileInformation({groupMember, id, showSeconds}) {
             } else if (id && id !== user?.username && id !== 'myprofile') {
                 void fetchRequestedUser()
                 setLoading(false)
+                // if the requested user is the auth user but the url is not 'myprofile', navigate to 'myprofile'
+            } else if (id === user.username) {
+                navigate(`/profile/myprofile`)
             } else {
-                // if the user is the auth user, set the requested user to the auth user from context
+                // if the requested user is the auth user, set the requested user to the auth user from context
                 setRequestedUser(user)
                 setLoading(false)
             }
@@ -52,12 +57,19 @@ function ProfileInformation({groupMember, id, showSeconds}) {
 
     }, [id])
 
+    function handleProfileClick() {
+        // if the profile town is clicked while on the group page, navigate to the member's profile
+        if (groupMember) {
+            navigate(`/profile/${groupMember.username}`)
+        }
+    }
+
     return (
         <>
             {error && <p>{error}</p>}
             {loading && <p>loading...</p>}
             {!loading && !error &&
-                <article className="profile-info-tile user-profile-tile">
+                <article className="profile-info-tile user-profile-tile" onClick={handleProfileClick}>
                     <div className="profile-clock-wrapper">
                         <DigitalClock
                             showSeconds={showSeconds}
