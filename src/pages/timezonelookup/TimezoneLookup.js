@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import LookupResultTile from "../../components/timezonelookupcomponents/LookupResultTile";
 
-function TimezoneLookup(props) {
+function TimezoneLookup() {
 
     const { id } = useParams()
 
@@ -14,7 +14,7 @@ function TimezoneLookup(props) {
           </header>
             <main>
               <LookupResultTile
-                timezone="Europe/London"
+                timezone={id}
               />
             </main>
         </>

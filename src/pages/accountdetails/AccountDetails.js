@@ -9,6 +9,7 @@ function AccountDetails() {
 
     const [nickname, setNickname] = useState('')
     const [country, setCountry] = useState('')
+    const [query, setQuery] = useState('')
 
     function handleChange(e) {
         if (e.target.name === 'nickname')
@@ -25,7 +26,7 @@ function AccountDetails() {
             return
         }
 
-        if (!Intl.supportedValuesOf('timeZone').includes(document.getElementById('timezone').value)) {
+        if (!Intl.supportedValuesOf('timeZone').includes(query)) {
             alert('Please select a valid timezone')
             return
         }
@@ -33,7 +34,7 @@ function AccountDetails() {
         const userInfo = {
             nickname: nickname,
             country: country,
-            timezone: document.getElementById('timezone').value
+            timezone: query
         }
 
         // gets all the user info from the form and stores it in the database
@@ -79,6 +80,8 @@ function AccountDetails() {
                             <TimeZoneSelector
                                 inputClassName="extra-info-inputs"
                                 labelClassName="extra-info-labels"
+                                query={query}
+                                setQuery={setQuery}
                             />
                             </div>
                             <button type="submit" className="extra-info-button">Submit</button>
