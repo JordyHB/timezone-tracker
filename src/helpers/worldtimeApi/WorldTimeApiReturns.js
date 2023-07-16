@@ -42,15 +42,18 @@ export function fetchTimezoneOffset(requestedUserTimezone, authUserTimezone) {
     const currentDate = new Date();
 
     // fetches the timezone offset for both the auth user and the requested user
-    const authUserOffset = currentDate.toLocaleString('en', { timeZoneName: 'short', timeZone: authUserTimezone}).split('GMT')[1];
-    const requestedUserOffset = currentDate.toLocaleString('en', { timeZoneName: 'short', timeZone: requestedUserTimezone}).split('GMT')[1];
+    const authUserOffset = currentDate.toUTCString('en-gb', { timeZoneName: 'short', timeZone: authUserTimezone}).split('GMT')[1]
+    const requestedUserOffset = currentDate.toUTCString('en-gb', { timeZoneName: 'short', timeZone: requestedUserTimezone}).split('GMT')[1];
 
     // creates an array of the offsets for easy mapping
     const offsetsToCompare = [authUserOffset, requestedUserOffset]
 
-
     // maps over the array of offsets and converts them to numbers
     const numericOffsets = offsetsToCompare.map(offset => {
+        // if the timezone is gmt 0 then it will return 0 and not try to split the string
+        if (offset === undefined) {
+            return 0
+        }
         // splits the offset into hours and minutes before adding minutes as a decimal to the hours
         let offsetHours = Number(offset.split(':')[0]);
         let offsetMinutes = Number(offset.split(':')[1]);
