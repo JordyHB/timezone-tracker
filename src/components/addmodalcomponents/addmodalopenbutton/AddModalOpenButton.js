@@ -63,7 +63,7 @@ function AddModalOpenButton({variant, groupID}) {
                 closeModal={() => closeModal(variant)}
             >
                 {/*adds an input bar that handles adding friends*/}
-                <AddModalSearchField variant="add-friend" placeholderText="your friends Username"/>
+                <AddModalSearchField variant="add-friend" placeholderText="your friends Username" labelText="Friend's Username:"/>
             </AddModal>
             {/*create group modal opens here*/}
             <AddModal
@@ -73,7 +73,7 @@ function AddModalOpenButton({variant, groupID}) {
                 closeModal={() => closeModal(variant)}
             >
                 {/*adds an input bar that handles setting group names*/}
-                <AddModalSearchField variant="create-group" placeholderText="Set a group name"/>
+                <AddModalSearchField variant="create-group" placeholderText="Set a group name" labelText="Choose group name:"/>
             </AddModal>
             {/*add group member modal opens here*/}
             <AddModal

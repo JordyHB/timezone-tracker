@@ -27,8 +27,9 @@ Om de applicatie te kunnen draaien is het nodig om de volgende software te insta
     - maak een nieuw project aan en ga naar de project instellingen.
     - maak een webapplicatie aan en kopieer de code die je krijgt.
     - plak de code in het bestand `src/firebaseConfig.js` en verander de variabelen met de juiste gegevens.
-7. Ga terug naar een terminal en voer het volgende commando uit: `npm start`
-8. De applicatie is nu te vinden op [http://localhost:3000](http://localhost:3000)
+7. Herstart de IDE zodat de .env file nu met de juiste gegevens wordt ingeladen.
+8. Ga terug naar een terminal en voer het volgende commando uit: `npm start`
+9. De applicatie is nu te vinden op [http://localhost:3000](http://localhost:3000)
 
 ## Gegevens
 

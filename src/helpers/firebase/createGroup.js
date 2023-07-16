@@ -44,7 +44,7 @@ async function createGroup(user, groupName) {
 
         // sends the batch request to the database to change all documents at once
         await batch.commit()
-        return 'group created successfully'
+        return 'group created'
     } catch (e) {
         console.error(e)
         return 'something went wrong with the database'

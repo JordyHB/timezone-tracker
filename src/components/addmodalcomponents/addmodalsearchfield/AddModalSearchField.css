@@ -42,3 +42,7 @@
 .add-modal-submit-button:hover {
     background: #DBA800;
 }
+
+.modal-success-message {
+    color: #f2c300;
+}

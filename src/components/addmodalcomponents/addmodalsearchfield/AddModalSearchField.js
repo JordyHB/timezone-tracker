@@ -1,10 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import addFriend from "../../../helpers/firebase/addFriend";
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 import './AddModalSearchField.css'
 import createGroup from "../../../helpers/firebase/createGroup";
 
-function AddModalSearchField({ variant, placeholderText }) {
+function AddModalSearchField({ variant, placeholderText, labelText}) {
 
     const [error, setError] = useState(null)
     const [result, setResult] = useState(null)
@@ -45,8 +45,10 @@ function AddModalSearchField({ variant, placeholderText }) {
         if (variant === 'create-group') {
             const groupResult = await createGroup(user, userInput)
             if (groupResult === 'group created') {
-                setResult('Group created')
+                setResult('Group created successfully')
                 setError(null)
+                //resets to an empty field
+                setUserInput('')
 
             } else if (groupResult === 'group already exists') {
                 setError('Group already exists')
@@ -59,7 +61,7 @@ function AddModalSearchField({ variant, placeholderText }) {
     return (
         <>
             <form onSubmit={handleSubmit} className='add-modal-form'>
-                <label htmlFor="add-modal-field" className="add-modal-label">Friend Username: </label>
+                <label htmlFor="add-modal-field" className="add-modal-label">{labelText}</label>
                 <div className="button-input-container">
                     <input
                         type="text"
@@ -73,7 +75,7 @@ function AddModalSearchField({ variant, placeholderText }) {
                     <button type="submit" className="add-modal-submit-button">Add</button>
                 </div>
                 {error && <p className="error-message">{error}</p>}
-                {result && <p className="success-message">{result}</p>}
+                {result && <p className="modal-success-message">{result}</p>}
             </form>
         </>
     );
