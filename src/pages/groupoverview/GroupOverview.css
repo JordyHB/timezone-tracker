@@ -7,7 +7,7 @@
     justify-items: center;
     align-items: start;
     grid-template-columns: repeat(5, minmax(250px, 1fr));
-    grid-template-rows: 100px repeat(3, minmax(200px, 30%));
+    grid-template-rows: 100px repeat(3, minmax(200px, 27%));
     grid-template-areas:
     "a a a a a"
     "b b c d e"
@@ -55,7 +55,6 @@
     overflow: hidden;
     transition: transform 0.3s;
     transform-origin: top left;
-    background: white;
 }
 
 .group-member-container:nth-child(even) .profile-info-tile {
@@ -63,14 +62,6 @@
 }
 
 
-.group-member-container:nth-child(odd) {
-    background: #848484;
-}
-
-.group-member-container:hover {
-    transform: scaleY(1.5);
-    z-index: 1;
-}
 
 .group-member-container .profile-info-tile {
     transition: transform 0.3s, box-shadow 0.3s;
@@ -80,9 +71,9 @@
 
 /*changes the font size for the group page tiles*/
 .group-member-container .info-p {
-    font-size: clamp(8px, 0.8vw, 16px);
+    font-size: clamp(10px, 0.8vw, 14px);
     letter-spacing: 2px;
-    color: red;
+    padding: 0;
 }
 
 .group-member-container .profile-clock-wrapper {
@@ -93,9 +84,111 @@
     font-size: clamp(12px, 2.5vw, 24px);
 }
 
-.group-member-container:hover .profile-info-tile {
-    transform: scaleY(0.7);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    z-index: 1;
+/*media query for the hover effect on computer screens*/
+@media screen and (min-width: 1440px) {
+
+    .group-member-container:hover .profile-info-tile {
+        transform: scaleY(0.67);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .group-member-container:hover {
+        transform: scaleY(1.33);
+        z-index: 1;
+    }
+}
+/*media query for mobile devices*/
+
+@media screen and (max-width: 1440px) {
+
+    .group-overview-container {
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-template-rows: 100px repeat(4, minmax(400px, 1fr));
+        grid-template-areas:
+        "a a a"
+        "b b c"
+        "d e f"
+        "g h i"
+        "j k l";
+
+
+    }
+
+
+
 }
 
+@media screen and (max-width: 800px) {
+
+    .group-overview-container{
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-template-rows: 100px 200px repeat(5, minmax(400px, 1fr));
+        grid-template-areas:
+        "a a"
+        "b b"
+        "c d"
+        "e f"
+        "g h"
+        "i j"
+        "k l";
+    }
+
+    .group-name-container {
+        width: 100%;
+    }
+    /*handles flipping the colours of the tiles when there are only two columns*/
+    .group-member-container:nth-child(4n+1) .profile-info-tile,
+    .group-member-container:nth-child(4n+4) .profile-info-tile {
+        background: #848484;
+    }
+
+    .group-member-container:nth-child(4n+2) .profile-info-tile,
+    .group-member-container:nth-child(4n+3) .profile-info-tile {
+        background: #C5C3BF;
+    }
+}
+
+
+@media screen and (max-width: 540px) {
+
+    .group-overview-container{
+        grid-template-columns: repeat(1, minmax(250px, 1fr));
+        grid-template-rows: 120px 135px repeat(11, minmax(400px, 1fr));
+        grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d"
+        "e"
+        "f"
+        "g"
+        "h"
+        "i"
+        "j"
+        "k"
+        "l";
+    }
+
+    .group-name-container {
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .main-group-clock-tile {
+        height: 100%;
+        align-self: center;
+    }
+
+    /*flips it back to the original colours*/
+    .group-member-container:nth-child(even) .profile-info-tile {
+        background: #848484;
+    }
+
+    .group-member-container:nth-child(odd) .profile-info-tile {
+        background: #C5C3BF;
+    }
+
+}

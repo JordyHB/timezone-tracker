@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80%;
     width: 100%;
     padding: 28px 48px;
 }
@@ -60,7 +59,7 @@
 .extra-info-labels {
     color: #FFF;
     text-align: center;
-    font-size: clamp(10px, 1.25vw, 24px);
+    font-size: clamp(12px, 1.35vw, 24px);
     letter-spacing: 2px;
 
 }
@@ -73,7 +72,7 @@
     border: 1px solid transparent;
     height: 60px;
     flex-shrink: 0;
-    font-size: clamp(10px, 1.25vw, 24px);
+    font-size: clamp(12px, 1.35vw, 24px);
 }
 
 .extra-info-button {
@@ -92,7 +91,7 @@
 }
 
 .extra-info-button:hover {
-    background: #e0e0e0;
+    background: #dba800;
 }
 
 .extra-info-button .error-message {

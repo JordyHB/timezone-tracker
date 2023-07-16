@@ -1,0 +1,83 @@
+import React, {useContext, useEffect, useState} from 'react';
+import {UserInfoContext} from "../../../context/UserInfoContextProvider";
+import addMemberToGroup from "../../../helpers/firebase/addMemberToGroup";
+import {useParams} from "react-router-dom";
+
+function AddModalFriendSelect() {
+
+    const [error, setError] = useState(null);
+    const [result, setResult] = useState(null);
+    const [query, setQuery] = useState('');
+    const [filteredFriends, setFilteredFriends] = useState([]);
+
+    const {friendList} = useContext(UserInfoContext);
+    const {id} = useParams()
+
+    function filterFriends(query) {
+        const filteredFriends = friendList.filter((friend) => {
+            const friendName = friend.username.toLowerCase();
+            return friendName.includes(query.toLowerCase());
+        });
+        setFilteredFriends(filteredFriends);
+    }
+
+    useEffect(() => {
+        filterFriends(query);
+    }, [query, friendList])
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        console.log('ran')
+        console.log(filteredFriends[0])
+        const addResult = await addMemberToGroup(id, filteredFriends[0])
+
+        if (addResult === 'user added') {
+            setResult('User added')
+            setError(null)
+        } else if (addResult === 'user already in group') {
+            setError('User already in group')
+            setResult(null)
+        } else {
+            setError('There was an error with the Database')
+            setResult(null)
+        }
+
+
+    }
+
+    return (
+        <>
+            <form onSubmit={handleSubmit}>
+                <label className="add-modal-label" htmlFor="friend">Friend to add:</label>
+                <div className="button-input-container">
+                    <input
+                        type="text"
+                        className="add-modal-input"
+                        list="friends"
+                        name="friend"
+                        id="friend"
+                        placeholder="friends Username"
+                        autoComplete="off"
+                        // sets the value to no friends found if there are no friends in the list
+                        value={friendList.length > 0 ? query : 'No friends found'}
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
+                    {/*otherwise, it sets the datalist to the filtered friends*/}
+                    {friendList.length !== 0 &&
+                        <datalist id="friends" >
+                            {filteredFriends.map((friend) => {
+                                    return <option value={friend.username} key={friend.uid}/>
+                                }
+                            )}
+                        </datalist>
+                    }
+                    <button type="submit" className="add-modal-submit-button" disabled={filteredFriends.length === 0}>Add</button>
+                </div>
+            </form>
+            {error && <p className="error-message">{error}</p>}
+            {result && <p className="success-message">{result}</p>}
+        </>
+    );
+}
+
+export default AddModalFriendSelect;
