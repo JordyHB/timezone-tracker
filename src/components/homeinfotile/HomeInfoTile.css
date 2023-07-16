@@ -11,6 +11,7 @@
     border-radius: 20px;
     background: #848484;
     box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.25);
+    user-select: none;
 }
 
 .clock-face {
@@ -37,7 +38,7 @@
 .main-clock-home, .main-clock-home .loading-message {
     color: #302F2F;
     text-align: center;
-    font-size: clamp(22px, 3vw, 100px);
+    font-size: clamp(22px, 2.75vw, 100px);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -126,7 +127,7 @@
     }
 
     .main-clock-home, .main-clock-home .loading-message {
-        font-size: clamp(22px, 6vw, 100px);
+        font-size: clamp(22px, 2.75vw, 100px);
     }
 
 }
@@ -137,7 +138,7 @@
     }
 
     .info-field-container {
-        font-size: clamp(12px, 2.5vw, 22px);
+        font-size: clamp(12px, 3vw, 22px);
     }
 }
 @media screen and (max-width: 768px) {
@@ -149,7 +150,7 @@
     }
 
     .main-clock-home, .main-clock-home .loading-message {
-        font-size: clamp(22px, 8vw, 100px);
+        font-size: clamp(22px, 6vw, 100px);
     }
 }
 
@@ -161,7 +162,7 @@
     }
 
     .main-clock-home, .main-clock-home .loading-message {
-        font-size: clamp(22px, 8vw, 100px);
+        font-size: clamp(22px, 7vw, 100px);
     }
 
     .info-field{

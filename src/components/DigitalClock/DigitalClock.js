@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './DigitalClock.css';
+import {ClockSettingsContext} from "../../context/ClockSettingsContextProvider";
 
 
 function DigitalClock({className,showSeconds, timezone, setToUtc}) {
@@ -9,6 +10,8 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
     const [hoursDisplay, setHoursDisplay] = useState([])
     const [minutesDisplay, setMinutesDisplay] = useState([])
     const [secondsDisplay, setSecondsDisplay] = useState([])
+
+    const {clockSettings} = useContext(ClockSettingsContext)
 
     useEffect(() => {
         function convertToLocalTime() {
@@ -23,7 +26,7 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
 
             const localTime = new Date()
             // adds the local time string to state using the given timezone
-            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone: timezone, hour12: false}))
+            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone: timezone, hour12: clockSettings}))
         }
 
         setLoading(true)
@@ -78,11 +81,15 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
                             <span>{minutesDisplay[0]}</span>
                             <span>{minutesDisplay[1]}</span>
                         </span>
-                        {showSeconds &&
+                        {showSeconds && !clockSettings['12hourFormat'] &&
                             <span className="seconds-display">
                                 <span>:</span>
                                 <span className="seconds-left">{secondsDisplay[0]}</span>
                                 <span className="seconds-right">{secondsDisplay[1]}</span>
+                            </span>}
+                        {clockSettings['12hourFormat'] &&
+                            <span className="am-pm-display">
+                                <span>{localTimeString.slice(-2)}</span>
                             </span>}
                     </p>
                     }
