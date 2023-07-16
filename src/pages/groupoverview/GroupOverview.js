@@ -54,13 +54,11 @@ return (<>
             <MainGroupClock/>
             {/*loads the group members and their info onto the page*/}
             {groupMemberInfo && groupMemberInfo.map((member) => {
-                return (<div className="group-member-container">
+                return (<div className="group-member-container" key={member.uid}>
                     <ProfileInformation
-                        key={member.uid}
                         groupMember={member}
                         showseconds={false}
                     />
-                    <button type="submit" className="add-modal-submit-button">Add</button>
                 </div>)
             })}
         </section>
