@@ -2,7 +2,7 @@ import React, {createContext, useEffect, useState} from 'react';
 
 
 export const ClockSettingsContext = createContext({
-    clockSettings:{
+    clockSettings: {
         '12hoursFormat': false,
     },
     toggleClockSettings: () => {
@@ -11,18 +11,18 @@ export const ClockSettingsContext = createContext({
 
 function ClockSettingsContextProvider({children}) {
 
-    const [clockSettings, setClockSettings] = useState(null)
+    const [clockSettings, setClockSettings] = useState(retrieveLocalStorage)
 
-    useEffect(() => {
-        // on mount fetch clock settings from local storage
-        setClockSettings(JSON.parse(localStorage.getItem('clockSettings')))
-
-        // if no settings are saved, set default settings
-        setClockSettings({
-            '12hoursFormat': true,
-        })
-    }, [])
-
+    function retrieveLocalStorage() {
+        // if there is a saved clockSettings object in local storage, return it, otherwise return a default object
+        if (localStorage.getItem('savedClockSettings')) {
+            return JSON.parse(localStorage.getItem('savedClockSettings'))
+        } else {
+            return {
+                '12hourFormat': false,
+            }
+        }
+    }
 
     function toggleClockSettings() {
         setClockSettings((prevSettings) => ({
@@ -35,7 +35,8 @@ function ClockSettingsContextProvider({children}) {
 
     useEffect(() => {
         // on clockSettings change, save to local storage
-        localStorage.setItem('clockSettings', JSON.stringify(clockSettings))
+        localStorage.setItem('savedClockSettings', JSON.stringify(clockSettings))
+        console.log(clockSettings)
     }, [clockSettings])
 
 

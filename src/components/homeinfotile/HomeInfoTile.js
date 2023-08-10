@@ -37,7 +37,7 @@ function HomeInfoTile() {
             // gets only the location data from the returned object
             const {location} =
                 // intentionally left blank to conserve API key uses while in development
-                (await axios.get(`https://api.ipregistry.co/?key=${process.env.REACT_APP_GEOLOCATE_API_KEY}`)).data
+                (await axios.get(`https://api.pregistry.co/?key=${process.env.REACT_APP_GEOLOCATE_API_KEY}`)).data
 
             setLocationData(location)
 
