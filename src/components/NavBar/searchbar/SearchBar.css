@@ -3,6 +3,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
 }
 
 .search-bar-input {
@@ -18,7 +20,6 @@
 }
 
 .search-button {
-    position: absolute;
     height: 44px;
     padding: 10px 20px;
     align-items: flex-start;
@@ -39,18 +40,11 @@
     }
 }
 
-@media screen and (max-width: 924px) {
-    .search-bar {
-        position: static;
-        transform: translate(0%, 0%);
-    }
-}
-
 /*changes search bar size for mobile devices*/
 @media screen and (max-width: 768px) {
     .search-bar-input {
-        width: 60%;
         height: 35px;
+        width: 70%;
     }
 
     .search-button {

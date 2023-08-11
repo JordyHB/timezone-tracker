@@ -54,7 +54,7 @@ function TimeInfoTile({timezone}) {
         return () => {
             clearInterval(EveryMinUpdate)
         }
-    }, [])
+    }, [timezone])
 
     useEffect(() => {
         // makes sure the data is fetched before extracting the city name and date

@@ -4,17 +4,17 @@ import './index.css';
 import App from './App';
 import {BrowserRouter} from "react-router-dom";
 import UserContextProvider from "./context/UserInfoContextProvider";
-import ClockSettingsContextProvider from "./context/ClockSettingsContextProvider";
+import UserPreferencesContextProvider from "./context/UserPreferencesContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <UserContextProvider>
-            <ClockSettingsContextProvider>
+            <UserPreferencesContextProvider>
                 <BrowserRouter>
                     <App/>
                 </BrowserRouter>
-            </ClockSettingsContextProvider>
+            </UserPreferencesContextProvider>
         </UserContextProvider>
     </React.StrictMode>
 );

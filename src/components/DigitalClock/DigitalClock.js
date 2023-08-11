@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './DigitalClock.css';
-import {ClockSettingsContext} from "../../context/ClockSettingsContextProvider";
+import {UserPreferencesContext} from "../../context/UserPreferencesContextProvider";
 
 
 function DigitalClock({className,showSeconds, timezone, setToUtc}) {
@@ -11,7 +11,7 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
     const [minutesDisplay, setMinutesDisplay] = useState([])
     const [secondsDisplay, setSecondsDisplay] = useState([])
 
-    const {clockSettings} = useContext(ClockSettingsContext)
+    const {clockSettings} = useContext(UserPreferencesContext)
 
     useEffect(() => {
         function convertToLocalTime() {
@@ -26,7 +26,7 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
 
             const localTime = new Date()
             // adds the local time string to state using the given timezone
-            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone: timezone, hour12: clockSettings}))
+            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone: timezone, hour12: clockSettings['12hourFormat']}))
         }
 
         setLoading(true)
@@ -43,7 +43,7 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
             clearInterval(secondInterval)
         }
 
-    }, [timezone])
+    }, [timezone, clockSettings['12hourFormat']])
 
     useEffect(() => {
             // splits the local time string into an array of numbers so each digit can be styled individually
