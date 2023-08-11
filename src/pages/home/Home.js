@@ -1,15 +1,13 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext} from 'react';
 import './Home.css'
 import NavBar from "../../components/NavBar/NavBar";
-import {UserInfoContext} from "../../context/UserInfoContextProvider";
 import HomeInfoTile from "../../components/homeinfotile/HomeInfoTile";
 import TimeInfoTile from "../../components/TimeInfoTile/TimeInfoTile";
+import {UserPreferencesContext} from "../../context/UserPreferencesContextProvider";
 
 function Home() {
 
-    const {user} = useContext(UserInfoContext)
-    // state that stores the timezones to be displayed
-    const [shownTimeTiles, setShownTimeTiles] = useState(['Europe/London', 'Asia/Shanghai', 'America/New_York', 'Australia/Sydney', 'America/Vancouver', 'Europe/Moscow'])
+    const {shownTimeTiles} = useContext(UserPreferencesContext)
 
     return (
         <>

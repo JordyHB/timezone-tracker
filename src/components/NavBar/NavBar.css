@@ -96,7 +96,7 @@
 
     .nav-links > li {
         text-align: center;
-        width: 75%;
+        width: 60%;
         align-self: center;
     }
 }
@@ -108,4 +108,7 @@
         padding: 8.5rem 48px 2.5rem 48px;
     }
 
+    .nav-links > li {
+        width: 100%;
+    }
 }

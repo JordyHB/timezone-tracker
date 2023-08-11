@@ -1,0 +1,12 @@
+.selector-container {
+    transform: scale(0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-subtitle {
+    color: #f2c300;
+    padding: 0.25rem;
+}
+

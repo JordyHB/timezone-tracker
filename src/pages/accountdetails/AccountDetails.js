@@ -1,6 +1,5 @@
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import Navbar from "../../components/NavBar/NavBar";
-import {UserInfoContext} from "../../context/UserInfoContextProvider";
 import './AccountDetails.css';
 import storeExtraUserInfo from "../../helpers/firebase/storeExtraUserInfo";
 import TimeZoneSelector from "../../components/TimeZoneSelector";
@@ -82,6 +81,7 @@ function AccountDetails() {
                                 labelClassName="extra-info-labels"
                                 query={query}
                                 setQuery={setQuery}
+                                label={'Timezone'}
                             />
                             </div>
                             <button type="submit" className="extra-info-button">Submit</button>
