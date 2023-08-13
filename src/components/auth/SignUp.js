@@ -1,11 +1,14 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import {auth} from '../../firebaseConfig'
 import {createUserWithEmailAndPassword, updateProfile} from "firebase/auth";
-import {Link, useNavigate} from "react-router-dom";
+// context
+import {UserInfoContext} from "../../context/UserInfoContextProvider";
+// helpers
 import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
 import createUserEntry from "../../helpers/firebase/createUserEntry";
-import {UserInfoContext} from "../../context/UserInfoContextProvider";
 import checkNameAvailability from "../../helpers/firebase/checkNameAvailability";
+
 
 function SignUp() {
 
@@ -18,7 +21,8 @@ function SignUp() {
     const navigate = useNavigate()
     const {isAuth, setAuthState} = useContext(UserInfoContext)
 
-    // function to handle the sign up on submit
+
+    // function to handle the sign-up on submit
     const signUp = async (e) => {
         // set error to null on submit
         setError(null)
@@ -85,7 +89,9 @@ function SignUp() {
                             if (e.target.value.length < 20) {
                                 setRequestedUserName(e.target.value)
                                 setError(null)
-                            } else {setError('Username must be less than 20 characters long')}
+                            } else {
+                                setError('Username must be less than 20 characters long')
+                            }
                         }}
                     />
                 </div>

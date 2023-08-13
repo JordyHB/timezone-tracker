@@ -3,9 +3,6 @@ import {db} from "../../firebaseConfig";
 
 async function addMemberToGroup(groupName, user) {
 
-    console.log(groupName, user)
-    // reference to the groups collection
-    const groupCollectionRef = collection(db, "groups")
     // reference to the current group list to check if the user is already in the list
     const requestGroupMembersRef = collection(db, "groups", groupName, "memberinfo")
 
@@ -56,7 +53,6 @@ async function addMemberToGroup(groupName, user) {
         await Promise.all(membersToUpdate)
         await batch.commit()
         return 'user added'
-
 
     } catch (e) {
         console.log(e)

@@ -1,17 +1,21 @@
 import React, {useContext, useEffect, useState} from 'react';
-import './DigitalClock.css';
 import {UserPreferencesContext} from "../../context/UserPreferencesContextProvider";
+import './DigitalClock.css';
 
 
-function DigitalClock({className,showSeconds, timezone, setToUtc}) {
+function DigitalClock({className, showSeconds, timezone, setToUtc}) {
 
+
+    // sets the states
     const [loading, setLoading] = useState(false)
     const [localTimeString, setLocalTimeString] = useState('')
     const [hoursDisplay, setHoursDisplay] = useState([])
     const [minutesDisplay, setMinutesDisplay] = useState([])
     const [secondsDisplay, setSecondsDisplay] = useState([])
 
+    // gets the clock settings from the context
     const {clockSettings} = useContext(UserPreferencesContext)
+
 
     useEffect(() => {
         function convertToLocalTime() {
@@ -26,7 +30,10 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
 
             const localTime = new Date()
             // adds the local time string to state using the given timezone
-            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {timeZone: timezone, hour12: clockSettings['12hourFormat']}))
+            setLocalTimeString(localTime.toLocaleTimeString("en-GB", {
+                timeZone: timezone,
+                hour12: clockSettings['12hourFormat']
+            }))
         }
 
         setLoading(true)
@@ -45,6 +52,8 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
 
     }, [timezone, clockSettings['12hourFormat']])
 
+
+    // updates the display states when the local time string changes
     useEffect(() => {
             // splits the local time string into an array of numbers so each digit can be styled individually
             function splitTimeString() {
@@ -63,14 +72,14 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
         ,
         [localTimeString])
 
-    return (
 
+    return (
         <>
             {/*only displays the clock if the hours exist*/}
 
-                <article className={`digital-clock ${className}`}>
-                    {loading && <p className="loading-message">fetching local time</p>}
-                    {!loading && hoursDisplay.length > 0 &&
+            <article className={`digital-clock ${className}`}>
+                {loading && <p className="loading-message">fetching local time</p>}
+                {!loading && hoursDisplay.length > 0 &&
                     <p className="display">
                         <span className="hour-display">
                             <span>{hoursDisplay[0]}</span>
@@ -92,8 +101,8 @@ function DigitalClock({className,showSeconds, timezone, setToUtc}) {
                                 <span>{localTimeString.slice(-2)}</span>
                             </span>}
                     </p>
-                    }
-                </article>
+                }
+            </article>
         </>
 
     );

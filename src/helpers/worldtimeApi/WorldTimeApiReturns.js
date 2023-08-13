@@ -14,7 +14,6 @@ export function fetchDSTChangeDate(timeData) {
         const date = new Date(timeData.dst_from)
         return date.toLocaleString('En-Gb', {month: 'long', day: 'numeric'})
     }
-
 }
 
 // fetches the current date in a day/month format
@@ -42,8 +41,14 @@ export function fetchTimezoneOffset(requestedUserTimezone, authUserTimezone) {
     const currentDate = new Date();
 
     // fetches the timezone offset for both the auth user and the requested user
-    const authUserOffset = currentDate.toLocaleTimeString('en', { timeZoneName: 'short', timeZone: authUserTimezone}).split('GMT')[1]
-    const requestedUserOffset = currentDate.toLocaleTimeString('en', { timeZoneName: 'short', timeZone: requestedUserTimezone}).split('GMT')[1];
+    const authUserOffset = currentDate.toLocaleTimeString('en', {
+        timeZoneName: 'short',
+        timeZone: authUserTimezone
+    }).split('GMT')[1]
+    const requestedUserOffset = currentDate.toLocaleTimeString('en', {
+        timeZoneName: 'short',
+        timeZone: requestedUserTimezone
+    }).split('GMT')[1];
 
     // creates an array of the offsets for easy mapping
     const offsetsToCompare = [authUserOffset, requestedUserOffset]
@@ -58,13 +63,13 @@ export function fetchTimezoneOffset(requestedUserTimezone, authUserTimezone) {
         let offsetHours = Number(offset.split(':')[0]);
         let offsetMinutes = Number(offset.split(':')[1]);
         // coverts minutes to a decimal and adds it to hours if minutes is a NaN value it will return 0
-        return  (offsetHours + (offsetMinutes ? offsetMinutes / 60 : 0))
+        return (offsetHours + (offsetMinutes ? offsetMinutes / 60 : 0))
     })
 
     // if the auth user's offset is greater than the requested user's offset, then the auth user is ahead of the requested user
     if (numericOffsets[0] > numericOffsets[1]) {
         return `${numericOffsets[0] - numericOffsets[1]} hours ahead`
-    // if the auth user's offset is less than the requested user's offset, then the auth user is behind the requested user
+        // if the auth user's offset is less than the requested user's offset, then the auth user is behind the requested user
     } else if (numericOffsets[0] < numericOffsets[1]) {
         return `${numericOffsets[1] - numericOffsets[0]} hours behind`
     } else {

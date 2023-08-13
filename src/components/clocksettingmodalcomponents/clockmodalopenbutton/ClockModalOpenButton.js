@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
-import {ReactComponent as SettingsIcon} from "../../../assets/icons/settingsicon.svg"
 import ClockSettingsModal from "../clocksettingsmodal/ClockSettingsModal";
+import {ReactComponent as SettingsIcon} from "../../../assets/icons/settingsicon.svg"
+
 
 function ClockModalOpenButton() {
 
@@ -16,6 +17,7 @@ function ClockModalOpenButton() {
     const closeModal = () => {
         clockSettingModalRef.current.close()
     }
+
 
     return (
         <>

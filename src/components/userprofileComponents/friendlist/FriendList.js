@@ -1,31 +1,38 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {UserInfoContext} from "../../../context/UserInfoContextProvider";
-import "./FriendList.css"
 import {useNavigate} from "react-router-dom";
+// context
+import {UserInfoContext} from "../../../context/UserInfoContextProvider";
+// components
 import AddModalOpenButton from "../../addmodalcomponents/addmodalopenbutton/AddModalOpenButton";
+// helpers
 import fetchFriendList from "../../../helpers/firebase/fetchFriendList";
+// styles
+import "./FriendList.css"
+
 
 function FriendList({id}) {
 
-    const userContext  = useContext(UserInfoContext)
     const [friendList, setFriendList] = useState(null)
+
+    const userContext  = useContext(UserInfoContext)
+
     const navigate = useNavigate()
 
-    useEffect(() => {
 
+    useEffect(() => {
 
         async function fetchRequestedUserFriendList() {
             setFriendList(await fetchFriendList(id))
         }
-        //fetches the friendlist from a requested user if not the auth user
+        //fetches the friend list from a requested user if not the auth user
         if (id && id !== userContext?.user?.username && id !== 'myprofile') {
             void fetchRequestedUserFriendList(id)
         } else {
-            // takes the friendlist from the context if the user is the auth user
+            // takes the friend list from the context if the user is the auth user
             setFriendList(userContext.friendList)
         }
 
-        // cleans up the old data incase of profile hopping
+        // cleans up the old data in case of profile hopping
         return () => {
             setFriendList(null)
         }

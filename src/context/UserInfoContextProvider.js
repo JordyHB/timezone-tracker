@@ -1,7 +1,8 @@
-import React, {createContext, useState, useEffect} from 'react';
-import {onSnapshot, doc, collection} from "firebase/firestore";
-import {auth, db} from "../firebaseConfig";
+import React, {createContext, useEffect, useState} from 'react';
+import {collection, doc, onSnapshot} from "firebase/firestore";
 import {onAuthStateChanged} from "firebase/auth";
+import {auth, db} from "../firebaseConfig";
+//helpers
 import fetchUserEntry from "../helpers/firebase/fetchUserEntry";
 import fetchFriendList from "../helpers/firebase/fetchFriendList";
 import fetchGroupList from "../helpers/firebase/fetchGroupList";
@@ -12,8 +13,10 @@ export const UserInfoContext = createContext({
     friendList: null,
     groupList: null,
     isAuth: false,
-    setAuthState: () => {}
+    setAuthState: () => {
+    }
 })
+
 
 function UserInfoContextProvider({children}) {
 
@@ -34,7 +37,7 @@ function UserInfoContextProvider({children}) {
         // listen for auth state changes and checks if user is logged in before first render
         const unListen = onAuthStateChanged(auth, async (user) => {
             //checks if displayName has been set and stored
-            if (user && user.displayName !== null || authState.displayNameSet) {
+            if (user && (user.displayName !== null || authState.displayNameSet)) {
                 setUserInfo(await fetchUserEntry(user.displayName))
                 setFriendList(await fetchFriendList(user.displayName))
                 setGroupList(await fetchGroupList(user.displayName))
@@ -43,7 +46,6 @@ function UserInfoContextProvider({children}) {
             } else {
                 setAuthState({user: null, isAuth: false, loading: false})
                 setUserInfo(null)
-                console.log('user is not logged in')
             }
         });
 
@@ -53,7 +55,6 @@ function UserInfoContextProvider({children}) {
             unListen()
         }
     }, [authState.displayNameSet])
-
 
     // listen for auth state changes and checks if user is logged in before adding a snapshot listener
     useEffect(() => {
@@ -79,7 +80,8 @@ function UserInfoContextProvider({children}) {
                 });
             } else {
                 //returns an empty function if the user is not logged in
-                return () => {}
+                return () => {
+                }
             }
         }
 
@@ -91,7 +93,8 @@ function UserInfoContextProvider({children}) {
                 });
             } else {
                 //returns an empty function if the user is not logged in
-                return () => {}
+                return () => {
+                }
             }
         }
 
@@ -99,7 +102,6 @@ function UserInfoContextProvider({children}) {
         const unsubscribeToUser = subscribeToUser()
         const unsubscribeToFriendList = subscribeToFriendList()
         const unsubscribeToGroupList = subscribeToGroupList()
-
 
         // clean up on unmount
         return () => {
@@ -111,6 +113,7 @@ function UserInfoContextProvider({children}) {
 
 
     return (
+
         <UserInfoContext.Provider value={
             {
                 user: userInfo,

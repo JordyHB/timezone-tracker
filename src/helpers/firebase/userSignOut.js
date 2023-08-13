@@ -1,14 +1,15 @@
 import {signOut} from "firebase/auth";
 import {auth} from "../../firebaseConfig";
 
-const userSignOut = () => {
-    // sign out
-    signOut(auth).then(() => {
-        console.log('signed out')
-    }).catch((error) => {
-            console.log(error)
-        }
-    );
-}
+
+const userSignOut = async () => {
+    try {
+        await signOut(auth);
+        return true
+    } catch (error) {
+        console.error(error);
+        return false
+    }
+};
 
 export default userSignOut;

@@ -1,14 +1,15 @@
 import React from 'react';
 //imports for styling
-import '../../components/Auth/AuthContainer.css'
+import '../../components/auth/AuthContainer.css'
 //imports for components
-import NavBar from "../../components/NavBar/NavBar";
-import SignIn from "../../components/Auth/SignIn";
+import NavBar from "../../components/navbar/NavBar";
+import SignIn from "../../components/auth/SignIn";
 
 
 function Login() {
 
     return (
+
         <>
             <header>
                 <NavBar page="login"/>

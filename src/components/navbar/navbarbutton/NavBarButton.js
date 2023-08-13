@@ -1,7 +1,7 @@
 import React from 'react';
-import "./NavBarButton.css"
-import userSignOut from "../../../helpers/firebase/userSignOut";
 import {useNavigate} from "react-router-dom";
+import userSignOut from "../../../helpers/firebase/userSignOut";
+import "./NavBarButton.css"
 
 function NavBarButton({text}) {
 
@@ -9,8 +9,17 @@ function NavBarButton({text}) {
 
     // handles the button click based on the text prop
     function handleClick() {
+
         if (text === "Sign Out") {
-            void userSignOut()
+            // sign out and redirect to home page
+            const redirect = async () => {
+                const success = await userSignOut()
+                if (success) {
+                    navigate("/")
+                }
+            }
+            // call the redirect function
+            void redirect()
         }
         if (text === "Login") {
             navigate("/login")

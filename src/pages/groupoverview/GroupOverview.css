@@ -7,7 +7,7 @@
     justify-items: center;
     align-items: start;
     grid-template-columns: repeat(5, minmax(250px, 1fr));
-    grid-template-rows: 100px repeat(3, minmax(200px, 27%));
+    grid-template-rows: 100px repeat(3, minmax(450px, 27%));
     grid-template-areas:
     "a a a a a"
     "b b c d e"
@@ -17,7 +17,7 @@
 
 .group-name-container {
     display: flex;
-    width: 70%;
+    width: 75%;
     height: 90px;
     align-self: center;
     position: relative;
@@ -28,8 +28,7 @@
     align-items: center;
     padding: 1rem 1.5rem;
     grid-area: a;
-
-
+    overflow: hidden;
 }
 
 .group-name-container .add-button {
@@ -61,17 +60,14 @@
     background: #848484;
 }
 
-
-
-.group-member-container .profile-info-tile {
-    transition: transform 0.3s, box-shadow 0.3s;
-    transform-origin: top;
-    padding: 1rem 1.5rem;
+.group-member-container .user-profile-tile {
+    min-height: 450px;
+    flex: 0;
 }
 
 /*changes the font size for the group page tiles*/
 .group-member-container .info-p {
-    font-size: clamp(10px, 0.8vw, 14px);
+    font-size: clamp(12px, 1.2vw, 14px);
     letter-spacing: 2px;
     padding: 0;
 }
@@ -81,29 +77,15 @@
 }
 
 .group-member-container .profile-clock-wrapper .profile-clock {
-    font-size: clamp(12px, 2.5vw, 24px);
+    font-size: clamp(14px, 2.5vw, 24px);
 }
 
-/*media query for the hover effect on computer screens*/
-@media screen and (min-width: 1440px) {
-
-    .group-member-container:hover .profile-info-tile {
-        transform: scaleY(0.67);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .group-member-container:hover {
-        transform: scaleY(1.33);
-        z-index: 1;
-    }
-}
 /*media query for mobile devices*/
-
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1675px) {
 
     .group-overview-container {
         grid-template-columns: repeat(3, minmax(250px, 1fr));
-        grid-template-rows: 100px repeat(4, minmax(400px, 1fr));
+        grid-template-rows: 100px repeat(4, minmax(450px, 1fr));
         grid-template-areas:
         "a a a"
         "b b c"
@@ -113,12 +95,9 @@
 
 
     }
-
-
-
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 860px) {
 
     .group-overview-container{
         grid-template-columns: repeat(2, minmax(250px, 1fr));
@@ -149,7 +128,7 @@
 }
 
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 600px) {
 
     .group-overview-container{
         grid-template-columns: repeat(1, minmax(250px, 1fr));

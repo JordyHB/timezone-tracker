@@ -5,21 +5,25 @@ import "./ShowCitySelector.css"
 
 function ShowCitySelector({currentTimezone}) {
 
+
     const {changeShownTimeTiles} = useContext(UserPreferencesContext)
+    // gets all the timezones javascript supports
     const availableTimezones = Intl.supportedValuesOf('timeZone');
+
 
     const handleSubmit = (e) => {
 
-        // checks if the timezone is valid
-        if (!Intl.supportedValuesOf('timeZone').includes(e.target.querySelector('input').value)) {
+        e.preventDefault()
+        // checks if the timezone is valid and exits if it isn't
+        if (!availableTimezones.includes(e.target.querySelector('input').value)) {
             alert('Please select a valid timezone')
             return
         }
 
-        e.preventDefault()
-        console.log(e.target.querySelector('input').value)
+        // gets the input value and passes it to the context to change the shown time tiles
         changeShownTimeTiles(currentTimezone, e.target.querySelector('input').value)
     }
+
 
     return (
             <form onSubmit={handleSubmit} className="selector-container">

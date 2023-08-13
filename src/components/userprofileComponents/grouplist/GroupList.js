@@ -1,22 +1,30 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {UserInfoContext} from "../../../context/UserInfoContextProvider";
-import "./GroupList.css"
-import AddModalOpenButton from "../../addmodalcomponents/addmodalopenbutton/AddModalOpenButton";
 import {useNavigate} from "react-router-dom";
+//context
+import {UserInfoContext} from "../../../context/UserInfoContextProvider";
+//components
+import AddModalOpenButton from "../../addmodalcomponents/addmodalopenbutton/AddModalOpenButton";
+//helpers
 import fetchGroupList from "../../../helpers/firebase/fetchGroupList";
+//styles
+import "./GroupList.css"
+
 
 function GroupList({id}) {
 
-    const userContext= useContext(UserInfoContext)
     const [groupList, setGroupList] = useState(null)
+
+    const userContext = useContext(UserInfoContext)
+
     const navigate = useNavigate()
 
-    useEffect(() => {
 
+    useEffect(() => {
 
         async function fetchRequestedUserGroupList() {
             setGroupList(await fetchGroupList(id))
         }
+
         //fetches the group list from a requested user if not the auth user
         if (id && id !== userContext?.user?.username && id !== 'myprofile') {
             void fetchRequestedUserGroupList(id)
@@ -25,7 +33,7 @@ function GroupList({id}) {
             setGroupList(userContext.groupList)
         }
 
-        // cleans up the old data incase of profile hopping
+        // cleans up the old data in case of profile hopping
         return () => {
             setGroupList(null)
         }
@@ -33,6 +41,7 @@ function GroupList({id}) {
 
 
     return (
+
         <article className="group-list-tile user-profile-tile">
             <h3 className="friend-group-title">Group List:</h3>
             {/*only renders the button if on your own profile*/}

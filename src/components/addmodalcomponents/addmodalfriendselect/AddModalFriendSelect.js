@@ -1,34 +1,29 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {UserInfoContext} from "../../../context/UserInfoContextProvider";
-import addMemberToGroup from "../../../helpers/firebase/addMemberToGroup";
 import {useParams} from "react-router-dom";
+// context
+import {UserInfoContext} from "../../../context/UserInfoContextProvider";
+// helpers
+import addMemberToGroup from "../../../helpers/firebase/addMemberToGroup";
+// styles
+import "./AddModalFriendSelect.css"
+
 
 function AddModalFriendSelect() {
 
+    // states
     const [error, setError] = useState(null);
     const [result, setResult] = useState(null);
     const [query, setQuery] = useState('');
     const [filteredFriends, setFilteredFriends] = useState([]);
 
+    // context and params
     const {friendList} = useContext(UserInfoContext);
     const {id} = useParams()
 
-    function filterFriends(query) {
-        const filteredFriends = friendList.filter((friend) => {
-            const friendName = friend.username.toLowerCase();
-            return friendName.includes(query.toLowerCase());
-        });
-        setFilteredFriends(filteredFriends);
-    }
 
-    useEffect(() => {
-        filterFriends(query);
-    }, [query, friendList])
-
+    // handles the submit event
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log('ran')
-        console.log(filteredFriends[0])
         const addResult = await addMemberToGroup(id, filteredFriends[0])
 
         if (addResult === 'user added') {
@@ -41,9 +36,24 @@ function AddModalFriendSelect() {
             setError('There was an error with the Database')
             setResult(null)
         }
-
-
     }
+
+
+    // runs the filterFriends function when the query or friendList changes
+    useEffect(() => {
+
+        // filters the friends list based on the query
+        function filterFriends(query) {
+            const filteredFriends = friendList.filter((friend) => {
+                const friendName = friend.username.toLowerCase();
+                return friendName.includes(query.toLowerCase());
+            });
+            setFilteredFriends(filteredFriends);
+        }
+
+        filterFriends(query);
+    }, [query, friendList])
+
 
     return (
         <>
@@ -64,14 +74,16 @@ function AddModalFriendSelect() {
                     />
                     {/*otherwise, it sets the datalist to the filtered friends*/}
                     {friendList.length !== 0 &&
-                        <datalist id="friends" >
+                        <datalist id="friends">
                             {filteredFriends.map((friend) => {
                                     return <option value={friend.username} key={friend.uid}/>
                                 }
                             )}
                         </datalist>
                     }
-                    <button type="submit" className="add-modal-submit-button" disabled={filteredFriends.length === 0}>Add</button>
+                    <button type="submit" className="add-modal-submit-button"
+                            disabled={filteredFriends.length === 0}>Add
+                    </button>
                 </div>
             </form>
             {error && <p className="error-message">{error}</p>}

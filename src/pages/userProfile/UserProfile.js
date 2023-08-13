@@ -1,11 +1,14 @@
 import React, {useContext} from 'react';
-import Navbar from "../../components/NavBar/NavBar";
+import {useParams} from "react-router-dom";
+// context
+import {UserInfoContext} from "../../context/UserInfoContextProvider";
+// components
+import Navbar from "../../components/navbar/NavBar";
 import ProfileInformation from "../../components/userprofileComponents/profileInformation/ProfileInformation";
 import FriendList from "../../components/userprofileComponents/friendlist/FriendList";
-import "./UserProfile.css"
 import GroupList from "../../components/userprofileComponents/grouplist/GroupList";
-import {UserInfoContext} from "../../context/UserInfoContextProvider";
-import {useParams} from "react-router-dom";
+// styles
+import "./UserProfile.css"
 
 function UserProfile() {
 
@@ -14,6 +17,7 @@ function UserProfile() {
     const {id} = useParams()
 
     return (
+
         <>
             <header>
                 <Navbar page="profile"/>

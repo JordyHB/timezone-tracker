@@ -1,12 +1,5 @@
-import {
-    getDocs,
-    collection,
-    where,
-    query,
-    setDoc,
-    doc,
-} from "firebase/firestore";
-import {db, auth} from "../../firebaseConfig";
+import {collection, doc, getDocs, query, setDoc, where,} from "firebase/firestore";
+import {auth, db} from "../../firebaseConfig";
 
 
 // function that returns info for the user queried entry based on the username
@@ -48,6 +41,7 @@ async function queryByUsernames(user, requestedUsername) {
                 };
             }
         );
+
         //returns a message based if the user was not found
         if (queryResult === undefined) {
             return 'user not found'

@@ -1,31 +1,31 @@
 import React, {useContext} from 'react';
-import "./ClockSettingModal.css"
 import {UserPreferencesContext} from "../../../context/UserPreferencesContextProvider";
 import ShowCitySelector from "../showcityselector/ShowCitySelector";
+import "./ClockSettingModal.css"
+
 
 function ClockSettingsModal({modalRef, closeModal}) {
 
+    //Gets the context
     const {
         clockSettings,
         toggleClockSettings,
         shownTimeTiles,
     } = useContext(UserPreferencesContext)
 
-    const handleToggle = () => {
-        //Updates the context
-        toggleClockSettings()
-    };
 
     return (
         <dialog className="clock-setting-modal" ref={modalRef}>
             {/*in a container so we can apply flexbox*/}
             {clockSettings &&
-                // slider to change between 12h and 24h format*/}
                 <div className="clock-setting-modal-container">
                     <h3 className="modal-subtitle">Time format</h3>
+                    {/*slider for 12h/24h format*/}
                     <label className={`toggle-button ${clockSettings['12hourFormat'] ? 'on' : ''}`}
-                           onClick={handleToggle}>
+                           onClick={toggleClockSettings}>
+                        {/*slider*/}
                         <div className="slider">
+                            {/*slider nub*/}
                             <span className="label">{clockSettings['12hourFormat'] ? '12h' : '24h'}</span>
                         </div>
                     </label>

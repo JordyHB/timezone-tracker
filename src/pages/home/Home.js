@@ -1,15 +1,17 @@
 import React, {useContext} from 'react';
-import './Home.css'
-import NavBar from "../../components/NavBar/NavBar";
-import HomeInfoTile from "../../components/homeinfotile/HomeInfoTile";
-import TimeInfoTile from "../../components/TimeInfoTile/TimeInfoTile";
 import {UserPreferencesContext} from "../../context/UserPreferencesContextProvider";
+import NavBar from "../../components/navbar/NavBar";
+import HomeInfoTile from "../../components/homeinfotile/HomeInfoTile";
+import TimeInfoTile from "../../components/timeinfotile/TimeInfoTile";
+import './Home.css'
+
 
 function Home() {
 
     const {shownTimeTiles} = useContext(UserPreferencesContext)
 
     return (
+
         <>
             <header>
                 <NavBar page="home"/>

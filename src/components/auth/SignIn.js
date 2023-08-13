@@ -1,11 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import {auth} from '../../firebaseConfig'
 import {signInWithEmailAndPassword} from "firebase/auth";
-import {Link, useNavigate} from "react-router-dom";
-import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
+// Context
 import {UserInfoContext} from "../../context/UserInfoContextProvider";
+// Helpers
+import mapErrorCodeToMessage from "../../helpers/firebase/mapErrorCodeToMessage";
 
-function SignIn(props) {
+function SignIn() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -15,6 +17,7 @@ function SignIn(props) {
     // flag to check if the user is authenticated and the context has been filled
     const navigate = useNavigate()
     const {isAuth} = useContext(UserInfoContext)
+
 
     const signIn = async (e) => {
         // set error to null on submit
@@ -34,12 +37,14 @@ function SignIn(props) {
         }
     }
 
+
     // if waitingForRedirect is true and the context has been filled, redirect to account details page
     useEffect(() => {
         if (waitingForRedirect && isAuth) {
             navigate('/profile/myprofile')
         }
     }, [waitingForRedirect, isAuth, navigate])
+
 
     return (
         <article className="auth-tile">
