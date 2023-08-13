@@ -21,7 +21,6 @@
     padding: 5%;
     border-radius: 20px;
     background: #F3F3F3;
-
 }
 
 .settings-icon-wrapper {
@@ -30,6 +29,7 @@
     right: 30px;
     width: 9%;
 }
+
 .settings-icon {
     color: #302F2F;
     width: 100%;
@@ -43,6 +43,7 @@
     font-weight: 400;
     line-height: normal;
 }
+
 .main-clock-home .error-message {
     font-size: clamp(10px, 1vw, 16px);
 }
@@ -77,14 +78,14 @@
     /*typography*/
     color: #302F2F;
     white-space: nowrap;
-    font-size: clamp(12px, 1.5vw, 20px);
+    font-size: clamp(12px, 1vw, 20px);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: 1px;
     padding: 0 20px;
-    scrollbar-width: thin;  /* Firefox */
-    scrollbar-color: #302F2F #F3F3F3;  /* Firefox */
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #302F2F #F3F3F3; /* Firefox */
 }
 
 .info-field::-webkit-scrollbar {
@@ -123,7 +124,7 @@
 
     .info-field-container {
         flex-grow: 0;
-        margin:auto;
+        margin: auto;
     }
 
     .main-clock-home, .main-clock-home .loading-message {
@@ -141,6 +142,7 @@
         font-size: clamp(12px, 3vw, 22px);
     }
 }
+
 @media screen and (max-width: 768px) {
 
     .home-info-tile {
@@ -165,7 +167,7 @@
         font-size: clamp(22px, 7vw, 100px);
     }
 
-    .info-field{
+    .info-field {
         font-size: clamp(10px, 2vw, 20px);
     }
 }

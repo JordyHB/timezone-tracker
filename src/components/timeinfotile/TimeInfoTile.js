@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
-import DigitalClock from "../DigitalClock/DigitalClock";
+import DigitalClock from "../digitalclock/DigitalClock";
 import './TimeInfoTile.css'
 
 function TimeInfoTile({timezone}) {
@@ -27,14 +27,27 @@ function TimeInfoTile({timezone}) {
         setDate(`${days[day_of_week]}, ${date}`)
     }
 
+
     useEffect(() => {
 
+        // aborts the fetch request if the component is unmounted
+        const controller = new AbortController()
+        const signal = controller.signal
+
         async function fetchTimeData() {
+
             try {
                 toggleError(false)
-                const {data} = await axios.get(`http://worldtimeapi.org/api/timezone/${timezone}`)
+                const {data} = await axios.get(
+                    `http://worldtimeapi.org/api/timezone/${timezone}`,
+                    {signal: signal}
+                )
                 setTimeData(data)
             } catch (e) {
+
+                // prevents the error from being logged if the fetch is canceled
+                if (e.code === "ERR_CANCELED") return;
+                // logs the error if it is not canceled
                 toggleError(true)
                 console.error(e)
             }
@@ -53,7 +66,9 @@ function TimeInfoTile({timezone}) {
         // cleans up the interval to prevent memory leaks
         return () => {
             clearInterval(EveryMinUpdate)
+            controller.abort()
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timezone])
 
     useEffect(() => {
@@ -64,6 +79,7 @@ function TimeInfoTile({timezone}) {
         }
         // once the data is fetched, loading is set to false
         timeData.datetime && toggleLoading(false)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [timeData])
 
 
@@ -77,8 +93,8 @@ function TimeInfoTile({timezone}) {
 
 
     return (
-        <>
 
+        <>
             <article className="time-info-tile">
                 {/*handles giving the user feedback if there is an error or if the data is loading*/}
                 {error && <p className="error-message">There was an error fetching the data</p>}

@@ -1,6 +1,7 @@
 import {collection, getDocs} from "firebase/firestore";
 import {db} from "../../firebaseConfig";
 
+
 // checks if the username is available
 async function checkNameAvailability(name, nameType) {
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import DigitalClock from "../../DigitalClock/DigitalClock";
+import DigitalClock from "../../digitalclock/DigitalClock";
 import './MainGroupClock.css';
 
 

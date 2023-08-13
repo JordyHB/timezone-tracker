@@ -1,6 +1,5 @@
 /*typography*/
-
-.tile-titles-typography{
+.tile-titles-typography {
     font-family: Poppins, sans-serif;
     font-size: clamp(12px, 1.5vw, 26px);
     font-weight: 400;
@@ -9,7 +8,7 @@
     text-align: center;
 }
 
-.tile-text-typography{
+.tile-text-typography {
     color: #302F2F;
     text-align: center;
     font-size: clamp(10px, 1vw, 24px);
@@ -36,7 +35,6 @@
     background: #C5C3BF;
 }
 
-
 .info-bar {
     display: flex;
     flex-direction: column;
@@ -50,25 +48,24 @@
 }
 
 /*media query for mobile devices*/
-
 @media screen and (max-width: 1026px) {
 
-    .tile-titles-typography{
+    .tile-titles-typography {
         font-size: clamp(12px, 2.5vw, 26px);
     }
 
-    .tile-text-typography{
+    .tile-text-typography {
         font-size: clamp(10px, 1.5vw, 24px);
     }
 }
 
 @media screen and (max-width: 700px) {
 
-    .tile-titles-typography{
+    .tile-titles-typography {
         font-size: clamp(12px, 4vw, 26px);
     }
 
-    .tile-text-typography{
+    .tile-text-typography {
         font-size: clamp(10px, 3vw, 24px);
     }
 

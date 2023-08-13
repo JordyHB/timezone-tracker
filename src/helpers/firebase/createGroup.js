@@ -1,23 +1,21 @@
-import {writeBatch, doc, getDoc} from "firebase/firestore";
+import {doc, getDoc, writeBatch} from "firebase/firestore";
 import {db} from "../../firebaseConfig";
+
 
 async function createGroup(user, groupName) {
 
     // sets max group name length
     if (groupName.length > 25) {
-        console.log('group name is too long')
         return 'group name is too long'
     }
 
     try {
-
         // checks if the group already exists
         const groupNameCheckRef = doc(db, 'groups', groupName)
         const docSnap = await getDoc(groupNameCheckRef)
 
         // if the group already exists, return an error
         if (docSnap.exists()) {
-            console.log('group already exists')
             return 'group already exists'
         }
 

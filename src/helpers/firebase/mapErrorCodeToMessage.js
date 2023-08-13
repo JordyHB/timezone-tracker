@@ -1,4 +1,5 @@
 function mapErrorCodeToMessage(errorCode) {
+
     switch (errorCode) {
         case 'auth/invalid-email':
             return 'Invalid email address.'

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { ReactComponent as SearchIcon } from '../../../assets/icons/searchicon.svg'
 import "./SearchBar.css"
-import TimeZoneSelector from "../../TimeZoneSelector";
+import TimeZoneSelector from "../../timezoneselector/TimeZoneSelector";
 import {useNavigate} from "react-router-dom";
 
 
@@ -20,7 +20,7 @@ function SearchBar({ className }) {
             return
         } else {
             //sends it to the timezone page removing the '/' from the query
-            navigate(`/timezone/${query.replace('/', '%2F')}`)
+            navigate(`/timezone/${query.replaceAll('/', '%2F')}`)
         }
     }
 

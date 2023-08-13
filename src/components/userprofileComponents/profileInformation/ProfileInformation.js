@@ -1,19 +1,25 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {UserInfoContext} from "../../../context/UserInfoContextProvider";
-import DigitalClock from "../../DigitalClock/DigitalClock";
-import './ProfileInformation.css'
-import ApiUserInfo from "../../ApiUserInfo";
-import fetchUserEntry from "../../../helpers/firebase/fetchUserEntry";
 import {useNavigate} from "react-router-dom";
+// context
+import {UserInfoContext} from "../../../context/UserInfoContextProvider";
+// components
+import DigitalClock from "../../digitalclock/DigitalClock";
+import ApiUserInfo from "../../apiuserinfo/ApiUserInfo";
+// helpers
+import fetchUserEntry from "../../../helpers/firebase/fetchUserEntry";
+// styles
+import './ProfileInformation.css'
+
 
 function ProfileInformation({groupMember, id, showSeconds}) {
-
-    const {user, isAuth} = useContext(UserInfoContext)
-    const navigate = useNavigate()
 
     const [requestedUser, setRequestedUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
+
+    const {user, isAuth} = useContext(UserInfoContext)
+
+    const navigate = useNavigate()
 
 
     // handles the profile tile being clicked
@@ -23,6 +29,7 @@ function ProfileInformation({groupMember, id, showSeconds}) {
             navigate(`/profile/${groupMember.username}`)
         }
     }
+
 
     // fetches the requested user on mount and when the id changes
     useEffect(() => {
@@ -65,10 +72,12 @@ function ProfileInformation({groupMember, id, showSeconds}) {
             setRequestedUser(null)
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id])
 
 
     return (
+
         <>
             {error && <p>{error}</p>}
             {loading && <p>loading...</p>}

@@ -16,10 +16,12 @@ export const UserPreferencesContext = createContext({
     }
 })
 
+
 function UserPreferencesContextProvider({children}) {
 
     const [clockSettings, setClockSettings] = useState(retrieveClockSettingsLocalStorage)
     const [shownTimeTiles, setShownTimeTiles] = useState(retrieveShownTimeTilesLocalStorage)
+
 
     // functions that update the context
     function toggleClockSettings() {
@@ -30,13 +32,15 @@ function UserPreferencesContextProvider({children}) {
     }
 
     function changeShownTimeTiles(oldTile, newTile) {
-        setShownTimeTiles( (prevShownTimeTiles) => {
+        setShownTimeTiles((prevShownTimeTiles) => {
             const updatedTimeTiles = [...prevShownTimeTiles],
-            updatedIndex = updatedTimeTiles.indexOf(oldTile)
+                // find the index of the old tile and replace it with the new tile
+                updatedIndex = updatedTimeTiles.indexOf(oldTile)
             updatedTimeTiles[updatedIndex] = newTile
             return updatedTimeTiles
         })
     }
+
 
     // useEffects that save to local storage
     useEffect(() => {
@@ -51,6 +55,7 @@ function UserPreferencesContextProvider({children}) {
 
 
     return (
+
         <UserPreferencesContext.Provider value={
             {
                 clockSettings: clockSettings,

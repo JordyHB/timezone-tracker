@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
-function TimeZoneSelector({labelClassName, inputClassName , query, setQuery, label}) {
+function TimeZoneSelector({labelClassName, inputClassName, query, setQuery, label}) {
 
     const [filteredTimeZones, setFilteredTimeZones] = useState([]);
 
+
     useEffect(() => {
+
+        // make a list of all available timezones
         const availableTimeZones = Intl.supportedValuesOf('timeZone');
 
         function searchTimeZones(query) {
@@ -14,9 +17,12 @@ function TimeZoneSelector({labelClassName, inputClassName , query, setQuery, lab
         }
 
         setFilteredTimeZones(searchTimeZones(query));
+
     }, [query])
 
+
     return (
+
         <>
             <label className={labelClassName} htmlFor="timezone">{label}</label>
             <input

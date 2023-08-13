@@ -10,3 +10,8 @@
     padding: 0.25rem;
 }
 
+@media screen and (max-width: 768px) {
+    .selector-container {
+        transform: scale(0.9);
+    }
+}

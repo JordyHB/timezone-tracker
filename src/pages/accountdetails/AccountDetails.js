@@ -1,14 +1,19 @@
 import React, {useState} from 'react';
-import Navbar from "../../components/NavBar/NavBar";
-import './AccountDetails.css';
+// components
+import Navbar from "../../components/navbar/NavBar";
+// helpers
+import TimeZoneSelector from "../../components/timezoneselector/TimeZoneSelector";
 import storeExtraUserInfo from "../../helpers/firebase/storeExtraUserInfo";
-import TimeZoneSelector from "../../components/TimeZoneSelector";
+// styles
+import './AccountDetails.css';
 
 function AccountDetails() {
+
 
     const [nickname, setNickname] = useState('')
     const [country, setCountry] = useState('')
     const [query, setQuery] = useState('')
+
 
     function handleChange(e) {
         if (e.target.name === 'nickname')
@@ -20,16 +25,19 @@ function AccountDetails() {
     function handleSubmit(e) {
         e.preventDefault()
 
+        // checks if the user has filled out all the fields
         if (nickname === '' || country === '') {
             alert('Please fill out all the fields')
             return
         }
 
+        // checks if the user has selected a valid timezone
         if (!Intl.supportedValuesOf('timeZone').includes(query)) {
             alert('Please select a valid timezone')
             return
         }
 
+        // creates an object with all the user info from the form and hands it to the storeExtraUserInfo function
         const userInfo = {
             nickname: nickname,
             country: country,
@@ -39,6 +47,7 @@ function AccountDetails() {
         // gets all the user info from the form and stores it in the database
         void storeExtraUserInfo(userInfo)
     }
+
 
     return (
         <>
@@ -76,13 +85,13 @@ function AccountDetails() {
                                 />
                             </div>
                             <div className="input-container">
-                            <TimeZoneSelector
-                                inputClassName="extra-info-inputs"
-                                labelClassName="extra-info-labels"
-                                query={query}
-                                setQuery={setQuery}
-                                label={'Timezone'}
-                            />
+                                <TimeZoneSelector
+                                    inputClassName="extra-info-inputs"
+                                    labelClassName="extra-info-labels"
+                                    query={query}
+                                    setQuery={setQuery}
+                                    label={'Timezone'}
+                                />
                             </div>
                             <button type="submit" className="extra-info-button">Submit</button>
                         </form>

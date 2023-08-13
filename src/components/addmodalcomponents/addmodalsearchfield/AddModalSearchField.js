@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import addFriend from "../../../helpers/firebase/addFriend";
 import {UserInfoContext} from "../../../context/UserInfoContextProvider";
 import './AddModalSearchField.css'

@@ -1,6 +1,7 @@
 import {doc, setDoc} from "firebase/firestore";
 import {db} from "../../firebaseConfig";
 
+
 // makes a new entry in the users collection in the firestore database on registration
 async function createUserEntry(user) {
 
